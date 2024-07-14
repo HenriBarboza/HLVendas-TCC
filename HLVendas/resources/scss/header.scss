@@ -1,0 +1,30 @@
+$background-color:#dedede;
+$sombra: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$cinza: #6b6b6a;
+$menu: #2d2c2c;
+$white: #ffffff;
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $menu;
+    box-shadow: $sombra;
+    padding: 2rem;
+}
+
+
+.lista{
+    display:flex;
+    gap: 3rem;
+    list-style-type: none;
+
+    a{
+        font-weight:700;
+        text-decoration: none;
+        &:hover{
+            color: $cinza;
+            transition: 0.5s;
+        }
+    }
+}

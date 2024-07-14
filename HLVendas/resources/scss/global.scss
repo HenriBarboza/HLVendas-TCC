@@ -1,0 +1,21 @@
+$c01: #ffffff;
+
+@font-face {
+  font-family: 'monstserrat';
+  src: url('../fonts/Montserrat/static/Montserrat-Regular.ttf');
+}
+
+* {
+  font-family: 'monstserrat';
+}
+
+.title {
+  font-size: 3.75rem;
+  color: $c01;
+}
+
+.text {
+  font-size: 1.25rem;
+  color: $c01;
+  font-weight: 400;
+}
