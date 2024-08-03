@@ -6,16 +6,16 @@
     </div>
     <div>
         <ul class="lista">
-        <a href="/cliente">
+        <a href="/cliente/create">
             <li class="text">Clientes</li>
         </a>
         <a href="/produto/create">
             <li class="text">Produtos</li>
         </a>
-        <a href="/venda">
+        <a href="/venda/create">
             <li class="text">Venda</li>
         </a>
-        <a href="/">
+        <a href="/fornecedor/create">
             <li class="text">Fornecedores</li>
         </a>
         </ul>

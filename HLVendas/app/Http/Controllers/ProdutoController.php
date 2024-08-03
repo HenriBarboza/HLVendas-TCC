@@ -31,16 +31,21 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         Produto::create([
-            'nome' => $request->input('nome'),
+            'descricao' => $request->input('descricao'),
             'custo' => $request->input('custo'),
-            'preço' => $request->input('preço'),
+            'perccusto' => $request->input('perccusto'),
+            'percprazo' => $request->input('percprazo'),
+            'precoavista' => $request->input('precoavista'),
+            'precoaprazo' => $request->input('precoaprazo'),
+            'unidade' => $request->input('unidade'),
             'codigoBarras' => $request->input('codigoBarras'),
-            'lote' => $request->input('lote'),
+            'ultimavenda' => $request->input('ultimavenda'),
+            'ultimacompra' => $request->input('codigoBarras'),
             'categoria' => $request->input('categoria')
         ]);
 
         return redirect()->route('produto.create')
-                         ->with('success', "Produto cadastroado com sucesso.");
+                         ->with('success', "Produto cadastrado com sucesso.");
     }
 
     /**
@@ -48,7 +53,8 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produtos = Produto::findOrFail($id);
+        return view('produto.show', compact('produtos'));
     }
 
     /**
