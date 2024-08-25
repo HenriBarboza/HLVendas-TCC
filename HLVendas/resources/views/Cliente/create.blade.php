@@ -24,29 +24,22 @@
             <form action="{{route('cliente.store')}}" method="POST">
                 @CSRF
                 <div class="">
+                    <input type="number" value="{{$novoid}}" name="idpessoa" hidden>
                     <div class="">
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" required>
                     </div>
                     <div class="">
                         <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia" required>
+                        <input type="text" name="nfantasia">
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
                         <input type="text" name="telefone">
                     </div>
                     <div class="">
-                        <label for="celular">Celular:</label>
-                        <input type="text" name="celular" required>
-                    </div>
-                    <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
                         <input type="text" name="cpfcnpj" required>
-                    </div>
-                    <div class="">
-                        <label for="rgi">RG/Inscrição Estadual</label>
-                        <input type="text" name="rgi">
                     </div>
                     <div class="">
                         <label for="numero">Logradouro:</label>
@@ -66,15 +59,11 @@
                     </div>
                     <div class="">
                         <label for="cidade">CEP:</label>
-                        <input type="text" name="cep" required>
+                        <input type="text" name="cep">
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
                         <input type="text" name="estado" required>
-                    </div>
-                    <div class="">
-                        <label for="pais">País:</label>
-                        <input type="text" name="pais" value="Brasil" required>
                     </div>
                     <div class="">
                         <label for="datanasc">Data De Nascimento:</label>

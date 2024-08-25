@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
-            $table->string("nfantasia");
-            $table->string("telefone")->nullable();
-            $table->string("celular");
+            $table->string("nfantasia")->nullable();
+            $table->string("telefone");
             $table->string("cpfcnpj");
-            $table->string("rgi")->nullable();
             $table->string("logradouro");
             $table->string("bairro");
             $table->string("numero");
             $table->string("cidade");
-            $table->string("cep");
+            $table->string("cep")->nullable();
             $table->string("estado");
-            $table->string("pais");
             $table->date("datanasc");
             $table->string("tipo");
             $table->timestamps();
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('pessoas');
     }
 };

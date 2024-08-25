@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\PessoaController;
 use Illuminate\Http\Request;
-use App\Models\Cliente;
+use App\Models\Fornecedor;
+use App\Models\Pessoa;
 
-class FornecedorController extends Controller
+class FornecedorController extends PessoaController
 {
     public function index()
     {
-        $fornecedores = Cliente::all();
-        return view("fornecedor.index", compact('fornecedores'));
-        
+        return view("fornecedor.index");
     }
 
     /**
@@ -20,7 +19,13 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        return view('fornecedor.create');
+        $ultimoid = Pessoa::latest('id')->first();
+        if($ultimoid != null) {
+            $novoid = $ultimoid->id + 1;
+        } else{
+            $novoid = 1;
+        }
+        return view('fornecedor.create', compact('novoid'));
     }
 
     /**
@@ -28,22 +33,9 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        Cliente::create([
-            'nome'=> $request->input('nome'),
-            'nfantasia'=> $request->input('nfantasia'),
-            'telefone'=> $request->input('telefone'),
-            'celular'=> $request->input('celular'),
-            'cpfcnpj'=> $request->input('cpfcnpj'),
-            'rgi'=> $request->input('rgi'),
-            'logradouro'=> $request->input('logradouro'),
-            'bairro'=> $request->input('bairro'),
-            'numero'=> $request->input('numero'),
-            'cidade'=> $request->input('cidade'),
-            'cep'=> $request->input('cep'),
-            'estado'=> $request->input('estado'),
-            'pais'=> $request->input('pais'),
-            'datanasc'=> $request->input('datanasc'),
-            'tipo'=> $request->input('tipo'),
+        parent::store($request);
+        Fornecedor::create([
+            'idpessoa' => $request->input('idpessoa'),
         ]);
 
         return redirect()->route('fornecedor.create')
@@ -55,7 +47,7 @@ class FornecedorController extends Controller
      */
     public function show(string $id)
     {
-        $fornecedores = Cliente::findOrFail($id);
+        $fornecedores = Fornecedor::with('pessoa')->findOrFail($id);
         return view('fornecedor.show', compact('fornecedores'));
     }
 
@@ -64,7 +56,7 @@ class FornecedorController extends Controller
      */
     public function edit(string $id)
     {
-        $fornecedores = Cliente::findOrFail($id);
+        $fornecedores = Fornecedor::with('pessoa')->findOrFail($id);
         return view('fornecedor.edit', compact('fornecedores'));
     }
 
@@ -73,10 +65,11 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $fornecedores = Cliente::findOrFail($id);
+        $fornecedores = Fornecedor::with('pessoa')->findOrFail($id);
+        parent::update($request, $fornecedores->pessoa->id);
         $fornecedores->update($request->all());
 
-        return redirect()->route('fornecdor.create')
+        return redirect()->route('fornecedor.create')
                          ->with('success', "Fornecedor alterado com sucesso!") ;
     }
 
@@ -85,10 +78,10 @@ class FornecedorController extends Controller
      */
     public function destroy(string $id)
     {
-        $fornecedores = Cliente::findOrFail($id);
-        $fornecedores->delete();
+        $fornecedores = Fornecedor::with('pessoa')->findOrFail($id);
+        parent::destroy($fornecedores->pessoa->id);
 
-        return redirect()->route('fornecdor.create')
+        return redirect()->route('fornecedor.create')
                         ->with('success','Fornecdor excluído com sucesso!') ;
     }
 }

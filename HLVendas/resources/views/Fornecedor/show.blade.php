@@ -22,75 +22,71 @@
                 <div class="">
                     <div class="">
                         <label for="id">Id:</label>
-                        <input type="text" name="id" value="{{$fornecedores->id}}" disabled>
+                        <input type="text" name="id" value="{{$fornecedores->pessoa->id}}" disabled>
                     </div>
                     <div class="">
                         <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$fornecedores->nome}}" disabled>
+                        <input type="text" name="nome" value="{{$fornecedores->pessoa->nome}}" disabled>
                     </div>
                     <div class="">
                         <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia" value="{{$fornecedores->nfantasia}}" disabled>
+                        <input type="text" name="nfantasia" value="{{$fornecedores->pessoa->nfantasia}}" disabled>
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" value="{{$fornecedores->telefone}}" disabled>
-                    </div>
-                    <div class="">
-                        <label for="celular">Celular:</label>
-                        <input type="text" name="celular" value="{{$fornecedores->celular}}" disabled>
+                        <input type="text" name="telefone" value="{{$fornecedores->pessoa->telefone}}" disabled>
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}" disabled>
-                    </div>
-                    <div class="">
-                        <label for="rgi">RG/Insc. Estadual:</label>
-                        <input type="text" value="{{$fornecedores->rgi}}" name="rgi" disabled>
+                        <input type="text" name="cpfcnpj" value="{{$fornecedores->pessoa->cpfcnpj}}" disabled>
                     </div>
                     <div class="">
                         <label for="logradouro">Logradouro:</label>
-                        <input type="text" name="logradouro" value="{{$fornecedores->logradouro}}" disabled>
+                        <input type="text" name="logradouro" value="{{$fornecedores->pessoa->logradouro}}" disabled>
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero" value="{{$fornecedores->numero}}" disabled>
+                        <input type="text" name="numero" value="{{$fornecedores->pessoa->numero}}" disabled>
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" value="{{$fornecedores->bairro}}" disabled>
+                        <input type="text" name="bairro" value="{{$fornecedores->pessoa->bairro}}" disabled>
                     </div>
                     <div class="">
                         <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" value="{{$fornecedores->cidade}}" disabled>
+                        <input type="text" name="cidade" value="{{$fornecedores->pessoa->cidade}}" disabled>
                     </div>
                     <div class="">
                         <label for="cep">CEP:</label>
-                        <input type="text" name="cep" value="{{$fornecedores->cep}}" disabled>
+                        <input type="text" name="cep" value="{{$fornecedores->pessoa->cep}}" disabled>
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" value="{{$fornecedores->estado}}" disabled>
-                    </div>
-                    <div class="">
-                        <label for="pais">País:</label>
-                        <input type="text" name="pais" value="{{$fornecedores->pais}}" disabled>
+                        <input type="text" name="estado" value="{{$fornecedores->pessoa->estado}}" disabled>
                     </div>
                     <div class="">
                         <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc" value="{{$fornecedores->datanasc}}" disabled>
+                        <input type="date" name="datanasc" value="{{$fornecedores->pessoa->datanasc}}" disabled>
                     </div>
                     <div class="">
                         <label for="created_at">Data De Cadastro:</label>
-                        <input type="datetime-local" name="created_at" value="{{$fornecedores->created_at}}" disabled>
+                        <input type="datetime-local" name="created_at" value="{{$fornecedores->pessoa->created_at}}" disabled>
                     </div>
                     <div class="">
                         <label for="updated_at">Última Alteração:</label>
-                        <input type="datetime-local" name="updated_at" value="{{$fornecedores->updated_at}}" disabled>
+                        <input type="datetime-local" name="updated_at" value="{{$fornecedores->pessoa->updated_at}}" disabled>
                     </div>
-                    <a href="{{route('cliente.edit', $fornecedores->id) }}">Editar</a>
+                    <div class="">
+                        <label for="ultimavenda">Última Venda:</label>
+                        <input type="datetime-local" name="ultimavenda" value="{{$fornecedores->ultimavenda}}" disabled>
+                    </div>
+                    <div class="">
+                        <label for="totalvendido">Total vendio:</label>
+                        <input type="number" name="totalvendido" value="{{$fornecedores->totalvendido}}" disabled>
+                    </div>
+                    <a href="{{route('fornecedor.edit', $fornecedores->id) }}">Editar</a>
             </form>
-            <form action="{{route('cliente.destroy', $fornecedores->id)}}" method="POST">
+            <form action="{{route('fornecedor.destroy', $fornecedores->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="">

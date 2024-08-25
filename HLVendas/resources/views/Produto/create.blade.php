@@ -27,7 +27,7 @@
                 <div class="">
                     <div class="">
                         <label for="descricao">Descricao:</label>
-                        <input type="text" name="descricao" required>
+                        <input type="text" name="descricao" required autofocus>
                     </div>
                     <div class="">
                         <label for="custo">Custo:</label>

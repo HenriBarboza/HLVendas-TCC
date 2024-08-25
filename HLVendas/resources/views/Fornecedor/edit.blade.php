@@ -22,63 +22,51 @@
                 <div class="">
                     <div class="">
                         <label for="id">Id:</label>
-                        <input type="text" name="id" value="{{$fornecedores->id}}" disabled>
+                        <input type="text" name="id" value="{{$fornecedores->pessoa->id}}" disabled>
                     </div>
                     <div class="">
                         <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$fornecedores->nome}}" required>
+                        <input type="text" name="nome" value="{{$fornecedores->pessoa->nome}}" required>
                     </div>
                     <div class="">
                         <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia" value="{{$fornecedores->nfantasia}}" required>
+                        <input type="text" name="nfantasia" value="{{$fornecedores->pessoa->nfantasia}}" required>
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" value="{{$fornecedores->telefone}}" required>
-                    </div>
-                    <div class="">
-                        <label for="celular">Celular:</label>
-                        <input type="text" name="celular" value="{{$fornecedores->celular}}" required>
+                        <input type="text" name="telefone" value="{{$fornecedores->pessoa->telefone}}" required>
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}" required>
-                    </div>
-                    <div class="">
-                        <label for="rgi">RG/Insc. Estadual:</label>
-                        <input type="text" value="{{$fornecedores->rgi}}" name="rgi">
+                        <input type="text" name="cpfcnpj" value="{{$fornecedores->pessoa->cpfcnpj}}" required>
                     </div>
                     <div class="">
                         <label for="logradouro">Logradouro:</label>
-                        <input type="text" name="logradouro" value="{{$fornecedores->logradouro}}">
+                        <input type="text" name="logradouro" value="{{$fornecedores->pessoa->logradouro}}">
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero" value="{{$fornecedores->numero}}">
+                        <input type="text" name="numero" value="{{$fornecedores->pessoa->numero}}">
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" value="{{$fornecedores->bairro}}">
+                        <input type="text" name="bairro" value="{{$fornecedores->pessoa->bairro}}">
                     </div>
                     <div class="">
                         <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" value="{{$fornecedores->cidade}}">
+                        <input type="text" name="cidade" value="{{$fornecedores->pessoa->cidade}}">
                     </div>
                     <div class="">
                         <label for="cep">CEP:</label>
-                        <input type="text" name="cep" value="{{$fornecedores->cep}}">
+                        <input type="text" name="cep" value="{{$fornecedores->pessoa->cep}}">
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" value="{{$fornecedores->estado}}">
-                    </div>
-                    <div class="">
-                        <label for="pais">País:</label>
-                        <input type="text" name="pais" value="{{$fornecedores->pais}}">
+                        <input type="text" name="estado" value="{{$fornecedores->pessoa->estado}}">
                     </div>
                     <div class="">
                         <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc" value="{{$fornecedores->datanasc}}" required>
+                        <input type="date" name="datanasc" value="{{$fornecedores->pessoa->datanasc}}" required>
                     </div>
                     <div class="">
                         <button type="submit">Salvar</button>

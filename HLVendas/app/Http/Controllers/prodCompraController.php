@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\prodCompra;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class prodCompraController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("Usuario.index");
+        //
     }
 
     /**
@@ -21,7 +21,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view("Usuario.create");
+
     }
 
     /**
@@ -29,7 +29,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        prodCompra::create([
+            'prdodutoid' => $request->input('prdodutoid'),
+            'compraid' => $request->input('compraid'),
+            'quantidade' => $request->input('quantidade'),
+            'desconto' => $request->input('desconto'),
+            'totalprod' => $request->input('totalprod'),
+        ]);
     }
 
     /**

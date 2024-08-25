@@ -60,6 +60,14 @@
                         <label for="categoria">Categoria:</label>
                         <input type="text" name="categoria" value="{{$produtos->categoria}}" disabled>
                     </div>
+                    <div class="">
+                        <label for="ultimacompra">Última compra:</label>
+                        <input type="text" name="ultimacompra" value="{{ empty($produtos->ultimacompra) ? 'Sem compras' : $produtos->ultimacompra }}" disabled>
+                    </div>
+                    <div class="">
+                        <label for="ultimavenda">Última venda:</label>
+                        <input type="text" name="ultimavenda" value="{{ empty($produtos->ultimavenda) ? 'Sem vendas' : $produtos->ultimavenda }}" disabled>
+                    </div>
                     <a href="{{route('produto.edit', $produtos->id) }}">Editar</a>
             </form>
             <form action="{{route('produto.destroy', $produtos->id)}}" method="POST">

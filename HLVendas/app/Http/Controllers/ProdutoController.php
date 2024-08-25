@@ -14,6 +14,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
+        $rota = 'show';
         return view('produto.index', compact('produtos'));
     }
 
@@ -40,7 +41,7 @@ class ProdutoController extends Controller
             'unidade' => $request->input('unidade'),
             'codigoBarras' => $request->input('codigoBarras'),
             'ultimavenda' => $request->input('ultimavenda'),
-            'ultimacompra' => $request->input('codigoBarras'),
+            'ultimacompra' => $request->input('ultimacompra'),
             'categoria' => $request->input('categoria')
         ]);
 
