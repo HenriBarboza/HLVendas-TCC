@@ -32,21 +32,21 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         Produto::create([
-            'descricao' => $request->input('descricao'),
+            'nome' => $request->input('nome'),
             'custo' => $request->input('custo'),
-            'perccusto' => $request->input('perccusto'),
-            'percprazo' => $request->input('percprazo'),
-            'precoavista' => $request->input('precoavista'),
-            'precoaprazo' => $request->input('precoaprazo'),
-            'unidade' => $request->input('unidade'),
+            'preço' => $request->input('preço'),
             'codigoBarras' => $request->input('codigoBarras'),
+<<<<<<< HEAD
             'ultimavenda' => $request->input('ultimavenda'),
             'ultimacompra' => $request->input('ultimacompra'),
+=======
+            'lote' => $request->input('lote'),
+>>>>>>> parent of 352332a (Criação dos componentes Cliente e Fornecedor)
             'categoria' => $request->input('categoria')
         ]);
 
         return redirect()->route('produto.create')
-                         ->with('success', "Produto cadastrado com sucesso.");
+                         ->with('success', "Produto cadastroado com sucesso.");
     }
 
     /**
@@ -54,8 +54,7 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        $produtos = Produto::findOrFail($id);
-        return view('produto.show', compact('produtos'));
+        //
     }
 
     /**

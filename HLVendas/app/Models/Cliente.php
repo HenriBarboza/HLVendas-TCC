@@ -17,6 +17,7 @@ class Cliente extends Pessoa
         'totalgasto'
     ];
 
+
     public function pessoa() {
         return $this->belongsTo(Pessoa::class, 'idpessoa', 'id');
     }

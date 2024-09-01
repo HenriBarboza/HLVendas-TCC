@@ -6,12 +6,11 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                'resources/scss/global.scss',
-                'resources/scss/home.scss',
-                'resources/scss/header.scss',
-                'resources/scss/footer.scss',
+                'resouces/scss/global.scss',
+                'resouces/scss/home.scss',
+                'resouces/scss/header.scss',
+                'resouces/scss/footer.scss',
                 'resources/js/app.js',
-                'resources/js/calculoCusto.js'
             ],
             refresh: true,
         }),

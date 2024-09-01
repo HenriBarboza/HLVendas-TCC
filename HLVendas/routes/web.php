@@ -1,9 +1,12 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\prodCompraController;
 use App\Http\Controllers\FornecedorController;
+=======
+>>>>>>> parent of 352332a (Criação dos componentes Cliente e Fornecedor)
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProfileController;
@@ -21,11 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resources(['produto' => ProdutoController::class]);
+<<<<<<< HEAD
     Route::resources(['cliente' => ClienteController::class]);
     Route::resources(['fornecedor' => FornecedorController::class]);
     Route::resources(['compra' => CompraController::class]);
     Route::resources(['prodCompra' => prodCompraController::class]);
 
+=======
+>>>>>>> parent of 352332a (Criação dos componentes Cliente e Fornecedor)
 });
 
 require __DIR__.'/auth.php';

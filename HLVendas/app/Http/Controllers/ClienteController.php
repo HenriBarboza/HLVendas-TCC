@@ -37,10 +37,12 @@ class ClienteController extends PessoaController
      */
     public function store(Request $request)
     {
-        parent::store($request);
-        Cliente::create([
-            'idpessoa' => $request->input('idpessoa'),
-        ]);
+        $pessoa = parent::store($request);
+        // Cliente::create([
+        //     // 'idpessoa' => $request->input('idpessoa'),
+        //     'idpessoa' => $pessoa->id,
+
+        // ]);
 
         return redirect()->route('cliente.create')
             ->with('success', "Cliente cadastrado com sucesso.");

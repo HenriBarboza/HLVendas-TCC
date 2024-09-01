@@ -18,7 +18,38 @@
         <div class="top">
             <h1>Buscar Produto</h1>
             <a href="/produto/create">Novo produto</a><br>
+<<<<<<< HEAD
             @livewire('busca-produtos', compact('rota' , 'texto'))
+=======
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Custo</th>
+                        <th>Preço</th>
+                        <th>Categoria</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($produtos as $produto)
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>{{$produto->id}}</td>
+                            <td>{{$produto->nome}}</td>
+                            <td>{{$produto->custo}}</td>
+                            <td>{{$produto->preço}}</td>
+                            <td>{{$produto->categoria}}</td>
+                            <td><a href="{{route('produto.edit', $produto->id) }}">Visualizar</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+>>>>>>> parent of 352332a (Criação dos componentes Cliente e Fornecedor)
         </div>
     </div>
     </div>
