@@ -21,52 +21,44 @@
                 @method('PUT')
                 <div class="">
                     <div class="">
-                        <label for="id">Id:</label>
-                        <input type="text" name="id" value="{{$fornecedores->pessoa->id}}" disabled>
-                    </div>
-                    <div class="">
                         <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$fornecedores->pessoa->nome}}" required>
+                        <input type="text" name="nome" value="{{$fornecedores->nome}}" required>
                     </div>
                     <div class="">
-                        <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia" value="{{$fornecedores->pessoa->nfantasia}}" required>
+                        <label for="nomefantasia">Nome Fantasia:</label>
+                        <input type="text" name="nomefantasia" value="{{$fornecedores->nomefantasia}}" required>
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" value="{{$fornecedores->pessoa->telefone}}" required>
+                        <input type="text" name="telefone" value="{{$fornecedores->telefone}}" required>
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" value="{{$fornecedores->pessoa->cpfcnpj}}" required>
+                        <input type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}" required>
                     </div>
                     <div class="">
                         <label for="logradouro">Logradouro:</label>
-                        <input type="text" name="logradouro" value="{{$fornecedores->pessoa->logradouro}}">
+                        <input type="text" name="logradouro" value="{{$fornecedores->logradouro}}">
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero" value="{{$fornecedores->pessoa->numero}}">
+                        <input type="text" name="numero" value="{{$fornecedores->numero}}">
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" value="{{$fornecedores->pessoa->bairro}}">
+                        <input type="text" name="bairro" value="{{$fornecedores->bairro}}">
                     </div>
                     <div class="">
                         <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" value="{{$fornecedores->pessoa->cidade}}">
+                        <input type="text" name="cidade" value="{{$fornecedores->cidade}}">
                     </div>
                     <div class="">
                         <label for="cep">CEP:</label>
-                        <input type="text" name="cep" value="{{$fornecedores->pessoa->cep}}">
+                        <input type="text" name="cep" value="{{$fornecedores->cep}}">
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" value="{{$fornecedores->pessoa->estado}}">
-                    </div>
-                    <div class="">
-                        <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc" value="{{$fornecedores->pessoa->datanasc}}" required>
+                        <input type="text" name="estado" value="{{$fornecedores->estado}}">
                     </div>
                     <div class="">
                         <button type="submit">Salvar</button>

@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Fornecedor;
 use Livewire\Component;
-use App\Models\Pessoa;
 use Livewire\WithPagination;
 
 class BuscaFornecedor extends Component
@@ -16,7 +16,7 @@ class BuscaFornecedor extends Component
     public function render()
     {
         return view('livewire.busca-fornecedor', [
-            'pessoas' => Pessoa::where('nome', 'like', '%' . $this->busca . '%')->with('fornecedor')->paginate(10),                  
+            'fornecedores' => Fornecedor::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),                  
         ]);
     }
 }

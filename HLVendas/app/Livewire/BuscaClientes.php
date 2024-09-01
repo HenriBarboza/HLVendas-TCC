@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Pessoa;
 use App\Models\Cliente;
 use Livewire\WithPagination;
 
@@ -18,7 +17,7 @@ class BuscaClientes extends Component
     {  
         
         return view('livewire.busca-clientes', [
-            'pessoas' => Pessoa::where('nome', 'like', '%' . $this->busca . '%')->with('cliente')->paginate(10),
+            'clientes' => cliente::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),
         ]);
     }
 }

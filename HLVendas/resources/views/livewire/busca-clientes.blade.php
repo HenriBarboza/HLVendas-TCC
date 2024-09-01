@@ -3,29 +3,25 @@
     <table>
         <thead>
             <tr>
-                <th></th>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>CPF/CNPJ</th>
                 <th>Cidade</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach($pessoas as $pessoa)
-                @if($pessoa->tipo == 'C')
-                    <tr>
-                        <td>{{$pessoa->id}}</td>
-                        <td>{{$pessoa->nome}}</td>
-                        <td>{{$pessoa->telefone}}</td>
-                        <td>{{$pessoa->cpfcnpj}}</td>
-                        <td>{{$pessoa->cidade}}</td>
-                        <td><a href="{{ route('cliente.' . $rota, $pessoa->cliente->id) }}">{{$texto}}</a></td>
-                    </tr>
-                @endif
+            @foreach($clientes as $cliente)
+                <tr>
+                    <td>{{$cliente->id}}</td>
+                    <td>{{$cliente->nome}}</td>
+                    <td>{{$cliente->telefone}}</td>
+                    <td>{{$cliente->cpfcnpj}}</td>
+                    <td>{{$cliente->cidade}}</td>
+                    <td><a href="{{ route('cliente.' . $rota, $cliente->id) }}">{{$texto}}</a></td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $pessoas->links() }}
+    {{ $clientes->links() }}
 </div>

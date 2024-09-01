@@ -22,59 +22,55 @@
                 <div class="">
                     <div class="">
                         <label for="id">Id:</label>
-                        <input type="text" name="id" value="{{$fornecedores->pessoa->id}}" disabled>
+                        <input type="text" name="id" value="{{$fornecedores->id}}" disabled>
                     </div>
                     <div class="">
                         <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$fornecedores->pessoa->nome}}" disabled>
+                        <input type="text" name="nome" value="{{$fornecedores->nome}}" disabled>
                     </div>
                     <div class="">
-                        <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia" value="{{$fornecedores->pessoa->nfantasia}}" disabled>
+                        <label for="nomefantasia">Nome Fantasia:</label>
+                        <input type="text" name="nomefantasia" value="{{$fornecedores->nomefantasia}}" disabled>
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" value="{{$fornecedores->pessoa->telefone}}" disabled>
+                        <input type="text" name="telefone" value="{{$fornecedores->telefone}}" disabled>
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" value="{{$fornecedores->pessoa->cpfcnpj}}" disabled>
+                        <input type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}" disabled>
                     </div>
                     <div class="">
                         <label for="logradouro">Logradouro:</label>
-                        <input type="text" name="logradouro" value="{{$fornecedores->pessoa->logradouro}}" disabled>
+                        <input type="text" name="logradouro" value="{{$fornecedores->logradouro}}" disabled>
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero" value="{{$fornecedores->pessoa->numero}}" disabled>
+                        <input type="text" name="numero" value="{{$fornecedores->numero}}" disabled>
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" value="{{$fornecedores->pessoa->bairro}}" disabled>
+                        <input type="text" name="bairro" value="{{$fornecedores->bairro}}" disabled>
                     </div>
                     <div class="">
                         <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" value="{{$fornecedores->pessoa->cidade}}" disabled>
+                        <input type="text" name="cidade" value="{{$fornecedores->cidade}}" disabled>
                     </div>
                     <div class="">
                         <label for="cep">CEP:</label>
-                        <input type="text" name="cep" value="{{$fornecedores->pessoa->cep}}" disabled>
+                        <input type="text" name="cep" value="{{$fornecedores->cep}}" disabled>
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" value="{{$fornecedores->pessoa->estado}}" disabled>
-                    </div>
-                    <div class="">
-                        <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc" value="{{$fornecedores->pessoa->datanasc}}" disabled>
+                        <input type="text" name="estado" value="{{$fornecedores->estado}}" disabled>
                     </div>
                     <div class="">
                         <label for="created_at">Data De Cadastro:</label>
-                        <input type="datetime-local" name="created_at" value="{{$fornecedores->pessoa->created_at}}" disabled>
+                        <input type="datetime-local" name="created_at" value="{{$fornecedores->created_at}}" disabled>
                     </div>
                     <div class="">
                         <label for="updated_at">Última Alteração:</label>
-                        <input type="datetime-local" name="updated_at" value="{{$fornecedores->pessoa->updated_at}}" disabled>
+                        <input type="datetime-local" name="updated_at" value="{{$fornecedores->updated_at}}" disabled>
                     </div>
                     <div class="">
                         <label for="ultimavenda">Última Venda:</label>

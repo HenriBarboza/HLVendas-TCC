@@ -4,19 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Pessoa;
 
-class Fornecedor extends Pessoa
+class Fornecedor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'idpessoa',
+        'nome',
+        'nomefantasia',
+        'telefone',
+        'cpfcnpj',
+        'logradouro',
+        'bairro',
+        'numero',
+        'cidade',
+        'cep',
+        'estado',
         'ultimavenda',
         'totalvendido'
     ];
-
-    public function pessoa() {
-        return $this->belongsTo(Pessoa::class, 'idpessoa', 'id');
-    }
 }

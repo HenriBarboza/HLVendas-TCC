@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->integer('fornecedorid');
             $table->integer('doc');
-            $table->integer('serie');
             $table->string('formapg');
             $table->string('desconto')->nullable();
             $table->string('percdesc')->nullable();

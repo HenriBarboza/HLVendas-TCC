@@ -13,8 +13,16 @@ return new class extends Migration
     {
         Schema::create('fornecedors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("idpessoa");
-            $table->foreign("idpessoa")->references('id')->on('pessoas')->onDelete('cascade');
+            $table->string("nome");
+            $table->string("nomefantasia")->nullable();
+            $table->string("telefone");
+            $table->string("cpfcnpj");
+            $table->string("logradouro");
+            $table->string("bairro");
+            $table->string("numero");
+            $table->string("cidade");
+            $table->string("cep");
+            $table->string("estado");
             $table->dateTime("ultimavenda")->nullable();
             $table->double("totalvendido")->nullable();
             $table->timestamps();
@@ -24,8 +32,4 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::dropIfExists('fornecedores');
-    }
 };

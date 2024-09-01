@@ -24,14 +24,9 @@
             <form action="{{route('cliente.store')}}" method="POST">
                 @CSRF
                 <div class="">
-                    <input type="number" value="{{$novoid}}" name="idpessoa" hidden>
                     <div class="">
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" required>
-                    </div>
-                    <div class="">
-                        <label for="nfantasia">Nome Fantasia:</label>
-                        <input type="text" name="nfantasia">
                     </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
@@ -67,9 +62,8 @@
                     </div>
                     <div class="">
                         <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc" required>
+                        <input type="date" name="datanasc">
                     </div>
-                    <input type="text" name="tipo" value="C" hidden required>
                     <div class="">
                         <button type="submit">Salvar</button>
                     </div>

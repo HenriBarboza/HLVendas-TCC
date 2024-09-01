@@ -17,7 +17,7 @@
     <div class="corpo">
         <div class="top">
             <h1>Buscar Fornecedor</h1>
-            <a href="/fornecedor/create">Novo fornecedor</a><br>
+            <a href="/fornecedor/create">Novo Fornecedor</a><br>
             @livewire('busca-fornecedor', compact('rota' , 'texto'))
         </div>
     </div>

@@ -9,5 +9,16 @@ class Compra extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fornecedorid', 'doc', 'serie', 'formapg', 'desconto', 'percdesc', 'custadicional', 'percadd','datacompra' ,'totalcompra' ,'funcionarioid'];
+    protected $fillable = [
+        'fornecedorid',
+        'doc',
+        'formapg',
+        'desconto',
+        'percdesc',
+        'custadicional',
+        'percadd',
+        'datacompra',
+        'totalcompra',
+        'funcionarioid'
+    ];
 }

@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -12,8 +13,16 @@ return new class extends Migration {
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("idpessoa");
-            $table->foreign("idpessoa")->references('id')->on('pessoas')->onDelete('cascade');
+            $table->string("nome");
+            $table->string("telefone");
+            $table->string("cpfcnpj");
+            $table->string("logradouro");
+            $table->string("bairro");
+            $table->string("numero");
+            $table->string("cidade");
+            $table->string("cep");
+            $table->string("estado");
+            $table->date("datanasc")->nullable();
             $table->dateTime("ultimacompra")->nullable();
             $table->double("totalgasto")->nullable();
             $table->timestamps();
@@ -21,12 +30,7 @@ return new class extends Migration {
         });
     }
 
-
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::dropIfExists('clientes');
-    }
 };

@@ -2,34 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\Controller;
 use App\Models\Cliente;
-use App\Models\Pessoa;
 use Illuminate\Http\Request;
 
-class ClienteController extends PessoaController
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        // $clientes = Cliente::all();
-        // $rota = 'show';
-        return view("cliente.index");
+        $clientes = Cliente::all();
+        return view("cliente.index", compact('clientes'));
+        
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $ultimoid = Pessoa::latest('id')->first();
-        if ($ultimoid != null) {
-            $novoid = $ultimoid->id + 1;
-        } else{
-            $novoid = 1;
-        }
-        return view('cliente.create', compact('novoid'));
+        return view('cliente.create');
     }
 
     /**
@@ -37,15 +31,22 @@ class ClienteController extends PessoaController
      */
     public function store(Request $request)
     {
-        $pessoa = parent::store($request);
-        // Cliente::create([
-        //     // 'idpessoa' => $request->input('idpessoa'),
-        //     'idpessoa' => $pessoa->id,
-
-        // ]);
+        Cliente::create([
+            'nome'=> $request->input('nome'),
+            'telefone'=> $request->input('telefone'),
+            'cpfcnpj'=> $request->input('cpfcnpj'),
+            'rgi'=> $request->input('rgi'),
+            'logradouro'=> $request->input('logradouro'),
+            'bairro'=> $request->input('bairro'),
+            'numero'=> $request->input('numero'),
+            'cidade'=> $request->input('cidade'),
+            'cep'=> $request->input('cep'),
+            'estado'=> $request->input('estado'),
+            'datanasc'=> $request->input('datanasc'),
+        ]);
 
         return redirect()->route('cliente.create')
-            ->with('success', "Cliente cadastrado com sucesso.");
+                         ->with('success', "Cliente cadastrado com sucesso.");
     }
 
     /**
@@ -53,7 +54,7 @@ class ClienteController extends PessoaController
      */
     public function show(string $id)
     {
-        $clientes = Cliente::with('pessoa')->findOrFail($id);
+        $clientes = Cliente::findOrFail($id);
         return view('cliente.show', compact('clientes'));
     }
 
@@ -62,7 +63,7 @@ class ClienteController extends PessoaController
      */
     public function edit(string $id)
     {
-        $clientes = Cliente::with('pessoa')->findOrFail($id);
+        $clientes = Cliente::findOrFail($id);
         return view('cliente.edit', compact('clientes'));
     }
 
@@ -71,12 +72,11 @@ class ClienteController extends PessoaController
      */
     public function update(Request $request, string $id)
     {
-        $clientes = Cliente::with('pessoa')->findOrFail($id);
-        parent::update($request, $clientes->pessoa->id);
+        $clientes = Cliente::findOrFail($id);
         $clientes->update($request->all());
 
         return redirect()->route('cliente.create')
-            ->with('success', "Cliente alterado com sucesso!");
+                         ->with('success', "Cliente alterado com sucesso!") ;
     }
 
     /**
@@ -84,10 +84,10 @@ class ClienteController extends PessoaController
      */
     public function destroy(string $id)
     {
-        $clientes = Cliente::with('pessoa')->findOrFail($id);
-        parent::destroy($clientes->pessoa->id);
+        $clientes = Cliente::findOrFail($id);
+        $clientes->delete();
 
         return redirect()->route('cliente.create')
-            ->with('success', 'Cliente excluído com sucesso!');
+                        ->with('success','Cliente excluído com sucesso!') ;
     }
 }
