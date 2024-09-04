@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\prodCompraController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::resources(['produto' => ProdutoController::class]);
     Route::resources(['cliente' => ClienteController::class]);
     Route::resources(['fornecedor' => FornecedorController::class]);
+    Route::resources(['funcionario' => FuncionarioController::class]);
     Route::resources(['compra' => CompraController::class]);
     Route::resources(['prodCompra' => prodCompraController::class]);
 

@@ -20,6 +20,9 @@
         <a href="/fornecedor/create">
             <li class="text">Fornecedores</li>
         </a>
+        <a href="/funcionario/create">
+            <li class="text">Funcionarios</li>
+        </a>
         </ul>
     </div>
     <div class="Perfil">
