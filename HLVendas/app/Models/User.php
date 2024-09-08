@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Funcionario;
 
 class User extends Authenticatable
 {
@@ -20,15 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'telefone',
-        'cpfcnpj',
-        'logradouro',
-        'bairro',
-        'numero',
-        'cidade',
-        'cep',
-        'estado',
-        'datanasc',
     ];
 
     /**
@@ -52,5 +44,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function funcionario()
+    {
+        return $this->hasOne(Funcionario::class, 'idauth','id');
     }
 }

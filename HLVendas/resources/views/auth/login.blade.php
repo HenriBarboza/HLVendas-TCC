@@ -44,4 +44,9 @@
             </x-primary-button>
         </div>
     </form>
+        <div class="block mt-4">
+            <h3>Caso voce não tenha um login clique aqui</h3>
+            <a href="/register">Registre-se</a>
+        </div>
 </x-guest-layout>
+

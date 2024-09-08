@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @vite(['resources/scss/header.scss', 'resources/css/app.css', 'resources/js/app.js'])
 
 <div class="content">

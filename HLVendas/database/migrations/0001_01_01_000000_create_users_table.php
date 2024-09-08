@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,17 +14,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string("telefone");
-            $table->string("cpfcnpj");
-            $table->string("logradouro");
-            $table->string("bairro");
-            $table->string("numero");
-            $table->string("cidade");
-            $table->string("cep");
-            $table->string("estado");
-            $table->date("datanasc")->nullable();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -44,6 +34,13 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+        DB::table('users')->insert(
+            [
+                'name' => 'Admin',
+                'email' => 'admin@email.com',
+                'password' => '$2y$12$M42rXj8m0WS9TfJq7Il86e1KsFxgvK3jeLijpMw8GTPmH53MiShk6',
+            ]
+        );
     }
 
     /**
