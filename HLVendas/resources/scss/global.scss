@@ -1,4 +1,5 @@
-$c01: #ffffff;
+$c00: #ffffff;
+$c01: #2d2c2c;
 
 @font-face {
   font-family: 'monstserrat';
@@ -7,15 +8,4 @@ $c01: #ffffff;
 
 * {
   font-family: 'monstserrat';
-}
-
-.title {
-  font-size: 3.75rem;
-  color: $c01;
-}
-
-.text {
-  font-size: 1.25rem;
-  color: $c01;
-  font-weight: 400;
 }

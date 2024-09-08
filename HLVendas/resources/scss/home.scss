@@ -1,3 +1,44 @@
-body{
-    margin:0
+$cinza: #6b6b6a;
+$menu: #2d2c2c;
+$white: #ffffff;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // position: relative;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  max-width: 100%;
+  width: 80%;
+  height: 100%;
+
+  .box-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // width: 80%;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+
+    .content-text {
+      .title {
+        font-size: 3.5rem;
+        color: $menu;
+      }
+
+      .text {
+        font-size: 1.125rem;
+      }
+    }
+
+    .content-img {
+      img {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+  }
 }

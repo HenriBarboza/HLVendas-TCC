@@ -1,12 +1,12 @@
-@vite(['resources/scss/footer.scss', 'resources/css/app.css', 'resources/js/app.js'])
+<!-- @vite(['resources/scss/footer.scss', 'resources/css/app.css', 'resources/js/app.js']) -->
 
-<section class="footer">
+<!-- <section class="footer">
     <div class="row">
         <div class="det-left footere">
             <h1 class="title">
                 Todos os direitos reservados
             </h1>
-        </div>
+        </div> -->
 
         <!-- <div class="det-right">
             <h1 class="title">
@@ -21,5 +21,5 @@
                 Henri Barboza
             </p>
         </div> -->
-    </div>
-</section>
+    <!-- </div>
+</section> -->
