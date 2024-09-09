@@ -10,38 +10,38 @@
         <div class="menuDesktop">
             <ul class="lista">
                 <li class="text">
-                    <i class="fa-solid fa-circle-user"></i>
                     <a href="/cliente/create">
+                        <i class="fa-solid fa-circle-user"></i>
                         Clientes
                     </a>
                 </li>
                 <li class="text">
-                    <i class="fa-solid fa-boxes-stacked"></i>
                     <a href="/produto/create">
+                        <i class="fa-solid fa-boxes-stacked"></i>
                         Produtos
                     </a>
                 </li>
                 <li class="text">
-                    <i class="fa-solid fa-money-bill-wave"></i>
                     <a href="/venda/create">
+                        <i class="fa-solid fa-money-bill-wave"></i>
                         Venda
                     </a>
                 </li>
                 <li class="text">
-                    <i class="fa-solid fa-basket-shopping"></i>
                     <a href="/compra/create">
+                        <i class="fa-solid fa-basket-shopping"></i>
                         Compra
                     </a>
                 </li>
                 <li class="text">
-                    <i class="fa-solid fa-handshake"></i>
                     <a href="/fornecedor/create">
+                        <i class="fa-solid fa-handshake"></i>
                         Fornecedores
                     </a>
                 </li>
                 <li class="text">
-                    <i class="fa-solid fa-user-tie"></i>
                     <a href="/funcionario/create">
+                        <i class="fa-solid fa-user-tie"></i>
                         Funcionarios
                     </a>
                 </li>
@@ -82,10 +82,10 @@
             <div class="perfil">
                 <div class="content-perfil">
                     <p class="text">
-                        <a href="">Entre</a>
+                        <a href="/login">Entre</a>
                     </p>
                     <p class="text">
-                        <a href="">Registre-se</a>
+                        <a href="/register">Registre-se</a>
                     </p>
                 </div>
             </div>

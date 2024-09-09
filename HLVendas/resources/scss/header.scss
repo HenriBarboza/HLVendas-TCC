@@ -1,8 +1,7 @@
 $background-color: #dedede;
 $sombra: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 $cinza: #6b6b6a;
-// $menu: #2d2c2c;
-$menu: #cccccc;
+$menu: #2d2c2c;
 $white: #ffffff;
 $black: #2d2c2c;
 
@@ -25,29 +24,29 @@ $black: #2d2c2c;
     }
 
     .lista {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
         list-style-type: none;
-        color: $black;
+        color: $white;
 
         .text {
             font-size: 1.125rem;
-            font-weight: 500;
+            // font-weight: 500;
             transition: 0.3s;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
             align-items: center;
-
-            i {
-                font-size: 3rem;
-                color: $black;
-            }
+            padding: 1rem 0;
+            cursor: pointer;
 
             a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 text-decoration: none;
+
+                i {
+                    font-size: 3rem;
+                    color: $white;
+                }
             }
 
             &:hover {
