@@ -1,5 +1,5 @@
 @vite(['resources/scss/header.scss', 'resources/css/app.css', 'resources/js/app.js'])
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <div class="content">
     <div class="navbar">
         <div class="logo">
@@ -37,6 +37,12 @@
                     <i class="fa-solid fa-handshake"></i>
                     <a href="/fornecedor/create">
                         Fornecedores
+                    </a>
+                </li>
+                <li class="text">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <a href="/funcionario/create">
+                        Funcionarios
                     </a>
                 </li>
             </ul>

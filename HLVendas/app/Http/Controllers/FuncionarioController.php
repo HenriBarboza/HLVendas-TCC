@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
+use App\Models\User;
 
 class FuncionarioController extends Controller
 {
@@ -44,6 +45,12 @@ class FuncionarioController extends Controller
             'tipo'=> $request->input('tipo'),
             'idauth'=> $request->input('idauth'),
         ]);
+
+        $userid = $request->input('idauth');
+
+        $user = User::findOrFail($userid);
+        $user->update(['is_active' => 0]);
+
 
         return redirect()->route('funcionario.create')
                          ->with('success', "Funcionario cadastrado com sucesso.");

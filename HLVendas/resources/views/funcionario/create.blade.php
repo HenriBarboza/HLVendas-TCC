@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Novo Funcionario</title>
+    @livewireStyles
 </head>
 
 <body>
@@ -28,11 +29,12 @@
                         <label for="nome" >Nome:</label>
                         <input id="nome" type="text" name="nome" required autofocus>
                     </div>
-                    <div class="">
+                    <!-- <div class="">
                         <label for="email">Email:</label>
                         <input id="email" type="email" name="email" required><button>Verificar</button>
                         <input id="" type="text" name="" placeholder="Apelido" disabled>
-                    </div>
+                    </div> -->
+                    @livewire('verifica-email')
                     <div class="">
                         <label for="telefone">Telefone:</label>
                         <input type="text" name="telefone" required>
@@ -77,9 +79,6 @@
                         <label for="gerente">Gerente</label><br>
                     </div>
                     <div class="">
-                        <input type="number" name="idauth">
-                    </div>
-                    <div class="">
                         <button type="submit">Salvar</button>
                     </div>
                 </div>
@@ -88,6 +87,7 @@
     </div>
     </div>
     @include('components.footer') 
+    @livewireScripts
 </body>
 
 </html>
