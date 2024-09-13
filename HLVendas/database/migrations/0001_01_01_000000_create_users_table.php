@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_active')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -40,6 +40,7 @@ return new class extends Migration {
                 'name' => 'Admin',
                 'email' => 'admin@email.com',
                 'password' => '$2y$12$M42rXj8m0WS9TfJq7Il86e1KsFxgvK3jeLijpMw8GTPmH53MiShk6',
+                'is_active' => 'false',
             ]
         );
     }

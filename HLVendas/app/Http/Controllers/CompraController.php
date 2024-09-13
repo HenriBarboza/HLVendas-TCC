@@ -53,7 +53,7 @@ class CompraController extends Controller
             'usuarioid' => $request->input('usuarioid')
         ]);
 
-        return redirect()->route('compra.create')
+        return redirect()->route(route: 'compra.create')
                          ->with('success', "Compra registrada com sucesso");
     }
 

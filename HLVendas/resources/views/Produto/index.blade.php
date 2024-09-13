@@ -9,8 +9,8 @@
     @livewireStyles
 </head>
 <?php 
-    $rota = 'show';  
-    $texto = 'Vizualizar';  
+    // $rota = 'produto.show';  
+    $rota = 1;  
 ?>
 <body>
     @include('components.navbar') 
@@ -18,7 +18,7 @@
         <div class="top">
             <h1>Buscar Produto</h1>
             <a href="/produto/create">Novo produto</a><br>
-            @livewire('busca-produtos', compact('rota' , 'texto'))
+            @livewire('busca-produtos', compact('rota'))
         </div>
     </div>
     </div>

@@ -10,6 +10,9 @@
     <title>Nova Compra</title>
 </head>
 
+<?php 
+    $rota = 2;
+ ?>
 <body>
     @include('components.navbar')
     <div class="corpo">
@@ -64,8 +67,9 @@
                         <input type="number" name="peradd">
                     </div>
 
-                    @livewire('modal-component')
-
+                    
+                    @livewire('modal-component', compact('rota'))
+                    @livewire('compra-component')
                     <br>
                     <button type="submit">Salvar</button>
                 </div>
