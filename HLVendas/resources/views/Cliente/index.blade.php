@@ -10,18 +10,20 @@
 </head>
 
 <?php 
-    $rota = 'show';  
-    $texto = 'Vizualizar';  
+    $rota = 'show';
+$texto = 'Vizualizar';  
 ?>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
+    <div class="contentCliente">
+        <div class="navbar">
+            @include('components.navbar')
+        </div>
+        
         <div class="top">
-
             <h1>Buscar Cliente</h1>
             <a href="/cliente/create">Novo cliente</a><br>
-            @livewire('busca-clientes', compact('rota' , 'texto'))
+            @livewire('busca-clientes', compact('rota', 'texto'))
         </div>
     </div>
     @include('components.footer') 
