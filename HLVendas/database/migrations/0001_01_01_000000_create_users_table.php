@@ -40,7 +40,7 @@ return new class extends Migration {
                 'name' => 'Admin',
                 'email' => 'admin@email.com',
                 'password' => '$2y$12$M42rXj8m0WS9TfJq7Il86e1KsFxgvK3jeLijpMw8GTPmH53MiShk6',
-                'is_active' => 'false',
+                'is_active' => '0',
             ]
         );
     }

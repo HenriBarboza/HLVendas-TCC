@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\prodCompra;
+use App\Models\ProdCompra;
 use Illuminate\Http\Request;
 
-class prodCompraController extends Controller
+class ProdCompraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,15 +27,9 @@ class prodCompraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $produto)
     {
-        prodCompra::create([
-            'prdodutoid' => $request->input('prdodutoid'),
-            'compraid' => $request->input('compraid'),
-            'quantidade' => $request->input('quantidade'),
-            'desconto' => $request->input('desconto'),
-            'totalprod' => $request->input('totalprod'),
-        ]);
+        //
     }
 
     /**

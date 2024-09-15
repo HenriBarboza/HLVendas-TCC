@@ -9,10 +9,7 @@ class ModalComponent extends Component
     public $isOpen = false;
     public $rota;
 
-    public function mount($rota){
-        $this->rota = $rota;
-    }
-
+    protected $listeners = ['open','close'];
 
     public function render()
     {

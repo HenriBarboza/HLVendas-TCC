@@ -8,54 +8,59 @@ use Livewire\Component;
 class CompraComponent extends Component
 {
     public $vetProd = [];
-    public $produto_id;
-    public $quantidades = [];
-    public $busca;
 
+    protected $listeners = ['adicionarProduto'];
 
-    public function render()
+    // Função para adicionar o produto à lista
+    public function adicionarProduto($produtoId, $quantidade)
     {
-        return view('livewire.compra-component', [
-            'produtosCompra' => Produto::where('descricao', 'like', '%'. $this->busca. '%')->get(),
-        ]);
-    }
-
-    public function addProduto($produtoId){
         $produto = Produto::find($produtoId);
 
-        $quantidade = isset($this->quantidades[$produtoId]) ? $this->quantidades[$produtoId] : 1;
-
-        foreach($this->vetProd as $i => $item){
-            if($item['produto_id'] === $produtoId){
+        // Verifica se o produto já foi adicionado
+        foreach ($this->vetProd as $i => $item) {
+            if ($item['produto_id'] === $produtoId) {
                 $this->vetProd[$i]['quantidade'] += $quantidade;
                 return;
             }
         }
 
+        // Adiciona um novo produto à lista
         $this->vetProd[] = [
             'produto_id' => $produto->id,
             'descricao' => $produto->descricao,
-            'preco_av' => $produto->precoav,
-            'preco_ap' => $produto->precoap,
-            'quantidade' => $quantidade,
+            'desconto' => 0,
+            'preco' => $produto->precoavista, // ou outro campo de preço que deseja usar
+            'quantidade' => $quantidade
         ];
 
-        $this->busca = '';
-        $this->quantidades[$produtoId] = 1;
+        $this->dispatch('close')->to('modal-component');
     }
-     
-    public function removerProduto($index){
+
+    // Função para remover um produto da lista
+    public function removerProduto($index)
+    {
         unset($this->vetProd[$index]);
-        $this->vetProd = array_values($this->vetProd);
+        $this->vetProd = array_values($this->vetProd); // Reindexa o array
     }
 
-    public function salvarVenda(){
-
+    // Função para salvar a venda no banco de dados
+    public function salvarVenda()
+    {
+        
     }
 
-    public function calcularTotal(){
-        return collect($this->vetProd)->sum(function ($produto){
+    // Função auxiliar para calcular o total da venda
+    private function calcularTotal()
+    {
+        return collect($this->vetProd)->sum(function ($produto) {
             return $produto['preco'] * $produto['quantidade'];
         });
+    }
+
+    public function render()
+    {
+        return view('livewire.compra-component', [
+            'produtosVenda' => $this->vetProd,
+        ]);
     }
 }

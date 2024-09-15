@@ -13,20 +13,22 @@
 <?php 
     $rota = 2;
  ?>
+
 <body>
     @include('components.navbar')
     <div class="corpo">
         <div class="top">
             <h1>Novo Compra</h1>
             <a href="/cliente">Buscar compra</a>
-            <!-- @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-{{$message}}
-            </div>
-
-
-
-        @endif -->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    {{$message}}
+                </div>
+            @elseif($message = Session::get('error'))
+                <div class="alert alert-success">
+                    {{$message}}
+                </div
+            @endif
         </div>
         <div>
             <form action="{{route('compra.store')}}" method="POST">
@@ -34,20 +36,21 @@
                 <div class="">
                     <div class="">
                         <label for="doc">Documento:</label>
-                        <input type="number" value="{{$doc}}">
+                        <input type="number" name="doc" required>
                     </div>
                     <div class="">
                         <label for="fornecedorid">Fornecedor:</label>
-                        <input type="number" name="fornecedorid" placeholder="ID">
+                        <input type="number" name="fornecedorid" placeholder="ID" required>
                         <!-- <input type="text" name="fornecedorid" placeholder="ID" required>  adicionar nome do fornecedor-->
                     </div>
                     <div class="">
                         <label for="formapg">Forma de pagamento:</label>
-                        <input type="text" name="formapg">
+                        <input type="text" name="formapg" required>
                     </div>
                     <div class="">
-                        <label for="usuarioid">Funcionário da Venda:</label>
-                        <input type="text" name="usuarioid">
+                        <label for="funcionarioid">Funcionário da Venda:</label>
+                        <input type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid" required>
+                        <input type="text" value="{{Auth::user()->name}}" disabled>
                         <!-- adicionar o campo mostrando o nome do Funcionário que fez a venda.  -->
                     </div>
                     <div class="">
@@ -67,12 +70,12 @@
                         <input type="number" name="peradd">
                     </div>
 
-                    
-                    @livewire('modal-component', compact('rota'))
+                    @livewire('modal-component')
                     @livewire('compra-component')
                     <br>
-                    <button type="submit">Salvar</button>
+                    <!-- <button type="submit">Salvar</button> -->
                 </div>
+                <button type="submit">Salvar</button>
         </div>
         </form>
     </div>

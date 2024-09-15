@@ -33,6 +33,10 @@
                         <input type="number" id="custo" step="0.01" name="custo" value="{{$produtos->custo}}" disabled>
                     </div>
                     <div class="">
+                        <label for="estoque">Estoque:</label>
+                        <input type="number" id="estoque" step="0.01" name="estoque" value="{{$produtos->estoque}}" disabled>
+                    </div>
+                    <div class="">
                         <label for="perccusto">Perc. Custo:</label>
                         <input type="number" id="perccusto" step="0.01" name="perccusto" value="{{$produtos->perccusto}}" disabled>
                     </div>

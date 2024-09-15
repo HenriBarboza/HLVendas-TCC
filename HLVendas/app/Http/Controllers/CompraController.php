@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\prodCompra;
+use App\Models\ProdCompra;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\Compra;
-use App\Http\Controllers\prodCompraController;
+use Illuminate\Support\Facades\DB;
 class CompraController extends Controller
 {
     /**
@@ -23,14 +24,7 @@ class CompraController extends Controller
      */
     public function create()
     {
-        $prodCompra = prodCompra::all();
-        $doc = Compra::latest('doc')->first();
-        if($doc == null){
-            $doc = 1;
-        } else{
-        $doc = $doc ++;
-        }
-        return view('compra.create', compact("prodCompra", "doc"));
+        return view('compra.create');
     }
 
 
@@ -39,22 +33,69 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
-        Compra::create([
-            'fornecedorid' => $request->input('fornecedorid'),
-            'doc' => $request->input('doc'),
-            'serie' => $request->input('serie'),
-            'formapag' => $request->input('formapag'),
-            'desconto' => $request->input('desconto'),
-            'percdesc' => $request->input('percdesc'),
-            'custadicional' => $request->input('custadicional'),
-            'percadd' => $request->input('percadd'),
-            'qtdprod' => $request->input('qtdprod'),
-            'totalcompra' => $request->input('totalcompra'),
-            'usuarioid' => $request->input('usuarioid')
-        ]);
 
-        return redirect()->route(route: 'compra.create')
-                         ->with('success', "Compra registrada com sucesso");
+        $documentoExistente = Compra::where('doc', $request->input('doc'))->exists();
+
+        if ($documentoExistente) {
+            return redirect()->back()
+                             ->with('error', "Erro ao cadastrar: Já existe um documento com esse código");
+
+        }
+
+        DB::beginTransaction();
+
+        try {
+            Compra::create([
+                'doc' => $request->input('doc'),
+                'fornecedorid' => $request->input('fornecedorid'),
+                'serie' => $request->input('serie'),
+                'formapg' => $request->input('formapg'),
+                'desconto' => $request->input('desconto'),
+                'percdesc' => $request->input('percdesc'),
+                'custadicional' => $request->input('custadicional'),
+                'percadd' => $request->input('percadd'),
+                'qtdprod' => $request->input('qtdprod'),
+                'totalcompra' => $request->input('totalcompra'),
+                'funcionarioid' => $request->input('funcionarioid')
+            ]);
+
+
+            foreach ($request->input('produtos') as $produto) {
+                ProdCompra::create([
+                    'compraid' => $request->input('doc'),
+                    'produtoid' => $produto['produto_id'],
+                    'desconto' => $produto['desconto'],
+                    'quantidade' => $produto['quantidade'],
+                    'totalprod' => $produto['preco'],
+                ]);
+
+                $prodAtt = Produto::findOrFail($produto['produto_id']);
+                $quantAtual = $prodAtt->estoque;
+                $novoEstoque = $quantAtual + $produto['quantidade'];
+                $prodAtt->update([
+                    'estoque' => $novoEstoque,
+                    'ultimacompra' => date("Y-m-d H:i:s")
+                ]);
+
+            }
+
+
+
+            DB::commit();
+
+            return redirect()->route(route: 'compra.create')
+                ->with('success', "Compra registrada com sucesso");
+
+        } catch (\Exception $e) {
+            // Reverter a transação em caso de erro
+            DB::rollback();
+
+            // Opcional: registrar o erro ou fornecer feedback ao usuário
+            // return redirect()->back()
+            //     ->withErrors('Ocorreu um erro ao registrar a compra: ' . $e->getMessage());
+
+            dd($e->getMessage());
+        }
     }
 
 
@@ -74,7 +115,7 @@ class CompraController extends Controller
         //
     }
 
-    public function adicionarProdutos(int $compraid,int $produtoid, float $desconto,int $quantidade)
+    public function adicionarProdutos(int $compraid, int $produtoid, float $desconto, int $quantidade)
     {
         // prodCompraController::store($compraid, $produtoid, $desconto, $quantidade);
     }
