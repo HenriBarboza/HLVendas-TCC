@@ -13,9 +13,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
-        $rota = 'show';
-        return view('produto.index', compact('produtos'));
+        return view('produto.create');
     }
 
     /**

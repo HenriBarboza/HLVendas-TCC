@@ -1,7 +1,4 @@
 <div>
-<?php 
-    $rota = 2;
- ?>
     <div x-data="{ open: @entangle('isOpen') }">
         <!-- Botão para abrir o modal -->
         <button @click.prevent="open = true">Produtos</button>

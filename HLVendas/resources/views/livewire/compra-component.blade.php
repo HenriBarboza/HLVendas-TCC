@@ -1,6 +1,3 @@
-<?php 
-    $rota = 2;
- ?>
 <div>
     <div>
         @if($vetProd)
@@ -22,12 +19,12 @@
                             <td>{{ $produto['quantidade'] }}</td>
                             <td>R$ {{ $produto['preco'] }}</td>
                             <td>R$ {{ $produto['preco'] * $produto['quantidade'] }}</td>
-                            <td><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
+                            <td><button wire:click="removerProduto({{ $index }})" @click.prevent >Remover</button></td>
 
-                            <input type="text" name="produtos[{{$index}}][produto_id]" value="{{ $produto['produto_id']}}">
-                            <input type="text" name="produtos[{{$index}}][quantidade]" value="{{$produto['quantidade']}}">
-                            <input type="text" name="produtos[{{$index}}][desconto]" value="{{$produto['desconto']}}">
-                            <input type="text" name="produtos[{{$index}}][preco]" value="{{$produto['preco'] * $produto['quantidade']}}">
+                            <input type="hidden" name="produtos[{{$index}}][produto_id]" value="{{ $produto['produto_id']}}">
+                            <input type="hidden" name="produtos[{{$index}}][quantidade]" value="{{$produto['quantidade']}}">
+                            <input type="hidden" name="produtos[{{$index}}][desconto]" value="{{$produto['desconto']}}">
+                            <input type="hidden" name="produtos[{{$index}}][preco]" value="{{$produto['preco'] * $produto['quantidade']}}">
 
                         </tr>
                     @endforeach

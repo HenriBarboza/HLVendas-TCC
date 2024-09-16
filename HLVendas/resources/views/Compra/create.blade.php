@@ -27,7 +27,7 @@
             @elseif($message = Session::get('error'))
                 <div class="alert alert-success">
                     {{$message}}
-                </div
+                </div>
             @endif
         </div>
         <div>
@@ -70,7 +70,7 @@
                         <input type="number" name="peradd">
                     </div>
 
-                    @livewire('modal-component')
+                    @livewire('modal-component', compact('rota'))
                     @livewire('compra-component')
                     <br>
                     <!-- <button type="submit">Salvar</button> -->

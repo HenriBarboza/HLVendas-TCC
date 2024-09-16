@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @livewireStyles
     @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js'])
-
     <title>Novo Produto</title>
 </head>
 
+<?php 
+    $rota = 1;
+ ?>
 <body>
     @include('components.navbar') 
     <div class="corpo">
         <div class="top">
             <h1>Novo Produto</h1>
-            <a href="/produto">Buscar produto</a>
+            <!-- <a href="/produto">Buscar produto</a> -->
+            @livewire('modal-component', compact('rota'))
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     {{$message}}
@@ -69,6 +73,7 @@
         </div>
     </div>
     </div>
+    @livewireScripts
     @include('components.footer') 
 </body>
 
