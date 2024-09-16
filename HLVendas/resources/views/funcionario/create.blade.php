@@ -4,29 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Novo Funcionario</title>
     @livewireStyles
 </head>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
-        <div class="top">
-            <h1>Novo Funcionario</h1>
-            <a href="/funcionario">Buscar funcionario</a>
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    {{$message}}
-                </div>
-            @endif
-        </div>
-        <div>
-            <form method="POST" action="{{ route('funcionario.store') }}">
+    <div class="contentFuncionario">
+        @include('components.navbar') 
+
+        <div class="funcionarioCrud">
+            <div class="contentButton">
+                <h1>Novo Funcionario</h1>
+                <a href="/funcionario">Buscar funcionario</a>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        {{$message}}
+                    </div>
+                @endif
+            </div>
+            <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
                 @CSRF
                 <div class="">
                     <div class="">
-                        <label for="nome" >Nome:</label>
+                        <label for="nome">Nome:</label>
                         <input id="nome" type="text" name="nome" required autofocus>
                     </div>
                     <!-- <div class="">
@@ -84,7 +85,6 @@
                 </div>
             </form>
         </div>
-    </div>
     </div>
     @include('components.footer') 
     @livewireScripts

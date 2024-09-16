@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Novo Fornecedor</title>
 </head>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
-        <div class="top">
-            <h1>Novo Fornecedor</h1>
-            <a href="/fornecedor">Buscar fornecedor</a>
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    {{$message}}
-                </div>
-            @endif
-        </div>
-        <div>
-            <form action="{{route('fornecedor.store')}}" method="POST">
+    <div class="contentFornecedor">
+        @include('components.navbar') 
+
+        <div class="fornecedorCrud">
+            <div class="contentButton">
+                <h1>Novo Fornecedor</h1>
+                <a href="/fornecedor">Buscar fornecedor</a>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        {{$message}}
+                    </div>
+                @endif
+            </div>
+
+            <form class="formFornecedor" action="{{route('fornecedor.store')}}" method="POST">
                 @CSRF
                 <div class="">
                     <div class="">
@@ -70,7 +72,6 @@
                 </div>
             </form>
         </div>
-    </div>
     </div>
     @include('components.footer') 
 </body>

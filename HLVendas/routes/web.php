@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/', function () {
+    return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth',])->group(function () {

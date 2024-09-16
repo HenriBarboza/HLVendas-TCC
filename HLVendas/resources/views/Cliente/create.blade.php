@@ -10,9 +10,7 @@
 
 <body>
     <div class="contentCliente">
-        <div class="navbar">
-            @include('components.navbar')
-        </div>
+        @include('components.navbar')
 
         <div class="clienteCrud">
             <div class="contentButton">

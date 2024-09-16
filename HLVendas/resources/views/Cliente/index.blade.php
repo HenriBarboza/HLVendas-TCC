@@ -16,10 +16,8 @@ $texto = 'Vizualizar';
 
 <body>
     <div class="contentCliente">
-        <div class="navbar">
-            @include('components.navbar')
-        </div>
-        
+        @include('components.navbar')
+
         <div class="top">
             <h1>Buscar Cliente</h1>
             <a href="/cliente/create">Novo cliente</a><br>

@@ -3,26 +3,12 @@ $cinza: #6b6b6a;
 $menu: #2d2c2c;
 $white: #ffffff;
 $black: #2d2c2c;
-$body: #f5f5f5;
 
-.not-gap {
-  gap: 0 !important;
-}
-
-.text {
-  font-size: 1.125rem;
-}
-
-body {
-  background-color: $body;
-}
-
-
-.contentCliente {
+.contentCompra {
   display: flex;
   position: relative;
 
-  .clienteCrud {
+  .compraCrud {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +17,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .formCliente {
+    .formCompra {
       width: 40rem;
 
       .contentInput {
@@ -61,24 +47,6 @@ body {
 
           &.w50 {
             width: calc(50% - 0.5rem);
-          }
-        }
-      }
-
-      .button {
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        button {
-          width: 40%;
-          border: 0.2rem solid $black;
-          border-radius: 2rem;
-          padding: 0.5rem;
-
-          .text {
-            margin: 0;
           }
         }
       }

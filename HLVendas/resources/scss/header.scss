@@ -1,4 +1,3 @@
-$background-color: #dedede;
 $sombra: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 $cinza: #6b6b6a;
 $menu: #2d2c2c;
@@ -12,7 +11,7 @@ $black: #2d2c2c;
 
 .navbar {
     max-width: 100%;
-    width: 10%;
+    width: 13rem;
     background-color: $menu;
     display: flex;
     flex-direction: column;
@@ -71,7 +70,8 @@ $black: #2d2c2c;
     .dropdown {
         position: relative;
         display: inline-block;
-        top: 0;
+        margin: 0 auto;
+        top: -1.5rem;
 
         &-trigger {
             cursor: pointer;
@@ -80,8 +80,8 @@ $black: #2d2c2c;
         &-content {
             display: none;
             position: absolute;
-            right: 0;
-            left: 0;
+            top: 2rem;
+            // right: 0;
             z-index: 100;
             min-width: 100px;
             background-color: #fff;

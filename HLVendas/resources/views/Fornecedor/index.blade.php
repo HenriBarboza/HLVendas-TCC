@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Buscar Fornecedor</title>
     @livewireStyles
 </head>
@@ -13,8 +13,9 @@
     $texto = 'Vizualizar';  
 ?>
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
+    <div class="contentFornecedor">
+        @include('components.navbar') 
+        
         <div class="top">
             <h1>Buscar Fornecedor</h1>
             <a href="/fornecedor/create">Novo Fornecedor</a><br>

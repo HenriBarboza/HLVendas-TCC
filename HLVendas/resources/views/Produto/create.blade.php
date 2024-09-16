@@ -5,28 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js'])
+    @vite(['resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js'])
     <title>Novo Produto</title>
 </head>
 
 <?php 
     $rota = 1;
  ?>
+
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
-        <div class="top">
-            <h1>Novo Produto</h1>
-            <!-- <a href="/produto">Buscar produto</a> -->
-            @livewire('modal-component', compact('rota'))
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    {{$message}}
-                </div>
-            @endif
-        </div>
-        <div>
-            <form action="{{route('produto.store')}}" method="POST">
+    <div class="contentProduto">
+        @include('components.navbar') 
+
+        <div class="produtoCrud">
+            <div class="contentButton">
+                <h1>Novo Produto</h1>
+                <!-- <a href="/produto">Buscar produto</a> -->
+                @livewire('modal-component', compact('rota'))
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        {{$message}}
+                    </div>
+                @endif
+            </div>
+            <form class="formProduto" action="{{route('produto.store')}}" method="POST">
                 @CSRF
                 <div class="">
                     <div class="">
@@ -43,7 +45,7 @@
                     </div>
                     <div class="">
                         <label for="precoavista">Preço À Vista:</label>
-                        <input type="number" id="precoavista" name="precoavista" step="0.01"  required>
+                        <input type="number" id="precoavista" name="precoavista" step="0.01" required>
                     </div>
                     <div class="">
                         <label for="percprazo">Perc. Prazo:</label>
@@ -51,7 +53,7 @@
                     </div>
                     <div class="">
                         <label for="precoaprazo">Preço À Prazo:</label>
-                        <input type="number" id="precoaprazo" step="0.01" name="precoaprazo"  required>
+                        <input type="number" id="precoaprazo" step="0.01" name="precoaprazo" required>
                     </div>
                     <div class="">
                         <label for="unidade">Unidade:</label>
@@ -71,7 +73,6 @@
                 </div>
             </form>
         </div>
-    </div>
     </div>
     @livewireScripts
     @include('components.footer') 

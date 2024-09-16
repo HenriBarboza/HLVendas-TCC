@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Buscar Funcionario</title>
     @livewireStyles
 </head>
@@ -15,8 +15,8 @@
 ?>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
+    <div class="contentFuncionario">
+        @include('components.navbar') 
         <div class="top">
             <h1>Buscar Funcionario</h1>
             <a href="/funcionario/create">Novo Funcionario</a><br>

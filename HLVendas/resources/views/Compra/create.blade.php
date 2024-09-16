@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Nova Compra</title>
 </head>
 
@@ -15,23 +15,25 @@
  ?>
 
 <body>
-    @include('components.navbar')
-    <div class="corpo">
-        <div class="top">
-            <h1>Novo Compra</h1>
-            <a href="/cliente">Buscar compra</a>
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    {{$message}}
-                </div>
-            @elseif($message = Session::get('error'))
-                <div class="alert alert-success">
-                    {{$message}}
-                </div>
-            @endif
-        </div>
-        <div>
-            <form action="{{route('compra.store')}}" method="POST">
+    <div class="contentCompra">
+        @include('components.navbar')
+
+        <div class="compraCrud">
+            <div class="contentButton">
+                <h1>Novo Compra</h1>
+                <a href="/cliente">Buscar compra</a>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        {{$message}}
+                    </div>
+                @elseif($message = Session::get('error'))
+                    <div class="alert alert-success">
+                        {{$message}}
+                    </div>
+                @endif
+            </div>
+
+            <form class="formCompra" action="{{route('compra.store')}}" method="POST">
                 @CSRF
                 <div class="">
                     <div class="">
@@ -76,8 +78,8 @@
                     <!-- <button type="submit">Salvar</button> -->
                 </div>
                 <button type="submit">Salvar</button>
+            </form>
         </div>
-        </form>
     </div>
     @livewireScripts
     @include('components.footer')

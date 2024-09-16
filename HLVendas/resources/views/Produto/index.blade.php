@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <title>Buscar Produto</title>
     @livewireStyles
 </head>
@@ -13,8 +13,9 @@
     $rota = 1;  
 ?>
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
+    <div class="contentProduto">
+        @include('components.navbar') 
+        
         <div class="top">
             <h1>Buscar Produto</h1>
             <a href="/produto/create">Novo produto</a><br>
