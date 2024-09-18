@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
     <title>Novo Fornecedor</title>
 </head>
 
@@ -30,17 +30,17 @@
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" required>
                     </div>
-                    <div class="">
+                    <!-- <div class="">
                         <label for="nomefantasia">Nome Fantasia:</label>
                         <input type="text" name="nomefantasia">
-                    </div>
+                    </div> -->
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone">
+                        <input type="text" id="phone" name="telefone">
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" required>
+                        <input type="text" id="cpfcnpj" name="cpfcnpj" required>
                     </div>
                     <div class="">
                         <label for="numero">Logradouro:</label>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
     <title>Novo Funcionario</title>
     @livewireStyles
 </head>
@@ -41,8 +41,8 @@
                         <input type="text" name="telefone" required>
                     </div>
                     <div class="">
-                        <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" required>
+                        <label for="cpfcnpj">CPF:</label>
+                        <input type="text" id="cpf" name="cpfcnpj" required>
                     </div>
                     <div class="">
                         <label for="numero">Logradouro:</label>

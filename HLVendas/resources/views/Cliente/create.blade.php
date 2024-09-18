@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
     <title>Novo Cliente</title>
 </head>
 
@@ -37,7 +37,7 @@
                 <div class="contentInput">
                     <input class="inputWrapper w50" type="text" name="telefone" placeholder="Telefone">
 
-                    <input class="inputWrapper w50" type="text" name="cpfcnpj" placeholder="CPF/CNPJ" required>
+                    <input class="inputWrapper w50" type="text" id="cpfcnpj" name="cpfcnpj" placeholder="CPF/CNPJ" required>
                 </div>
 
                 <div class="contentInput">
