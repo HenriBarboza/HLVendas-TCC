@@ -43,13 +43,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
       value.replace(/\D/g, '');
 
-      value = value.length <= 14 ? value.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{0,4})$/, '$1-$2') : value.replace(/^(\d{2})(\d{2})(\d{5})(\d{0,4})$/, '+55 $1 $2 $3-$4');;
+      value = value.length <= 14 ? value.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{0,4})$/, '$1-$2') : value.replace(/^(\d{2})(\d{2})(\d{5})(\d{0,4})$/, '+55 $1 $2 $3-$4');
 
       phoneInput.value = value;
+    });
+  }
+
+  function formatNumber() {
+    const numberInput = document.getElementById('number');
+
+    numberInput.addEventListener('input', function () {
+      numberInput.value = numberInput.value.replace(/\D/g, '');
+    });
+  }
+
+  function formatCEP() {
+    const cep = document.getElementById('cep');
+
+    cep.addEventListener('input', function () {
+      let value = cep.value;
+
+      value = value.replace(/\D/g, '');
+
+      value = value.replace(/(\d{5})(\d{0,3})$/, '$1-$2');
+
+      cep.value = value;
     });
   }
 
   formatCpfCnpj();
   formatOnlyCpf();
   formatPhone();
+  formatNumber();
+  formatCEP();
 });

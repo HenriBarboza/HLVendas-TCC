@@ -38,7 +38,7 @@
                     @livewire('verifica-email')
                     <div class="">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" required>
+                        <input type="text" id="phone" name="telefone" required>
                     </div>
                     <div class="">
                         <label for="cpfcnpj">CPF:</label>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero">
+                        <input type="text" id="number" name="numero">
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="">
                         <label for="cidade">CEP:</label>
-                        <input type="text" name="cep">
+                        <input type="text" id="cep" name="cep">
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>

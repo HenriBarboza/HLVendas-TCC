@@ -17,7 +17,6 @@ body {
   background-color: $body;
 }
 
-
 .contentCliente {
   display: flex;
   position: relative;
@@ -31,54 +30,113 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .formCliente {
-      width: 40rem;
+    .contentForms {
+      width: 50rem;
+      padding: 2rem;
+      box-shadow: $sombra;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
 
-      .contentInput {
+      .contentButton {
+        width: 90%;
         display: flex;
-        flex-wrap: wrap;
-        margin: 0.5rem 0 0 0;
-        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
 
-        .label {
-          color: $black;
-          font-size: 1.125rem;
-        }
+        .newCliente, .buscaCliente {
+          button {
+            width: 10rem;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
 
-        .inputWrapper {
-          width: 100%;
-          border: 0.15rem solid $black;
-          background-color: transparent;
+            .text {
+              margin: 0;
+            }
 
-          &::placeholder {
-            color: $black;
-            font-size: 1.125rem;
-          }
+            &:hover {
+              background-color: $black;
 
-          &:focus {
-            outline: none;
-          }
-
-          &.w50 {
-            width: calc(50% - 0.5rem);
+              .text {
+                color: $white;
+              }
+            }
           }
         }
       }
 
-      .button {
+      .formCliente {
+        width: 40rem;
         margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        button {
-          width: 40%;
-          border: 0.2rem solid $black;
-          border-radius: 2rem;
-          padding: 0.5rem;
+        .contentInput {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0.5rem 0 0 0;
+          gap: 1rem;
 
-          .text {
-            margin: 0;
+          .label {
+            color: $black;
+            font-size: 1.125rem;
+          }
+
+          input[type="date"] {
+            color: #575656;
+          }
+
+          .inputWrapper {
+            width: 100%;
+            border: 0.15rem solid $black;
+            background-color: transparent;
+
+            &::placeholder {
+              color: $black;
+              font-size: 1.125rem;
+              opacity: 0.8;
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: none;
+            }
+
+            &.w50 {
+              width: calc(50% - 0.5rem);
+            }
+          }
+        }
+
+        .button {
+          margin-top: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            width: 40%;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
+
+            .text {
+              margin: 0;
+              color: $black;
+            }
+
+            &:hover {
+              background-color: $black;
+
+              .text {
+                color: $white;
+              }
+            }
           }
         }
       }

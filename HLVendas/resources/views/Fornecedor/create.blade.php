@@ -53,7 +53,7 @@
                     </div>
                     <div class="">
                         <label for="numero">Número:</label>
-                        <input type="text" name="numero" required>
+                        <input type="text" id="number" name="numero" required>
                     </div>
                     <div class="">
                         <label for="bairro">Bairro:</label>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="">
                         <label for="cidade">CEP:</label>
-                        <input type="text" name="cep">
+                        <input type="text" id="cep" name="cep">
                     </div>
                     <div class="">
                         <label for="estado">Estado:</label>
