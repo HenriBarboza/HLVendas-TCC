@@ -12,7 +12,8 @@ export default defineConfig({
                 'resources/scss/header.scss',
                 'resources/scss/footer.scss',
                 'resources/js/app.js',
-                'resources/js/calculoCusto.js'
+                'resources/js/calculoCusto.js',
+                'resources/js/inputValidation.js'
             ],
             refresh: true,
         }),
