@@ -1,6 +1,6 @@
 <div>
-    <label for="email">Email</label>
-    <input type="search" name="email" wire:model.live="email" placeholder="Email" required>
+    <!-- <label for="email">Email</label> -->
+    <input class="inputWrapper" type="search" name="email" wire:model.live="email" placeholder="Email" required>
 
     @if($indisponivel)
         <i class="fa-solid fa-xmark"></i>

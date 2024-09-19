@@ -14,80 +14,92 @@
         @include('components.navbar') 
 
         <div class="funcionarioCrud">
-            <div class="contentButton">
-                <h1>Novo Funcionario</h1>
-                <a href="/funcionario">Buscar funcionario</a>
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        {{$message}}
+            <div class="contentForms">
+                <div class="contentButton">
+                    <div class="newFuncionario">
+                        <button>
+                            <p class="text">Novo Funcionario</p>
+                        </button>
                     </div>
-                @endif
-            </div>
-            <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
-                @CSRF
-                <div class="">
-                    <div class="">
-                        <label for="nome">Nome:</label>
-                        <input id="nome" type="text" name="nome" required autofocus>
+
+                    <div class="buscaFuncionario">
+                        <button>
+                            <p class="text">
+                                <a href="/funcionario">Buscar funcionario</a>
+                            </p>
+
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success">
+                                    {{$message}}
+                                </div>
+                            @endif
+                        </button>
+                    </div>
+                </div>
+                <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
+                    @CSRF
+                    <div class="contentInput">
+                        <!-- <label for="nome">Nome:</label> -->
+                        <input class="inputWrapper" type="text" name="nome" placeholder="Nome" required autofocus>
                     </div>
                     <!-- <div class="">
                         <label for="email">Email:</label>
                         <input id="email" type="email" name="email" required><button>Verificar</button>
                         <input id="" type="text" name="" placeholder="Apelido" disabled>
                     </div> -->
-                    @livewire('verifica-email')
-                    <div class="">
-                        <label for="telefone">Telefone:</label>
-                        <input type="text" id="phone" name="telefone" required>
+                    <div class="contentInput">
+                        @livewire('verifica-email')
                     </div>
-                    <div class="">
-                        <label for="cpfcnpj">CPF:</label>
-                        <input type="text" id="cpf" name="cpfcnpj" required>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper w50 phone" type="text" placeholder="Telefone" name="telefone" required>
+                        <input class="inputWrapper w50 cpf" type="text" placeholder="CPF" name="cpfcnpj" required>
                     </div>
-                    <div class="">
-                        <label for="numero">Logradouro:</label>
-                        <input type="text" name="logradouro">
+
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" placeholder="Logradouro" name="logradouro">
                     </div>
-                    <div class="">
-                        <label for="numero">Número:</label>
-                        <input type="text" id="number" name="numero">
+
+                    <div class="contentInput">
+                        <input class="inputWrapper w50 number" type="text" placeholder="Número" name="numero">
+                        <input class="inputWrapper w50" type="text" placeholder="Bairro" name="bairro">
                     </div>
-                    <div class="">
-                        <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro">
+
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" placeholder="Cidade" name="cidade">
                     </div>
-                    <div class="">
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade">
+
+                    <div class="contentInput">
+                        <input class="inputWrapper w50 cep" type="text" placeholder="CEP" name="cep">
+                        <input class="inputWrapper w50" type="text" placeholder="Estado" name="estado">
                     </div>
-                    <div class="">
-                        <label for="cidade">CEP:</label>
-                        <input type="text" id="cep" name="cep">
-                    </div>
-                    <div class="">
-                        <label for="estado">Estado:</label>
-                        <input type="text" name="estado">
-                    </div>
-                    <div class="">
+
+                    <div class="contentInput not-gap">
                         <label for="datanasc">Data De Nascimento:</label>
-                        <input type="date" name="datanasc">
+                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc">
                     </div>
-                    <div>
-                        <label for="tipo">Nivel:</label>
+
+                    <div class="contentInput radio">
+                        <p class="text"><label for="tipo">Nivel:</label></p>
                         <input type="radio" id="normal" value="f" name="tipo" checked>
-                        <label for="normal">Normal</label>
+                        <p class="text"><label for="normal">Normal</label></p>
                         <input type="radio" id="gerente" value="g" name="tipo">
-                        <label for="gerente">Gerente</label><br>
+                        <p class="text"><label for="gerente">Gerente</label><br></p>
                     </div>
-                    <div class="">
-                        <button type="submit">Salvar</button>
+
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text">
+                                Salvar
+                            </p>
+                        </button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+        @include('components.footer') 
+        @livewireScripts
     </div>
-    @include('components.footer') 
-    @livewireScripts
 </body>
 
 </html>

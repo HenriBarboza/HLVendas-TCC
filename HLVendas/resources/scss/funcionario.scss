@@ -30,36 +30,125 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .formFuncionario {
-      width: 40rem;
+    .contentForms {
+      width: 50rem;
+      padding: 2.5rem;
+      box-shadow: $sombra;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 1rem;
 
-      .contentInput {
+      .contentButton {
+        width: 90%;
         display: flex;
-        flex-wrap: wrap;
-        margin: 0.5rem 0 0 0;
-        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
 
-        .label {
-          color: $black;
-          font-size: 1.125rem;
+        .newFuncionario,
+        .buscaFuncionario {
+          button {
+            width: 12rem;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
+
+            .text {
+              margin: 0;
+            }
+
+            &:hover {
+              background-color: $black;
+
+              .text {
+                color: $white;
+              }
+            }
+          }
         }
+      }
 
-        .inputWrapper {
-          width: 100%;
-          border: 0.15rem solid $black;
-          background-color: transparent;
+      .formFuncionario {
+        width: 40rem;
+        margin-top: 1rem;
 
-          &::placeholder {
+        .contentInput {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0.5rem 0 0 0;
+          gap: 1rem;
+
+          &.radio {
+            margin-top: 1rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+          }
+
+          .label {
             color: $black;
             font-size: 1.125rem;
           }
 
-          &:focus {
-            outline: none;
+          input[type="date"] {
+            color: #575656;
           }
 
-          &.w50 {
-            width: calc(50% - 0.5rem);
+          .inputWrapper {
+            width: 100%;
+            border: 0.15rem solid $black;
+            background-color: transparent;
+            border-radius: 1rem;
+
+            &::placeholder {
+              color: $black;
+              font-size: 1.125rem;
+              opacity: 0.8;
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: none;
+              border-color: #add8e6;
+            }
+
+            &.w50 {
+              width: calc(50% - 0.5rem);
+            }
+          }
+        }
+
+        .button {
+          margin-top: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            width: 40%;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
+
+            .text {
+              margin: 0;
+              color: $black;
+            }
+
+            &:hover {
+              background-color: $black;
+
+              .text {
+                color: $white;
+              }
+            }
           }
         }
       }

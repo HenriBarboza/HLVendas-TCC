@@ -3,6 +3,19 @@ $cinza: #6b6b6a;
 $menu: #2d2c2c;
 $white: #ffffff;
 $black: #2d2c2c;
+$body: #f5f5f5;
+
+.not-gap {
+  gap: 0 !important;
+}
+
+.text {
+  font-size: 1.125rem;
+}
+
+body {
+  background-color: $body;
+}
 
 .contentCompra {
   display: flex;
@@ -17,36 +30,111 @@ $black: #2d2c2c;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .formCompra {
-      width: 40rem;
+    .contentForms {
+      width: 50rem;
+      padding: 2.5rem;
+      box-shadow: $sombra;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 1rem;
 
-      .contentInput {
+      .contentButton {
+        width: 90%;
         display: flex;
-        flex-wrap: wrap;
-        margin: 0.5rem 0 0 0;
-        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
 
-        .label {
-          color: $black;
-          font-size: 1.125rem;
+        .newCompra,
+        .buscaCompra {
+          button {
+            width: 10rem;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
+
+            .text {
+              margin: 0;
+            }
+
+            &:hover {
+              background-color: $black;
+
+              .text {
+                color: $white;
+              }
+            }
+          }
         }
+      }
 
-        .inputWrapper {
-          width: 100%;
-          border: 0.15rem solid $black;
-          background-color: transparent;
+      .formCompra {
+        width: 40rem;
+        margin-top: 1rem;
 
-          &::placeholder {
+        .contentInput {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0.5rem 0 0 0;
+          gap: 1rem;
+
+          .label {
             color: $black;
             font-size: 1.125rem;
           }
 
-          &:focus {
-            outline: none;
-          }
+          .inputWrapper {
+            width: 100%;
+            border: 0.15rem solid $black;
+            background-color: transparent;
+            border-radius: 1rem;
 
-          &.w50 {
-            width: calc(50% - 0.5rem);
+            &::placeholder {
+              color: $black;
+              font-size: 1.125rem;
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: none;
+              border-color: #add8e6;
+            }
+
+            &.w50 {
+              width: calc(50% - 0.5rem);
+            }
+          }
+        }
+
+        .button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            width: 40%;
+            border: 0.2rem solid $black;
+            background-color: $white;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: 0.5s;
+
+            .text {
+              margin: 0;
+              color: $black;
+            }
+
+            &:hover {
+              background-color: $black;
+
+              .text {
+                color: $white;
+              }
+            }
           }
         }
       }

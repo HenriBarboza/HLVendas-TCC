@@ -17,58 +17,65 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function formatCpfCnpj() {
-    const cpfCnpjInput = document.getElementById('cpfcnpj');
+    const cpfCnpjInput = document.querySelectorAll('.cpfcnpj');
     if (cpfCnpjInput) {
-      cpfCnpjInput.addEventListener('input', function () {
-        let value = cpfCnpjInput.value.replace(/\D/g, '');
-        cpfCnpjInput.value = value.length <= 11 ? formatCpf(value) : formatCnpj(value);
+      cpfCnpjInput.forEach(function (cpfCnpjInput) {
+        cpfCnpjInput.addEventListener('input', function () {
+          let value = cpfCnpjInput.value.replace(/\D/g, '');
+          cpfCnpjInput.value = value.length <= 11 ? formatCpf(value) : formatCnpj(value);
+        });
       });
     }
   }
 
   function formatOnlyCpf() {
-    const cpfInput = document.getElementById('cpf');
+    const cpfInput = document.querySelectorAll('.cpf');
     if (cpfInput) {
-      cpfInput.addEventListener('input', function () {
-        cpfInput.value = formatCpf(cpfInput.value);
+      cpfInput.forEach(function (cpfInput) {
+        cpfInput.addEventListener('input', function () {
+          cpfInput.value = formatCpf(cpfInput.value);
+        });
       });
     }
   }
 
   function formatPhone() {
-    const phoneInput = document.getElementById('phone');
-
-    phoneInput.addEventListener('input', function () {
-      let value = phoneInput.value;
-
-      value.replace(/\D/g, '');
-
-      value = value.length <= 14 ? value.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{0,4})$/, '$1-$2') : value.replace(/^(\d{2})(\d{2})(\d{5})(\d{0,4})$/, '+55 $1 $2 $3-$4');
-
-      phoneInput.value = value;
-    });
+    const phoneInput = document.querySelectorAll('.phone');
+    if (phoneInput) {
+      phoneInput.forEach(function (phoneInput) {
+        phoneInput.addEventListener('input', function () {
+          let value = phoneInput.value;
+          value = value.replace(/\D/g, '');
+          value = value.length <= 14 ? value.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{0,4})$/, '$1-$2') : value.replace(/^(\d{2})(\d{2})(\d{5})(\d{0,4})$/, '+55 $1 $2 $3-$4');
+          phoneInput.value = value;
+        });
+      });
+    }
   }
 
   function formatNumber() {
-    const numberInput = document.getElementById('number');
-
-    numberInput.addEventListener('input', function () {
-      numberInput.value = numberInput.value.replace(/\D/g, '');
-    });
+    const numberInput = document.querySelectorAll('.number');
+    if (numberInput) {
+      numberInput.forEach(function (numberInput) {
+        numberInput.addEventListener('input', function () {
+          numberInput.value = numberInput.value.replace(/\D/g, '');
+        });
+      });
+    }
   }
 
   function formatCEP() {
-    const cep = document.getElementById('cep');
-
-    cep.addEventListener('input', function () {
-      let value = cep.value;
-
-      value = value.replace(/\D/g, '');
-
-      value = value.replace(/(\d{5})(\d{0,3})$/, '$1-$2');
-
-      cep.value = value;
-    });
+    const cep = document.querySelectorAll('.cep');
+    if (cep) {
+      cep.forEach(function (cep) {
+        cep.addEventListener('input', function () {
+          let value = cep.value;
+          value = value.replace(/\D/g, '');
+          value = value.replace(/(\d{5})(\d{0,3})$/, '$1-$2');
+          cep.value = value;
+        });
+      });
+    }
   }
 
   formatCpfCnpj();

@@ -42,9 +42,9 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50" type="text" id="phone" name="telefone" placeholder="Telefone">
+                        <input class="inputWrapper w50 phone" type="text" name="telefone" placeholder="Telefone">
 
-                        <input class="inputWrapper w50" type="text" id="cpfcnpj" name="cpfcnpj" placeholder="CPF/CNPJ"
+                        <input class="inputWrapper w50 cpfcnpj" type="text" name="cpfcnpj" placeholder="CPF/CNPJ"
                             required>
                     </div>
 
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50" type="text" id="number" name="numero" placeholder="Número" required>
+                        <input class="inputWrapper w50 number" type="text" name="numero" placeholder="Número" required>
 
                         <input class="inputWrapper w50" type="text" name="bairro" placeholder="Bairro" required>
                     </div>
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50" type="text" id="cep" name="cep" placeholder="CEP">
+                        <input class="inputWrapper w50 cep" type="text" name="cep" placeholder="CEP">
 
                         <input class="inputWrapper w50" type="text" name="estado" placeholder="Estado" required>
                     </div>

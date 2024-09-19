@@ -32,13 +32,14 @@ body {
 
     .contentForms {
       width: 50rem;
-      padding: 2rem;
+      padding: 2.5rem;
       box-shadow: $sombra;
       background-color: $white;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      border-radius: 1rem;
 
       .contentButton {
         width: 90%;
@@ -93,6 +94,8 @@ body {
             width: 100%;
             border: 0.15rem solid $black;
             background-color: transparent;
+            border-radius: 1rem;
+            transition: 0.4s;
 
             &::placeholder {
               color: $black;
@@ -103,6 +106,7 @@ body {
             &:focus {
               outline: none;
               box-shadow: none;
+              border-color: #add8e6;
             }
 
             &.w50 {
@@ -110,7 +114,7 @@ body {
             }
           }
         }
-
+        
         .button {
           margin-top: 1.5rem;
           display: flex;

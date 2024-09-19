@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js'])
+    @vite(['resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js'])
     <title>Novo Produto</title>
 </head>
 
@@ -18,64 +18,76 @@
         @include('components.navbar') 
 
         <div class="produtoCrud">
-            <div class="contentButton">
-                <h1>Novo Produto</h1>
-                <!-- <a href="/produto">Buscar produto</a> -->
-                @livewire('modal-component', compact('rota'))
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        {{$message}}
+            <div class="contentForms">
+
+                <div class="contentButton">
+                    <div class="newProduto">
+                        <button>
+                            <p class="text">Novo Produto</p>
+                        </button>
                     </div>
-                @endif
-            </div>
-            <form class="formProduto" action="{{route('produto.store')}}" method="POST">
-                @CSRF
-                <div class="">
-                    <div class="">
-                        <label for="descricao">Descricao:</label>
-                        <input type="text" name="descricao" required autofocus>
-                    </div>
-                    <div class="">
-                        <label for="custo">Custo:</label>
-                        <input type="number" id="custo" step="0.01" name="custo" required>
-                    </div>
-                    <div class="">
-                        <label for="perccusto">Perc. Custo:</label>
-                        <input type="number" id="perccusto" step="0.01" name="perccusto" required>
-                    </div>
-                    <div class="">
-                        <label for="precoavista">Preço À Vista:</label>
-                        <input type="number" id="precoavista" name="precoavista" step="0.01" required>
-                    </div>
-                    <div class="">
-                        <label for="percprazo">Perc. Prazo:</label>
-                        <input type="number" id="percprazo" step="0.01" name="percprazo" required>
-                    </div>
-                    <div class="">
-                        <label for="precoaprazo">Preço À Prazo:</label>
-                        <input type="number" id="precoaprazo" step="0.01" name="precoaprazo" required>
-                    </div>
-                    <div class="">
-                        <label for="unidade">Unidade:</label>
-                        <input type="text" name="unidade" required>
-                    </div>
-                    <div class="">
-                        <label for="codigoBarras">Código de Barras:</label>
-                        <input type="number" name="codigoBarras">
-                    </div>
-                    <div class="">
-                        <label for="categoria">Categoria:</label>
-                        <input type="text" name="categoria" required>
-                    </div>
-                    <div class="">
-                        <button type="submit">Salvar</button>
+
+                    <div class="buscaProduto">
+                        <!-- <button> -->
+                        <!-- <a href="/produto">Buscar produto</a> -->
+                        <p class="text">
+                            @livewire('modal-component', compact('rota'))
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success">
+                                    {{$message}}
+                                </div>
+                            @endif
+                        </p>
+                        <!-- </button> -->
                     </div>
                 </div>
-            </form>
+                <form class="formProduto" action="{{route('produto.store')}}" method="POST">
+                    @CSRF
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="descricao" placeholder="Descricao" required autofocus>
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper number" type="text" id="custo" step="0.01" name="custo" placeholder="Custo" required>
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper w50 number" type="text" id="perccusto" step="0.01" name="perccusto" placeholder="Perc. Custo" required>
+
+                        <input class="inputWrapper w50 number" type="text" id="precoavista" name="precoavista" step="0.01" placeholder="Preço À Vista" required>
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper w50 number" type="text" id="percprazo" step="0.01" name="percprazo" placeholder="Perc. Prazo" required>
+
+                        <input class="inputWrapper w50 number" type="text" id="precoaprazo" step="0.01" name="precoaprazo" placeholder="Preço À Prazo"required>
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper number" type="text" name="unidade" placeholder="Unidade" required>
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper number" type="text" name="codigoBarras" placeholder="Código de Barras">
+                    </div>
+
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="categoria" placeholder="Categoria" required>
+                    </div>
+
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text">
+                                Salvar
+                            </p>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
+        @livewireScripts
+        @include('components.footer') 
     </div>
-    @livewireScripts
-    @include('components.footer') 
 </body>
 
 </html>
