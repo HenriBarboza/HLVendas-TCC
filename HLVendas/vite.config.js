@@ -13,7 +13,8 @@ export default defineConfig({
                 'resources/scss/footer.scss',
                 'resources/js/app.js',
                 'resources/js/calculoCusto.js',
-                'resources/js/inputValidation.js'
+                'resources/js/inputValidation.js',
+                'resources/js/placeholder.js'
             ],
             refresh: true,
         }),
