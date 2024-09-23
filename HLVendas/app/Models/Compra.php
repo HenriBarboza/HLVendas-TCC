@@ -12,11 +12,9 @@ class Compra extends Model
     protected $fillable = [
         'fornecedorid',
         'doc',
-        'formapg',
-        'desconto',
-        'percdesc',
-        'custadicional',
-        'percadd',
+        'conta',
+        'percdesconto',
+        'percadicional',
         'datacompra',
         'totalcompra',
         'funcionarioid'

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\ProdCompra;
 use App\Models\Produto;
+use App\Http\Controllers\ProdutoController;
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use App\Models\Compra;
+use App\Models\Conta;
 use Illuminate\Support\Facades\DB;
 class CompraController extends Controller
 {
@@ -38,48 +41,62 @@ class CompraController extends Controller
 
         if ($documentoExistente) {
             return redirect()->back()
-                             ->with('error', "Erro ao cadastrar: Já existe um documento com esse código");
+                ->with('error', "Erro ao cadastrar: Já existe um documento com esse código");
 
         }
 
         DB::beginTransaction();
 
         try {
+            // registra a compra
             Compra::create([
                 'doc' => $request->input('doc'),
                 'fornecedorid' => $request->input('fornecedorid'),
-                'serie' => $request->input('serie'),
-                'formapg' => $request->input('formapg'),
-                'desconto' => $request->input('desconto'),
-                'percdesc' => $request->input('percdesc'),
-                'custadicional' => $request->input('custadicional'),
-                'percadd' => $request->input('percadd'),
-                'qtdprod' => $request->input('qtdprod'),
+                'conta' => $request->input('conta'),
+                'percdesconto' => $request->input('percdesconto'),
+                'percadicional' => $request->input('percadicional'),
                 'totalcompra' => $request->input('totalcompra'),
                 'funcionarioid' => $request->input('funcionarioid')
             ]);
 
 
             foreach ($request->input('produtos') as $produto) {
+                // registra os produtos da compra
                 ProdCompra::create([
                     'compraid' => $request->input('doc'),
                     'produtoid' => $produto['produto_id'],
-                    'desconto' => $produto['desconto'],
                     'quantidade' => $produto['quantidade'],
-                    'totalprod' => $produto['preco'],
+                    'custo' => $produto['custo'],
                 ]);
 
+                // acrescenta o estoque do produto e data da ultima compra no cadastro do produto
                 $prodAtt = Produto::findOrFail($produto['produto_id']);
                 $quantAtual = $prodAtt->estoque;
                 $novoEstoque = $quantAtual + $produto['quantidade'];
                 $prodAtt->update([
+                    'custo' => $produto['custo'],
                     'estoque' => $novoEstoque,
                     'ultimacompra' => date("Y-m-d H:i:s")
                 ]);
 
+                ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
             }
 
 
+            $fornecedorAtt = Fornecedor::findOrFail($request->input('fornecedorid'));
+            $totalAtual = $fornecedorAtt->totalvendido;
+            $novoTotal = $totalAtual + $request->input('totalcompra');
+            $fornecedorAtt->update([
+                'ultimavenda' => date("Y-m-d H:i:s"),
+                'totalvendido' => $novoTotal
+            ]);
+
+            $contaAtt = Conta::findOrFail($request->input('conta'));
+            $totalConta = $contaAtt->total;
+            $novoTotalc = $totalConta + $request->input('totalcompra');
+            $contaAtt->update([
+                'total' => $novoTotalc,
+            ]);
 
             DB::commit();
 
@@ -93,7 +110,6 @@ class CompraController extends Controller
             // Opcional: registrar o erro ou fornecer feedback ao usuário
             // return redirect()->back()
             //     ->withErrors('Ocorreu um erro ao registrar a compra: ' . $e->getMessage());
-
             dd($e->getMessage());
         }
     }

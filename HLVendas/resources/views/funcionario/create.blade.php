@@ -17,9 +17,11 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newFuncionario">
-                        <button>
-                            <p class="text">Novo Funcionario</p>
-                        </button>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                {{$message}}
+                            </div>
+                        @endif
                     </div>
 
                     <div class="buscaFuncionario">
@@ -27,12 +29,6 @@
                             <p class="text">
                                 <a href="/funcionario">Buscar funcionario</a>
                             </p>
-
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{$message}}
-                                </div>
-                            @endif
                         </button>
                     </div>
                 </div>
@@ -50,9 +46,9 @@
                     <div class="contentInput">
                         @livewire('verifica-email')
                     </div>
-
                     <div class="contentInput">
-                        <input class="inputWrapper w50 phone" type="text" placeholder="Telefone" name="telefone" required>
+                        <input class="inputWrapper w50 phone" type="text" placeholder="Telefone" name="telefone"
+                            required>
                         <input class="inputWrapper w50 cpf" type="text" placeholder="CPF" name="cpfcnpj" required>
                     </div>
 

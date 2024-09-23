@@ -15,6 +15,7 @@ class BuscaFornecedor extends Component
 
     public function render()
     {
+        
         return view('livewire.busca-fornecedor', [
             'fornecedores' => Fornecedor::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),                  
         ]);

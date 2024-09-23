@@ -22,21 +22,21 @@
 
                 <div class="contentButton">
                     <div class="newProduto">
-                        <button>
+                        <!-- <button>
                             <p class="text">Novo Produto</p>
-                        </button>
+                        </button> -->
                     </div>
 
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            {{$message}}
+                        </div>
+                    @endif
                     <div class="buscaProduto">
                         <!-- <button> -->
                         <!-- <a href="/produto">Buscar produto</a> -->
                         <p class="text">
                             @livewire('modal-component', compact('rota'))
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{$message}}
-                                </div>
-                            @endif
                         </p>
                         <!-- </button> -->
                     </div>
@@ -52,19 +52,19 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50 number" type="text" id="perccusto" step="0.01" name="perccusto" placeholder="Perc. Custo" required>
+                        <input class="inputWrapper w50 number" type="text" id="perccusto" step="0.01" name="perccusto" placeholder="% Custo" required>
 
                         <input class="inputWrapper w50 number" type="text" id="precoavista" name="precoavista" step="0.01" placeholder="Preço À Vista" required>
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50 number" type="text" id="percprazo" step="0.01" name="percprazo" placeholder="Perc. Prazo" required>
+                        <input class="inputWrapper w50 number" type="text" id="percprazo" step="0.01" name="percprazo" placeholder="% Prazo" required>
 
                         <input class="inputWrapper w50 number" type="text" id="precoaprazo" step="0.01" name="precoaprazo" placeholder="Preço À Prazo"required>
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="unidade" placeholder="Unidade" required>
+                        <input class="inputWrapper number" type="text" name="unidade" placeholder="Unidade (Ex. UN)" required>
                     </div>
 
                     <div class="contentInput">
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="categoria" placeholder="Categoria" required>
+                        <input class="inputWrapper" type="text" name="categoria" placeholder="Categoria (Ex. Alimento)" required>
                     </div>
 
                     <div class="button">

@@ -15,6 +15,7 @@ class VerificaEmail extends Component
         return view('livewire.verifica-email',[
             'user' => User::where('email', $this->email)->where('is_active', true)->first(),
             'indisponivel' => User::where('email', $this->email)->where('is_active', false)->first(),
+            'email' => $this->email,
         ]);
     }
 

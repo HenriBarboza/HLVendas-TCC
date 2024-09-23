@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('compras', function (Blueprint $table) {
+        Schema::create('contas', function (Blueprint $table) {
             $table->id();
-            $table->integer('fornecedorid');
-            $table->integer('doc');
-            $table->integer('conta');
-            $table->float('percdesconto')->nullable();
-            $table->float('percadicional')->nullable();
-            $table->float('totalcompra');
+            $table->string('nome');
+            $table->double('total')->nullable();
             $table->integer('funcionarioid');
             $table->timestamps();
         });
+        DB::table(table: 'contas')->insert(
+            [
+                'nome' => 'Caixa',
+                'total' => 0.0,
+                'funcionarioid' => '1',
+            ]
+        );
     }
 
     /**
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('compras');
+        Schema::dropIfExists('contas');
     }
 };

@@ -8,11 +8,15 @@ use Livewire\Component;
 class CompraComponent extends Component
 {
     public $vetProd = [];
+    public $percdesconto = 0;
+    public $percadicional = 0;
+    public $desconto = 0;
+    public $adicional = 0;
 
-    protected $listeners = ['adicionarProduto'];
+    protected $listeners = ['adicionarProduto', 'calcularOutros'];
 
     // Função para adicionar o produto à lista
-    public function adicionarProduto($produtoId, $quantidade)
+    public function adicionarProduto($produtoId, $quantidade, $custo)
     {
         $produto = Produto::find($produtoId);
 
@@ -20,6 +24,7 @@ class CompraComponent extends Component
         foreach ($this->vetProd as $i => $item) {
             if ($item['produto_id'] === $produtoId) {
                 $this->vetProd[$i]['quantidade'] += $quantidade;
+                $this->vetProd[$i]['custo'] = $custo;
                 return;
             }
         }
@@ -28,8 +33,7 @@ class CompraComponent extends Component
         $this->vetProd[] = [
             'produto_id' => $produto->id,
             'descricao' => $produto->descricao,
-            'desconto' => 0,
-            'preco' => $produto->precoavista, // ou outro campo de preço que deseja usar
+            'custo' => $custo,
             'quantidade' => $quantidade
         ];
 
@@ -43,17 +47,25 @@ class CompraComponent extends Component
         $this->vetProd = array_values($this->vetProd); // Reindexa o array
     }
 
-    // Função para salvar a venda no banco de dados
-    public function salvarVenda()
+    public function calcularOutros()
     {
-        
+        // Garantir que os valores sejam numéricos, ou definir como 0
+        $this->percdesconto = is_numeric($this->percdesconto) ? $this->percdesconto : 0;
+        $this->percadicional = is_numeric($this->percadicional) ? $this->percadicional : 0;
+
+        $calculo = collect($this->vetProd)->sum(function ($produto) {
+            return ($produto['custo'] * $produto['quantidade']);});
+        $this->desconto = $calculo * $this->percdesconto / 100;
+        $this->adicional = $calculo * $this->percadicional / 100;
     }
 
     // Função auxiliar para calcular o total da venda
     private function calcularTotal()
     {
         return collect($this->vetProd)->sum(function ($produto) {
-            return $produto['preco'] * $produto['quantidade'];
+            return (
+                ($produto['custo'] * $produto['quantidade']) - $this->desconto + $this->adicional
+            );
         });
     }
 

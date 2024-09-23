@@ -30,6 +30,16 @@ return new class extends Migration
 
             $table->foreign('idauth')->references('id')->on('users')->onDelete('cascade');
         });
+        DB::table(table: 'funcionarios')->insert(
+            [
+                'nome' => 'Admin',
+                'email' => 'admin@email.com',
+                'telefone' => '000000000',
+                'cpfcnpj' => '000000000',
+                'tipo' => 'G',
+                'idauth' => '1',
+            ]
+        );
     }
 
     /**

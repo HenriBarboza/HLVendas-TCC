@@ -16,8 +16,7 @@ return new class extends Migration
             $table->integer('produtoid');
             $table->integer('compraid');
             $table->float('quantidade');
-            $table->float('desconto');
-            $table->float('totalprod');
+            $table->float('custo');
             $table->timestamps();
         });
     }

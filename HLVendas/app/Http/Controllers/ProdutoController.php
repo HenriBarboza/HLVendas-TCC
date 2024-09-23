@@ -65,6 +65,24 @@ class ProdutoController extends Controller
         return view('produto.edit', compact('produtos'));
     }
 
+    public static function calcularPreco(float $custo, string $id)
+    {
+        
+        $produtoAtt = Produto::findOrFail($id);
+
+        $percCusto = $produtoAtt->perccusto;
+        $percPrazo = $produtoAtt->percprazo;
+
+        $novoPrecoAVista = $custo + ($custo * ($percCusto / 100));
+        $novoPrecoAPrazo = $novoPrecoAVista + ($novoPrecoAVista * ($percPrazo / 100));
+
+        $produtoAtt->update([
+            'precoavista' => $novoPrecoAVista,
+            'precoaprazo' =>  $novoPrecoAPrazo,
+        ]);
+
+    }
+
     /**
      * Update the specified resource in storage.
      */

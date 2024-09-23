@@ -16,21 +16,21 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCliente">
-                        <button>
+                        <!-- <button>
                             <p class="text">Novo Cliente</p>
-                        </button>
+                        </button> -->
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                {{$message}}
+                            </div>
+                        @endif
                     </div>
-
+                    
                     <div class="buscaCliente">
                         <button>
                             <p class="text">
                                 <a href="/cliente">Buscar cliente</a>
                             </p>
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{$message}}
-                                </div>
-                            @endif
                         </button>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <label for="nome" class="labelTop">
                             <p>Nome</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nome" required>
+                        <input class="inputWrapper" type="text" name="nome"  required>
                     </div>
 
                     <div class="contentInput">

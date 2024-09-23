@@ -20,7 +20,6 @@
             <div class="contentButton">
                 <h1>Novo Fornecedor</h1>
                 @livewire('modal-fornecedor-component', compact('rota'))
-                <a href="/fornecedor">Buscar fornecedor</a>
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         {{$message}}
@@ -35,10 +34,10 @@
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" required>
                     </div>
-                    <!-- <div class="">
+                    <div class="">
                         <label for="nomefantasia">Nome Fantasia:</label>
                         <input type="text" name="nomefantasia">
-                    </div> -->
+                    </div>
                     <div class="">
                         <label for="telefone">Telefone:</label>
                         <input type="text" id="phone" name="telefone">

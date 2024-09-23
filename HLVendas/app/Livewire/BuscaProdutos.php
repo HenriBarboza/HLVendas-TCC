@@ -15,6 +15,7 @@ class BuscaProdutos extends Component
     public $rota;
     public $texto;
     public $quantidades = [];
+    public $custos = [];
     public function render()
     {
         return view('livewire.busca-produtos', [
@@ -25,7 +26,8 @@ class BuscaProdutos extends Component
 
     public function addProduto($produtoId)
     {
-        $this->dispatch('adicionarProduto', $produtoId, $this->quantidades[$produtoId] ?? 1);
+        $custo = $this->custos[$produtoId] ?? Produto::find($produtoId)->custo;
+        $this->dispatch('adicionarProduto', $produtoId, $this->quantidades[$produtoId] ?? 1, $custo);
         
         $this->busca = '';
         $this->dispatch('limparBusca');
