@@ -21,14 +21,22 @@ body {
   display: flex;
   position: relative;
 
+  .box {
+    position: relative;
+    z-index: 999;
+  }
+
   .compraCrud {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
 
     .contentForms {
       width: 50rem;

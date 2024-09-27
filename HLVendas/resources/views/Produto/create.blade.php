@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="unidade" placeholder="Unidade (Ex. UN)" required>
+                        <input class="inputWrapper" type="text" name="unidade" placeholder="Unidade de medida" required>
                     </div>
 
                     <div class="contentInput">

@@ -14,6 +14,19 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'corBorda': '#2d2c2c'
+            },
+            width: {
+                'custom-button': '10rem'
+            },
+            borderRadius: {
+                'custom-button': '2rem'
+            },
+            padding: {
+                'custom-1': '1rem',
+                'custom-2': '0.5rem'
+            }
         },
     },
 

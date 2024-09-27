@@ -16,8 +16,11 @@
 
 <body>
     <div class="contentCompra">
-        @include('components.navbar')
+        <div class="box">
+            @include('components.navbar')
+        </div>
 
+        <!-- <div class="contentCompra"> -->
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
@@ -49,23 +52,21 @@
                     <div class="contentInput">
                         <input class="inputWrapper number" type="text" name="doc" placeholder="Documento" required>
                     </div>
-                    <div class="">
-                        <label for="fornecedorid">Fornecedor:</label>
-                        @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
-                        <input type="number" name="fornecedorid" id="inpFornecedorId" hidden required>
-                        <input type="text" placeholder="Fornecedor" id="inpFornecedorNome" disabled>
-                    </div>
-                    <div class="">
-                        <label for="conta">Conta:</label>
-                        <select name="conta">
+                    @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden required>
+                        <input class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome" disabled>
+
+                        <select class="inputWrapper w50" name="conta">
                             <option value="1">Conta Padrão</option>
                             <option value="2">Conta caixa</option>
                         </select>
                     </div>
+
                     <div class="contentInput">
                         <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
                             placeholder="Funcionário da Venda" required>
-                        <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+                        <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
                     </div>
                     @livewire('modal-component', compact('rota'))
                     @livewire('compra-component')
@@ -78,9 +79,10 @@
                             </p>
                         </button>
                     </div>
-                </form> 
+                </form>
             </div>
         </div>
+        <!-- </div> -->
         @livewireScripts
         @include('components.footer')
     </div>

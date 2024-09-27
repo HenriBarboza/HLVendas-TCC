@@ -94,9 +94,8 @@ class CompraController extends Controller
             $contaAtt = Conta::findOrFail($request->input('conta'));
             $totalConta = $contaAtt->total;
             $novoTotalc = $totalConta + $request->input('totalcompra');
-            $contaAtt->update([
-                'total' => $novoTotalc,
-            ]);
+            $contaAtt->total = $novoTotalc;
+            $contaAtt->save();
 
             DB::commit();
 
