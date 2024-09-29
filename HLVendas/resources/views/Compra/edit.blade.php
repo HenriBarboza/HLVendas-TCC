@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
-    <title>Nova Compra</title>
+    <title>Editar Compra</title>
 </head>
 
 <?php 
@@ -42,17 +42,18 @@
                         @livewire('modal-compra-component')
                     </div>
                 </div>
-                <form class="formCompra" action="{{route('compra.store')}}" method="POST">
+                <form class="formCompra" action="{{route('compra.update', $compra->id)}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="doc" placeholder="Documento" required>
+                        <input class="inputWrapper number" type="text" name="doc" placeholder="Documento"
+                            value="{{$compra->doc}}" disabled>
                     </div>
                     @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                     <div class="contentInput">
-                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
-                            required>
-                        <input class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
-                            disabled>
+                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId"
+                            value="{{$compra->fornecedorid}}" hidden required>
+                        <input class="inputWrapper w50" type="text" placeholder="Fornecedor"
+                            value="{{$compra->fornecedor->nome}}" id="inpFornecedorNome" disabled>
 
                         <select class="inputWrapper w50" name="contaid">
                             <option value="1">Conta Padrão</option>
@@ -68,11 +69,31 @@
                     <br>
                     @livewire('modal-component', compact('rota'))
                     @livewire('compra-component')
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Descrição do Produto</th>
+                                <th>Quantidade</th>
+                                <th>Custo Unitário</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($produtos as $prodCompra)
+                                <tr>
+                                    <td>{{ $prodCompra->produto->descricao }}</td>
+                                    <td>{{ $prodCompra->quantidade }}</td>
+                                    <td>R$ {{ $prodCompra->custo }}</td>
+                                    <td>R$ {{ $prodCompra->custo * $prodCompra->quantidade }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <br>
                     <!-- <button type="submit">Salvar</button> -->
                     <div class="button">
                         <button type="submit">
-                        <p class="text">
+                            <p class="text">
                                 Salvar
                             </p>
                         </button>

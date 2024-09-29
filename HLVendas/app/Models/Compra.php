@@ -12,11 +12,24 @@ class Compra extends Model
     protected $fillable = [
         'fornecedorid',
         'doc',
-        'conta',
+        'contaid',
         'percdesconto',
         'percadicional',
         'datacompra',
         'totalcompra',
         'funcionarioid'
     ];
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'funcionarioid');
+    }
+    public function conta()
+    {
+        return $this->belongsTo(Conta::class, 'contaid');
+    }
+    public function fornecedor()
+    {
+        return $this->belongsTo(Fornecedor::class, 'fornecedorid');
+    }
 }

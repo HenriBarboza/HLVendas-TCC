@@ -1,6 +1,6 @@
 <div>
     <input type="search" wire:model.live="busca" id="busca" placeholder="Digite uma descrição...">
-    @if(count($produtos) > 0 && $busca)
+    @if(count($produtos) > 0)
         <table>
             @if($rota == 1)
                 <thead>

@@ -45,6 +45,12 @@
                         Funcionarios
                     </a>
                 </li>
+                <li class="text">
+                    <a href="/conta/create">
+                        <i class="fa-solid fa-cash-register"></i>
+                        Conta
+                    </a>
+                </li>
             </ul>
         </div>
 

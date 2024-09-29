@@ -13,11 +13,13 @@ class CompraComponent extends Component
     public $desconto = 0;
     public $adicional = 0;
 
+
     protected $listeners = ['adicionarProduto', 'calcularOutros'];
 
     // Função para adicionar o produto à lista
     public function adicionarProduto($produtoId, $quantidade, $custo)
     {
+
         $produto = Produto::find($produtoId);
 
         // Verifica se o produto já foi adicionado

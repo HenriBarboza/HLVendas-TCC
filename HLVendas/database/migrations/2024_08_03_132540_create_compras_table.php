@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('fornecedorid');
             $table->integer('doc');
-            $table->integer('conta');
+            $table->integer('contaid');
             $table->float('percdesconto')->nullable();
             $table->float('percadicional')->nullable();
             $table->float('totalcompra');

@@ -18,8 +18,7 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Compra::all();
-        return view("compra.index", compact("compras"));
+        return view('compra.create');
     }
 
     /**
@@ -42,7 +41,6 @@ class CompraController extends Controller
         if ($documentoExistente) {
             return redirect()->back()
                 ->with('error', "Erro ao cadastrar: Já existe um documento com esse código");
-
         }
 
         DB::beginTransaction();
@@ -52,7 +50,7 @@ class CompraController extends Controller
             Compra::create([
                 'doc' => $request->input('doc'),
                 'fornecedorid' => $request->input('fornecedorid'),
-                'conta' => $request->input('conta'),
+                'contaid' => $request->input('contaid'),
                 'percdesconto' => $request->input('percdesconto'),
                 'percadicional' => $request->input('percadicional'),
                 'totalcompra' => $request->input('totalcompra'),
@@ -91,7 +89,7 @@ class CompraController extends Controller
                 'totalvendido' => $novoTotal
             ]);
 
-            $contaAtt = Conta::findOrFail($request->input('conta'));
+            $contaAtt = Conta::findOrFail($request->input('contaid'));
             $totalConta = $contaAtt->total;
             $novoTotalc = $totalConta + $request->input('totalcompra');
             $contaAtt->total = $novoTotalc;
@@ -119,7 +117,9 @@ class CompraController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $compra = Compra::with(['fornecedor', 'funcionario', 'conta'])->findOrFail($id);
+        $produtos = ProdCompra::where('compraid', $compra->doc)->with('produto')->get();
+        return view('compra.show', compact('compra', 'produtos'));
     }
 
     /**
@@ -127,12 +127,10 @@ class CompraController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
+        $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
+        $produtos = ProdCompra::where('compraid', $compra->doc)->with('produto')->get();
 
-    public function adicionarProdutos(int $compraid, int $produtoid, float $desconto, int $quantidade)
-    {
-        // prodCompraController::store($compraid, $produtoid, $desconto, $quantidade);
+        return view('compra.edit', compact('compra', 'produtos'));
     }
 
     /**
@@ -140,7 +138,7 @@ class CompraController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
@@ -148,6 +146,51 @@ class CompraController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::beginTransaction();
+        
+        try {
+            $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
+            $produtosCompra = ProdCompra::where('compraid', $compra->doc)->get();
+
+            $valorCompra = $compra->totalcompra;
+
+            // Reverter saldo do fornecedor e caixa
+            $fornecedor = $compra->fornecedor;
+            $caixa = $compra->conta;
+
+            
+            if($fornecedor && $caixa){
+                $fornecedor->totalvendido -= $valorCompra;
+                $caixa->total -= $valorCompra;
+                
+                $fornecedor->save();
+                $caixa->save();
+            }
+
+            // Atualizar o estoque dos produtos
+            foreach ($produtosCompra as $prodCompra) {
+                $produto = $prodCompra->produto;
+
+                if ($produto) {
+                    $produto->estoque -= $prodCompra->quantidade;
+                    $produto->save();
+                }
+
+                $prodCompra->delete();
+            }
+
+
+            // Excluir a compra
+            $compra->delete();
+
+            DB::commit();
+
+            return redirect()->route('compra.create')->with('success', "Compra removida com sucesso");
+        } catch (\Exception $e) {
+            // Reverter a transação em caso de erro
+            DB::rollback();
+
+            return redirect()->back()->withErrors('Ocorreu um erro ao remover a compra: ' . $e->getMessage());
+        }
     }
 }

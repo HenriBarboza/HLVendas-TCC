@@ -26,6 +26,8 @@ class Funcionario extends Model
         'idauth'
     ];
 
+    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'idauth');
