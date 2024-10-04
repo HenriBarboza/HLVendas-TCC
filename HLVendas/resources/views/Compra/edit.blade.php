@@ -44,6 +44,7 @@
                 </div>
                 <form class="formCompra" action="{{route('compra.update', $compra->id)}}" method="POST">
                     @CSRF
+                    @method('PUT')
                     <div class="contentInput">
                         <input class="inputWrapper number" type="text" name="doc" placeholder="Documento"
                             value="{{$compra->doc}}" disabled>
@@ -68,27 +69,7 @@
                     </div>
                     <br>
                     @livewire('modal-component', compact('rota'))
-                    @livewire('compra-component')
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Descrição do Produto</th>
-                                <th>Quantidade</th>
-                                <th>Custo Unitário</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($produtos as $prodCompra)
-                                <tr>
-                                    <td>{{ $prodCompra->produto->descricao }}</td>
-                                    <td>{{ $prodCompra->quantidade }}</td>
-                                    <td>R$ {{ $prodCompra->custo }}</td>
-                                    <td>R$ {{ $prodCompra->custo * $prodCompra->quantidade }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @livewire('compra-component', ['compra' => $produtos])
                     <br>
                     <!-- <button type="submit">Salvar</button> -->
                     <div class="button">

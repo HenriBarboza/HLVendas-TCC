@@ -41,15 +41,14 @@
                 <div>
                     <div class="formCompra">
                         <h1>Detalhes da Compra</h1>
-
                         <h3>Informações da Compra</h3>
                         <p>ID: {{ $compra->id }}</p>
                         <p>Documento: {{ $compra->doc }}</p>
                         <p>Conta: {{ $compra->conta->nome }}</p>
                         <p>Fornecedor: {{ $compra->fornecedor->nome }}</p>
                         <p>Funcionário: {{ $compra->funcionario->nome }}</p>
-                        <p>Desconto %: {{ $compra->precdesconto ?? 'Sem desconto' }}</p>
-                        <p>Valor adicional %: {{ $compra->precadicional ?? 'Sem adicional' }}</p>
+                        <p>Desconto %: {{ $compra->percdesconto == 0 ? 'Sem adicional' : $compra->percdesconto }}</p>
+                        <p>Valor adicional %: {{ $compra->percadicional == 0 ? 'Sem adicional' : $compra->percadiciona }}</p>
 
                         <p>Data: {{ $compra->created_at }}</p>
 

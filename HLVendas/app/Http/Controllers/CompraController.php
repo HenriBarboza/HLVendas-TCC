@@ -138,7 +138,27 @@ class CompraController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Encontra a compra a ser atualizada
+        $compra = Compra::findOrFail($id);
 
+        // Limpa os produtos existentes
+        $compra->prodCompras()->delete();
+
+        // Adiciona os novos produtos
+        foreach ($request->input('produtos') as $produto) {
+
+            $compra->prodCompras()->create([
+                'produtoid' => $produto['produto_id'],
+                'quantidade' => $produto['quantidade'],
+                'custo' => $produto['custo'],
+                'compraid' => $compra->doc, // Certifique-se de que este campo seja correto
+            ]);
+        }
+
+        $compra->update($request->all());
+
+        // Redireciona com uma mensagem de sucesso
+        return redirect()->route('compra.index')->with('success', 'Compra atualizada com sucesso!');
     }
 
     /**
@@ -147,7 +167,7 @@ class CompraController extends Controller
     public function destroy(string $id)
     {
         DB::beginTransaction();
-        
+
         try {
             $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
             $produtosCompra = ProdCompra::where('compraid', $compra->doc)->get();
@@ -158,11 +178,11 @@ class CompraController extends Controller
             $fornecedor = $compra->fornecedor;
             $caixa = $compra->conta;
 
-            
-            if($fornecedor && $caixa){
+
+            if ($fornecedor && $caixa) {
                 $fornecedor->totalvendido -= $valorCompra;
                 $caixa->total -= $valorCompra;
-                
+
                 $fornecedor->save();
                 $caixa->save();
             }

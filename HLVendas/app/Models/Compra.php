@@ -20,6 +20,11 @@ class Compra extends Model
         'funcionarioid'
     ];
 
+    public function prodCompras()
+    {
+        return $this->hasMany(ProdCompra::class, 'compraid', 'doc');
+    }
+
     public function funcionario()
     {
         return $this->belongsTo(Funcionario::class, 'funcionarioid');

@@ -59,7 +59,6 @@
                             <option value="2">Conta caixa</option>
                         </select>
                     </div>
-
                     <div class="contentInput">
                         <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
                             placeholder="Funcionário da Venda" required>

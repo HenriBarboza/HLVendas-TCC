@@ -12,14 +12,28 @@ class CompraComponent extends Component
     public $percadicional = 0;
     public $desconto = 0;
     public $adicional = 0;
-
+    public $compra;
 
     protected $listeners = ['adicionarProduto', 'calcularOutros'];
+
+    public function mount($compra = null)
+    {
+        if ($compra) {
+            foreach($compra as $produto){
+
+                $this->vetProd[] = [
+                    'produto_id' => $produto->produtoid,
+                    'descricao' => $produto->produto->descricao,
+                    'custo' => $produto->custo,
+                    'quantidade' => $produto->quantidade
+                ];
+            }
+        }
+    }
 
     // Função para adicionar o produto à lista
     public function adicionarProduto($produtoId, $quantidade, $custo)
     {
-
         $produto = Produto::find($produtoId);
 
         // Verifica se o produto já foi adicionado
@@ -30,6 +44,7 @@ class CompraComponent extends Component
                 return;
             }
         }
+
 
         // Adiciona um novo produto à lista
         $this->vetProd[] = [
