@@ -18,7 +18,8 @@ class CompraController extends Controller
      */
     public function index()
     {
-        return view('compra.create');
+        $contas = Conta::all();
+        return view('compra.create', compact('contas'));
     }
 
     /**
@@ -26,7 +27,8 @@ class CompraController extends Controller
      */
     public function create()
     {
-        return view('compra.create');
+        $contas = Conta::all();
+        return view('compra.create', compact('contas'));
     }
 
 
@@ -129,8 +131,8 @@ class CompraController extends Controller
     {
         $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
         $produtos = ProdCompra::where('compraid', $compra->doc)->with('produto')->get();
-
-        return view('compra.edit', compact('compra', 'produtos'));
+        $contas = Conta::all();
+        return view('compra.edit', compact('compra', 'produtos', 'contas'));
     }
 
     /**

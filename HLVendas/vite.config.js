@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/scss/cliente.scss',
                 'resources/scss/header.scss',
                 'resources/scss/footer.scss',
+                'resources/scss/modal.scss',
                 'resources/js/app.js',
                 'resources/js/calculoCusto.js',
                 'resources/js/inputValidation.js',

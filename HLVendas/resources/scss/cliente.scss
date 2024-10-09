@@ -84,6 +84,7 @@ body {
           gap: 1rem;
           position: relative;
 
+
           .labelDate {
             color: $black;
             font-size: 1.125rem;
@@ -124,6 +125,7 @@ body {
             border-radius: 1rem;
             transition: 0.4s;
             margin-top: 0.5rem;
+            
 
             &::placeholder {
               color: $black;

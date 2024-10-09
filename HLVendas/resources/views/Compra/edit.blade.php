@@ -52,13 +52,14 @@
                     @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                     <div class="contentInput">
                         <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId"
-                            value="{{$compra->fornecedorid}}" hidden required>
+                            value="{{$compra->fornecedorid}}" hiddpen required>
                         <input class="inputWrapper w50" type="text" placeholder="Fornecedor"
                             value="{{$compra->fornecedor->nome}}" id="inpFornecedorNome" disabled>
-
                         <select class="inputWrapper w50" name="contaid">
-                            <option value="1">Conta Padrão</option>
-                            <option value="2">Conta caixa</option>
+                            <option value="{{$compra->contaid}}">{{$compra->conta->nome}}</option>
+                            @foreach ($contas as $conta)
+                                <option value="{{$conta->id}}">{{$conta->nome}}</option>
+                            @endforeach
                         </select>
                     </div>
 

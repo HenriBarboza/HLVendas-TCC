@@ -14,4 +14,14 @@ class Conta extends Model
         'toatal',
         'funcionarioid',
     ];
+
+    public function compra()
+    {
+        return $this->hasMany(Compra::class, 'contaid', 'id');
+    }
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'funcionarioid');
+    }
 }

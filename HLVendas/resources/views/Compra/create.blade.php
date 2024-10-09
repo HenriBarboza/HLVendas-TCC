@@ -55,8 +55,9 @@
                             disabled>
 
                         <select class="inputWrapper w50" name="contaid">
-                            <option value="1">Conta Padrão</option>
-                            <option value="2">Conta caixa</option>
+                            @foreach($contas as $conta)
+                                <option value="{{$conta->id}}">{{$conta->nome}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="contentInput">

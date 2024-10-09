@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Conta;
+use App\Models\Compra;
 
 class ContaController extends Controller
 {
@@ -13,7 +14,7 @@ class ContaController extends Controller
      */
     public function index()
     {
-        //
+        return view('conta.create');
     }
 
     /**
@@ -21,7 +22,7 @@ class ContaController extends Controller
      */
     public function create()
     {
-        //
+        return view('conta.create');
     }
 
     /**
@@ -29,7 +30,13 @@ class ContaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Conta::create([
+            'nome' => $request->input('nome'),
+            'funcionarioid' => $request->input('funcionarioid')
+        ]);
+
+        return redirect()->route('conta.create')
+                         ->with('success', "Conta cadastrada com sucesso.");
     }
 
     /**
@@ -37,7 +44,9 @@ class ContaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $contas = Conta::findOrFail($id);
+        $compras = Compra::where('contaid', $contas->id)->with('conta')->get();
+        return view('conta.show', compact('contas', 'compras'));
     }
 
     /**
@@ -45,7 +54,8 @@ class ContaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $contas = Conta::findOrFail($id);
+        return view('conta.edit', compact('contas'));
     }
 
     /**
