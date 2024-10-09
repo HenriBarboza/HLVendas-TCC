@@ -79,11 +79,13 @@ class CompraComponent extends Component
     // Função auxiliar para calcular o total da venda
     private function calcularTotal()
     {
-        return collect($this->vetProd)->sum(function ($produto) {
-            return (
-                ($produto['custo'] * $produto['quantidade']) - $this->desconto + $this->adicional
-            );
+        // Calcula o total dos produtos sem aplicar desconto/adicional individualmente
+        $totalProdutos = collect($this->vetProd)->sum(function ($produto) {
+            return ($produto['custo'] * $produto['quantidade']);
         });
+    
+        // Aplica o desconto e adicional ao total geral dos produtos
+        return $totalProdutos - $this->desconto + $this->adicional;
     }
 
     public function render()
