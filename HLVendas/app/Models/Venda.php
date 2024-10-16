@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Compra extends Model
+class Venda extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'fornecedorid',
+        'clienteid',
         'doc',
         'contaid',
+        'pagamentoid',
+        'tabelapreco',
         'percdesconto',
         'percadicional',
-        'totalcompra',
+        'totalvenda',
         'funcionarioid'
     ];
-
-    public function prodCompras()
+    public function prodVendas()
     {
-        return $this->hasMany(ProdCompra::class, 'compraid', 'doc');
+        return $this->hasMany(ProdVenda::class, 'vendaid', 'doc');
     }
     public function funcionario()
     {
@@ -31,8 +31,8 @@ class Compra extends Model
     {
         return $this->belongsTo(Conta::class, 'contaid');
     }
-    public function fornecedor()
+    public function cliente()
     {
-        return $this->belongsTo(Fornecedor::class, 'fornecedorid');
+        return $this->belongsTo(Cliente::class, 'clienteid');
     }
 }

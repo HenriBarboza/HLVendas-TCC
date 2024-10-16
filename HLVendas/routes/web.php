@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\VendaController;
 use App\Http\Controllers\prodCompraController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\FuncionarioController;
@@ -33,6 +34,7 @@ Route::middleware(['auth','verificarUsuario'])->group(function () {
     Route::resources(['fornecedor' => FornecedorController::class]);
     Route::resources(['funcionario' => FuncionarioController::class]);
     Route::resources(['compra' => CompraController::class]);
+    Route::resources(['venda' => VendaController::class]);
     Route::resources(['prodCompra' => prodCompraController::class]);
     Route::resources(['conta' => ContaController::class]);
 });

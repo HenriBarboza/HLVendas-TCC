@@ -1,5 +1,6 @@
 <div>
     <input type="search" wire:model.live="busca" placeholder="Digite um nome...">
+    @if(count($clientes) > 0)
     <table>
         <thead>
             <tr>
@@ -18,10 +19,20 @@
                     <td>{{$cliente->telefone}}</td>
                     <td>{{$cliente->cpfcnpj}}</td>
                     <td>{{$cliente->cidade}}</td>
-                    <td><a href="{{ route('cliente.' . $rota, $cliente->id) }}">{{$texto}}</a></td>
+                    @if($rota == 1)
+                            <td><a href="{{ route('cliente.show', $cliente->id) }}">Visualizar</a></td>
+                        @elseif($rota == 2 || 3)
+                            <td>
+                                <button @click.prevent class="btn-cliente-id" value="{{$cliente->id}}"
+                                    data-nome="{{$cliente->nome}}" @click="open = false">Selecionar</button>
+                            </td>
+                        @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
+    @else
+        <h2>Não há clientes registrados</h2>
+    @endif
     {{ $clientes->links() }}
 </div>

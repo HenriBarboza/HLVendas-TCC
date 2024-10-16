@@ -24,10 +24,19 @@ class BuscaProdutos extends Component
         ]);
     }
 
-    public function addProduto($produtoId)
+    public function addProdutoCompra($produtoId)
     {
         $custo = $this->custos[$produtoId] ?? Produto::find($produtoId)->custo;
-        $this->dispatch('adicionarProduto', $produtoId, $this->quantidades[$produtoId] ?? 1, $custo);
+        $this->dispatch('adicionarProdutoCompra', $produtoId, $this->quantidades[$produtoId] ?? 1, $custo);
+        
+        $this->busca = '';
+        $this->dispatch('limparBusca');
+        $this->quantidades[$produtoId] = 1;
+    }
+
+    public function addProdutoVenda($produtoId, $tabelapreco)
+    {
+        $this->dispatch('adicionarProdutoVenda', $produtoId, $this->quantidades[$produtoId] ?? 1, $tabelapreco);
         
         $this->busca = '';
         $this->dispatch('limparBusca');

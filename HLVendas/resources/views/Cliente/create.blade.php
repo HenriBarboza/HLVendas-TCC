@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @livewireStyles
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Cliente</title>
 </head>
+
+<?php 
+    $rota = 1;
+ ?>
+
 
 <body>
     <div class="contentCliente">
@@ -25,13 +32,9 @@
                             </div>
                         @endif
                     </div>
-                    
+
                     <div class="buscaCliente">
-                        <button>
-                            <p class="text">
-                                <a href="/cliente">Buscar cliente</a>
-                            </p>
-                        </button>
+                        @livewire('modal-cliente-component', compact(var_name: 'rota'))
                     </div>
                 </div>
 
@@ -41,7 +44,7 @@
                         <label for="nome" class="labelTop">
                             <p>Nome</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nome"  required>
+                        <input class="inputWrapper" type="text" name="nome" required>
                     </div>
 
                     <div class="contentInput">
@@ -121,6 +124,7 @@
             </div>
         </div>
     </div>
+    @livewireScripts
     @include('components.footer') 
 </body>
 
