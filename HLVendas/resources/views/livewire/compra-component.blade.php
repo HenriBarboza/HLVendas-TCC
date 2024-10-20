@@ -1,4 +1,8 @@
 <div>
+    <style>
+
+    </style>
+
     @if(count($vetProd) > 0)
         <div class="accordion">
             <div x-data="{ open: false }">
@@ -6,8 +10,8 @@
                 <div class="accordion-content" x-show="open" x-transition>
                     <div class="contentInput">
                         <label for="percdesconto">% Desconto</label>
-                        <input class="inputWrapper w50 number" type="number" min="0" wire:model="percdesconto"
-                            name="percdesconto" placeholder="Desconto %">
+                        <input class="inputWrapper w50 number" min="0" wire:model="percdesconto" name="percdesconto"
+                            placeholder="Desconto %">
                         <label for="percadicional">% Adicional</label>
                         <input class="inputWrapper w50 number" type="number" min="0" wire:model="percadicional"
                             name="percadicional" placeholder="Custo adicional %">
@@ -52,4 +56,6 @@
         <h4>Adicione produtos na compra</h4>
         <input type="text" hidden required>
     @endif
+
+    <script src="../../../resources/js/placeholder.js"></script>
 </div>

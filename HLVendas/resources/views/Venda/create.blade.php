@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
     <title>Nova Venda</title>
 </head>
 
@@ -39,7 +39,7 @@
                         @endif
                     </div>
                     <div class="buscaCompra">
-                        @livewire('modal-compra-component')
+                        @livewire('modal-compra-component') 
                     </div>
                 </div>
                 <form class="formCompra" action="{{route('compra.store')}}" method="POST">

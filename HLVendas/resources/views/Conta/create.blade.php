@@ -13,7 +13,9 @@
  ?>
 <body>
     <div class="contentCliente">
-        @include('components.navbar')
+        <div class="box">
+            @include('components.navbar')
+        </div>
 
         <div class="clienteCrud">
             <div class="contentForms">

@@ -1,12 +1,10 @@
 <div>
     <div x-data="{ open: @entangle('isOpen') }">
-        <!-- Botão para abrir o modal -->
         <div class="button">
             <button @click.prevent="open = true">
                 <p class="text">Produtos</p>
             </button>
         </div>
-        <!-- Modal -->
         <div x-show="open" @click.away="open = false"
             class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">
             <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -17,5 +15,4 @@
             </div>
         </div>
     </div>
-
 </div>

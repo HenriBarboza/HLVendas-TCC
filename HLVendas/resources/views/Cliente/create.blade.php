@@ -17,7 +17,9 @@
 
 <body>
     <div class="contentCliente">
-        @include('components.navbar')
+        <div class="box">
+            @include('components.navbar')
+        </div>
 
         <div class="clienteCrud">
             <div class="contentForms">
@@ -52,14 +54,14 @@
                             <label for="nome" class="labelTop">
                                 <p>Telefone</p>
                             </label>
-                            <input class="inputWrapper w50 phone" type="text" name="telefone">
+                            <input class="inputWrapper phone" type="text" name="telefone">
                         </div>
 
                         <div class="inputGroup">
                             <label for="cpfcnpj" class="labelTop">
                                 <p>CPF/CNPJ</p>
                             </label>
-                            <input class="inputWrapper w50 cpfcnpj" type="text" name="cpfcnpj" required>
+                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required>
                         </div>
                     </div>
 
@@ -75,13 +77,13 @@
                             <label for="numero" class="labelTop">
                                 <p>Número</p>
                             </label>
-                            <input class="inputWrapper w50 number" type="text" name="numero" required>
+                            <input class="inputWrapper number" type="text" name="numero" required>
                         </div>
                         <div class="inputGroup">
                             <label for="bairro" class="labelTop">
                                 <p>Bairro</p>
                             </label>
-                            <input class="inputWrapper w50" type="text" name="bairro" required>
+                            <input class="inputWrapper" type="text" name="bairro" required>
                         </div>
                     </div>
 
@@ -97,14 +99,14 @@
                             <label for="cep" class="labelTop">
                                 <p>CEP</p>
                             </label>
-                            <input class="inputWrapper w50 cep" type="text" name="cep">
+                            <input class="inputWrapper cep" type="text" name="cep">
                         </div>
 
                         <div class="inputGroup">
                             <label for="estado" class="labelTop">
                                 <p>Estado</p>
                             </label>
-                            <input class="inputWrapper w50" type="text" name="estado" required>
+                            <input class="inputWrapper" type="text" name="estado" required>
                         </div>
                     </div>
 

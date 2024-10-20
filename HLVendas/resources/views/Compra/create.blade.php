@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Nova Compra</title>
 </head>
 
@@ -45,34 +45,45 @@
                 <form class="formCompra" action="{{route('compra.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="doc" placeholder="Documento" required>
+                        <label for="doc" class="labelTop">
+                            <p>Documento</p>
+                        </label>
+                        <input class="inputWrapper number" type="text" name="doc" required>
                     </div>
                     @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                     <div class="contentInput">
-                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
-                            required>
-                        <input class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
-                            disabled>
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
+                                required>
+                            <input class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
+                                disabled>
+                        </div>
 
-                        <select class="inputWrapper w50" name="contaid">
-                            @foreach($contas as $conta)
+                        <div class="inputGroup">
+                            <select class="inputWrapper w50" name="contaid">
+                                @foreach($contas as $conta)
                                 <option value="{{$conta->id}}">{{$conta->nome}}</option>
-                            @endforeach
-                        </select>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
                             placeholder="Funcionário da Venda" required>
-                        <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                            <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                        </div>
+                        <div class="inputGroup">
+                            @livewire('modal-component', compact('rota'))
+                            @livewire('compra-component')
+                        </div>
                     </div>
                     <br>
-                    @livewire('modal-component', compact('rota'))
-                    @livewire('compra-component')
                     <br>
                     <!-- <button type="submit">Salvar</button> -->
                     <div class="button">
                         <button type="submit">
-                        <p class="text">
+                            <p class="text">
                                 Salvar
                             </p>
                         </button>

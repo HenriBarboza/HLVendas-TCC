@@ -21,14 +21,22 @@ body {
   display: flex;
   position: relative;
 
+  .box {
+    position: relative;
+    z-index: 999;
+  }
+
   .produtoCrud {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
 
     .contentForms {
       width: 50rem;
@@ -81,10 +89,29 @@ body {
           flex-wrap: wrap;
           margin: 0.5rem 0 0 0;
           gap: 1rem;
+          position: relative;
 
-          .label {
+          .labelTop {
+            position: absolute;
+            left: 1rem;
+            top: 60%;
+            transform: translateY(-50%);
             color: $black;
             font-size: 1.125rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background-color: transparent;
+            padding: 0 0.25rem;
+
+            p {
+              opacity: 0.8;
+            }
+          }
+
+          .inputGroup {
+            position: relative;
+            width: calc(50% - 0.5rem);
+            display: inline-block;
           }
 
           .inputWrapper {
@@ -92,6 +119,8 @@ body {
             border: 0.15rem solid $black;
             background-color: transparent;
             border-radius: 1rem;
+            transition: 0.3s;
+            margin-top: 0.5rem;
 
             &::placeholder {
               color: $black;
@@ -102,11 +131,26 @@ body {
             &:focus {
               outline: none;
               box-shadow: none;
-              border-color: #add8e6;
             }
 
-            &.w50 {
-              width: calc(50% - 0.5rem);
+            &.filled {
+              box-shadow: none;
+              border-color: #0B57D0;
+            }
+          }
+
+          .labelTop {
+            &.active {
+              top: 0.4rem;
+              left: 1.1rem;
+              font-size: 1rem;
+              color: #333;
+              background-color: white;
+              padding: 0 0.25rem;
+
+              p {
+                color: #0B57D0;
+              }
             }
           }
         }
