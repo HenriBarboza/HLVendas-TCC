@@ -12,13 +12,15 @@ class VendaComponent extends Component
     public $percadicional = 0;
     public $desconto = 0;
     public $adicional = 0;
+    public $tabelaPreco = 'AV';
     public $venda;
 
-    protected $listeners = ['adicionarProdutoVenda', 'calcularOutros'];
+    protected $listeners = ['adicionarProdutoVenda', 'calcularOutros', 'tabelaPrecoAtualizada'];
 
-    public function mount($venda = null){
+    public function mount($venda = null)
+    {
         if ($venda) {
-            foreach($venda as $produto){
+            foreach ($venda as $produto) {
 
                 $this->vetProd[] = [
                     'produto_id' => $produto->produtoid,
@@ -30,24 +32,42 @@ class VendaComponent extends Component
         }
     }
 
-    public function adicionarProdutoVenda($produtoId, $quantidade, $tabelapreco)
+    public function tabelaPrecoAtualizada($tabelaPreco)
+    {
+        $this->tabelaPreco = $tabelaPreco;
+
+        if ($this->vetProd) {
+            foreach ($this->vetProd as $i => $item) {
+                $produto = Produto::find($item['produto_id']);
+
+                if ($this->tabelaPreco == 'AV') {
+                    $this->vetProd[$i]['preco'] = $produto->precoavista;
+                } elseif ($this->tabelaPreco == 'AP') {
+                    $this->vetProd[$i]['preco'] = $produto->precoaprazo;;
+                }
+                
+            }
+        }
+
+    }
+
+    public function adicionarProdutoVenda($produtoId, $quantidade)
     {
         $produto = Produto::find($produtoId);
 
         $preco = 0.0;
 
         // Verifica se o produto já foi adicionado
-        foreach ($this->vetProd as $i => $item) {
+        foreach($this->vetProd as $i => $item) {
             if ($item['produto_id'] === $produtoId) {
                 $this->vetProd[$i]['quantidade'] += $quantidade;
                 return;
             }
         }
 
-        if($tabelapreco == 'AV'){
+        if($this->tabelaPreco == 'AV') {
             $preco = $produto->precoavista;
-        } 
-        elseif($tabelapreco == 'AP'){
+        } elseif ($this->tabelaPreco == 'AP') {
             $preco = $produto->precoaprazo;
         }
 
@@ -75,7 +95,8 @@ class VendaComponent extends Component
         $this->percadicional = is_numeric($this->percadicional) ? $this->percadicional : 0;
 
         $calculo = collect($this->vetProd)->sum(function ($produto) {
-            return ($produto['preco'] * $produto['quantidade']);});
+            return ($produto['preco'] * $produto['quantidade']);
+        });
         $this->desconto = $calculo * $this->percdesconto / 100;
         $this->adicional = $calculo * $this->percadicional / 100;
     }
@@ -87,7 +108,7 @@ class VendaComponent extends Component
         $totalProdutos = collect($this->vetProd)->sum(function ($produto) {
             return ($produto['preco'] * $produto['quantidade']);
         });
-    
+
         // Aplica o desconto e adicional ao total geral dos produtos
         return $totalProdutos - $this->desconto + $this->adicional;
     }

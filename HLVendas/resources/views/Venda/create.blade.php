@@ -39,10 +39,10 @@
                         @endif
                     </div>
                     <div class="buscaCompra">
-                        @livewire('modal-compra-component') 
+                        @livewire('modal-compra-component')
                     </div>
                 </div>
-                <form class="formCompra" action="{{route('compra.store')}}" method="POST">
+                <form class="formCompra" action="{{route('venda.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
                         <input class="inputWrapper number" type="text" name="doc" placeholder="Documento" required>
@@ -51,7 +51,6 @@
                     <div class="contentInput">
                         <input class="inputWrapper" type="number" name="clienteid" id="inpClienteId" hidden required>
                         <input class="inputWrapper w50" type="text" placeholder="Cliente" id="inpClienteNome" disabled>
-
 
                         <select class="inputWrapper w50" name="contaid">
                             @foreach($contas as $conta)
@@ -63,10 +62,13 @@
                         <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
                             placeholder="Funcionário da Venda" required>
                         <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
-                        <select class="inputWrapper w50" name="tabelapreco" wire:model="tabelaPreco">
-                            <option value="AV">Avista</option>
-                            <option value="AP">Aprazo</option>
-                        </select>
+                        <div x-data="{ tabelapreco: 'AV' }">
+                            <select x-model="tabelapreco" class="inputWrapper w50" name="tabelapreco"
+                                @change="$dispatch('tabelaPrecoAtualizada', {tabelaPreco: tabelapreco})">
+                                <option value="AV">À vista</option>
+                                <option value="AP">A prazo</option>
+                            </select>
+                        </div>
                     </div>
                     <br>
                     @livewire('modal-component', compact('rota'))

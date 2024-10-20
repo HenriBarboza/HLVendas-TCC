@@ -34,9 +34,9 @@ class BuscaProdutos extends Component
         $this->quantidades[$produtoId] = 1;
     }
 
-    public function addProdutoVenda($produtoId, $tabelapreco)
+    public function addProdutoVenda($produtoId)
     {
-        $this->dispatch('adicionarProdutoVenda', $produtoId, $this->quantidades[$produtoId] ?? 1, $tabelapreco);
+        $this->dispatch('adicionarProdutoVenda', $produtoId, $this->quantidades[$produtoId] ?? 1);
         
         $this->busca = '';
         $this->dispatch('limparBusca');

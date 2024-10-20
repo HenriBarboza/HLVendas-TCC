@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProdVenda;
+use App\Models\Venda;
+use App\Models\Produto;
+use App\Models\Cliente;
 use App\Models\Conta;
+use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -31,7 +36,80 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $documentoExistente = Venda::where('doc', $request->input('doc'))->exists();
+
+        if ($documentoExistente) {
+            return redirect()->back()
+                ->with('error', "Erro ao cadastrar: Já existe um documento com esse código");
+        }
+
+        DB::beginTransaction();
+
+        try {
+            Venda::create([
+                'doc' => $request->input('doc'),
+                'clienteid' => $request->input('clienteid'),
+                'pagamentoid' => 1,
+                'contaid' => $request->input('contaid'),
+                'percdesconto' => $request->input('percdesconto'),
+                'percadicional' => $request->input('percadicional'),
+                'totalvenda' => $request->input('totalvenda'),
+                'funcionarioid' => $request->input('funcionarioid')
+            ]);
+
+            foreach ($request->input('produtos') as $produto) {
+                // Registra os produtos da venda
+                ProdVenda::create([
+                    'vendaid' => $request->input('doc'),
+                    'produtoid' => $produto['produto_id'],
+                    'quantidade' => $produto['quantidade'],
+                    'precovenda' => $produto['preco'],
+                ]);
+
+                //Subtrai a quantidade da venda e atualiza a data da última venda no cadastro do produto
+                $prodAtt = Produto::findOrFail($produto['produto_id']);
+                $quantAtual = $prodAtt->estoque;
+                $novoEstoque = $quantAtual - $produto['quantidade'];
+                $prodAtt->update([
+                    'estoque' => $novoEstoque,
+                    'ultimavenda' => date("Y-m-d H:i:s")
+                ]);
+            }
+
+            $clienteAtt = Cliente::findOrFail($request->input('clienteid'));
+            $totalAtual = $clienteAtt->totalgasto;
+            $novototal = $totalAtual + $request->input('totalvenda');
+            $clienteAtt->update([
+                'ultimacompra' => date("Y-m-d H:i:s"),
+                'totalgasto' => $novototal,
+            ]);
+
+            $contaAtt = Conta::findOrFail($request->input('contaid'));
+            $totalConta = $contaAtt->total;
+            $novoTotalc = $totalConta + $request->input('totalvenda');
+            $contaAtt->update([
+                'total' => $novoTotalc
+            ]);
+
+
+            DB::commit();
+
+            return redirect()->route(route: 'venda.create')
+                ->with('success', "Venda registrada com sucesso");
+
+
+        } catch (\Exception $e) {
+            // Reverter a transação em caso de erro
+            DB::rollback();
+
+            // Opcional: registrar o erro ou fornecer feedback ao usuário
+            // return redirect()->back()
+            //     ->withErrors('Ocorreu um erro ao registrar a compra: ' . $e->getMessage());
+
+            dd($e->getMessage()); // remover antes de entregar o TCC
+        }
+
     }
 
     /**

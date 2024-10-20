@@ -109,7 +109,8 @@ class CompraController extends Controller
             // Opcional: registrar o erro ou fornecer feedback ao usuário
             // return redirect()->back()
             //     ->withErrors('Ocorreu um erro ao registrar a compra: ' . $e->getMessage());
-            dd($e->getMessage());
+
+            dd($e->getMessage()); // remover antes de entregar o TCC
         }
     }
 
