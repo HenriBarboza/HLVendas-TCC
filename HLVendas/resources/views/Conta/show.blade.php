@@ -5,15 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
-    <title>Cliente</title>
+    <title>Conta</title>
 </head>
+
+<?php 
+    $rota = 1;
+ ?>
 
 <body>
     @include('components.navbar') 
     <div class="corpo">
         <div class="top">
-            <h1>Cliente</h1>
-            <a href="/cliente">Buscar cliente</a>
+            <h1>Conta</h1>
+            <div class="buscaCliente">
+                @livewire('modal-conta-component', compact('rota'))
+            </div>
         </div>
         <div>
             <form>
@@ -43,7 +49,7 @@
                     <a href="{{route('conta.edit', $contas->id) }}">Editar</a>
             </form>
             <div>
-                <h3>Documentos da conta</h3>
+                <h3>Compras da conta</h3>
                 @if(count($compras) > 0)
                     <table>
                         <thead>
@@ -66,7 +72,34 @@
                         </tbody>
                     </table>
                 @else
-                    <h2>Não há documentos registrados nessa compra</h2>
+                    <h2>Não há compras registrados nessa conta</h2>
+                @endif
+            </div>
+            <div>
+                <h3>Vendas da conta</h3>
+                @if(count($vendas) > 0)
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Doc</th>
+                                <th>Cliente</th>
+                                <th>Total da venda</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($vendas as $venda)
+                                <tr>
+                                    <td>{{$venda->doc}}</td>
+                                    <td>{{$venda->cliente->nome}}</td>
+                                    <td>{{$venda->totalvenda}}</td>
+                                    <td><a href="/venda/{{$venda->id}}">Visualizar</a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <h2>Não há vendas registrados nessa conta</h2>
                 @endif
             </div>
         </div>

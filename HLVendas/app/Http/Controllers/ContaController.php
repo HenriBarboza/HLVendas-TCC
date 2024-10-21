@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Conta;
 use App\Models\Compra;
+use App\Models\Venda;
 
 class ContaController extends Controller
 {
@@ -39,6 +40,31 @@ class ContaController extends Controller
                          ->with('success', "Conta cadastrada com sucesso.");
     }
 
+    public static function calcularTotal(string $id)
+    {
+        $conta = Conta::findOrFail(($id));
+        $vendas = Venda::all();
+        $compras = Compra::all();
+        $totalVenda = 0;
+        $totalCompra = 0;
+
+        foreach($vendas as $venda){
+            if($venda->contaid == $id){
+                $totalVenda += $venda->totalvenda;
+            };
+        }
+        foreach($compras as $compra){
+            if($compra->contaid == $id){
+                $totalCompra -= $compra->totalcompra;
+            };
+        }
+        $totalConta = $totalVenda + $totalCompra;
+
+
+        $conta->total = $totalConta;
+        $conta->save();
+    }
+
     /**
      * Display the specified resource.
      */
@@ -46,7 +72,8 @@ class ContaController extends Controller
     {
         $contas = Conta::findOrFail($id);
         $compras = Compra::where('contaid', $contas->id)->with('conta')->get();
-        return view('conta.show', compact('contas', 'compras'));
+        $vendas = Venda::where('contaid', $contas->id)->with('conta')->get();
+        return view('conta.show', compact('contas', 'compras', 'vendas'));
     }
 
     /**
@@ -65,7 +92,6 @@ class ContaController extends Controller
     {
         $conta = Conta::findOrFail($id);
         $conta->update($request->all());
-
         return redirect()->route('conta.create')
                          ->with('success', "Conta alterado com sucesso!") ;
     }

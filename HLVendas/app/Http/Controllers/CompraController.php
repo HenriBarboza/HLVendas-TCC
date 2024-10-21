@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProdCompra;
 use App\Models\Produto;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ContaController;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use App\Models\Compra;
@@ -91,13 +92,9 @@ class CompraController extends Controller
                 'totalvendido' => $novoTotal
             ]);
 
-            $contaAtt = Conta::findOrFail($request->input('contaid'));
-            $totalConta = $contaAtt->total;
-            $novoTotalc = $totalConta + $request->input('totalcompra');
-            $contaAtt->total = $novoTotalc;
-            $contaAtt->save();
-
             DB::commit();
+
+            ContaController::calcularTotal($request->input('contaid'));
 
             return redirect()->route(route: 'compra.create')
                 ->with('success', "Compra registrada com sucesso");
@@ -158,6 +155,8 @@ class CompraController extends Controller
             ]);
         }
 
+        ContaController::calcularTotal($request->input('contaid'));
+
         $compra->update($request->all());
 
         // Redireciona com uma mensagem de sucesso
@@ -180,14 +179,11 @@ class CompraController extends Controller
             // Reverter saldo do fornecedor e caixa
             $fornecedor = $compra->fornecedor;
             $caixa = $compra->conta;
+            ContaController::calcularTotal($caixa->id);
 
-
-            if ($fornecedor && $caixa) {
+            if ($fornecedor) {
                 $fornecedor->totalvendido -= $valorCompra;
-                $caixa->total -= $valorCompra;
-
                 $fornecedor->save();
-                $caixa->save();
             }
 
             // Atualizar o estoque dos produtos
@@ -201,7 +197,6 @@ class CompraController extends Controller
 
                 $prodCompra->delete();
             }
-
 
             // Excluir a compra
             $compra->delete();

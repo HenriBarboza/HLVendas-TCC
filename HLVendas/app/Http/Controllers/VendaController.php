@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProdVenda;
+use App\Http\Controllers\ContaController;
 use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
@@ -85,13 +86,8 @@ class VendaController extends Controller
                 'totalgasto' => $novototal,
             ]);
 
-            $contaAtt = Conta::findOrFail($request->input('contaid'));
-            $totalConta = $contaAtt->total;
-            $novoTotalc = $totalConta + $request->input('totalvenda');
-            $contaAtt->update([
-                'total' => $novoTotalc
-            ]);
 
+            ContaController::calcularTotal($request->input('contaid'));
 
             DB::commit();
 
@@ -126,6 +122,7 @@ class VendaController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -134,6 +131,8 @@ class VendaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        ContaController::calcularTotal($request->input('contaid'));
     }
 
     /**
@@ -142,5 +141,7 @@ class VendaController extends Controller
     public function destroy(string $id)
     {
         //
+
+        // ContaController::calcularTotal($caixa->id);
     }
 }

@@ -51,7 +51,7 @@
                     </div>
                     @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                     <div class="contentInput">
-                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId"
+                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId"hidden
                             value="{{$compra->fornecedorid}}" hiddpen required>
                         <input class="inputWrapper w50" type="text" placeholder="Fornecedor"
                             value="{{$compra->fornecedor->nome}}" id="inpFornecedorNome" disabled>

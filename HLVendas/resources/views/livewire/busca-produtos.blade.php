@@ -48,6 +48,7 @@
                             <td>R${{$produto->custo}}</td>
                             <td>{{$produto->categoria}}</td>
                             <td>{{$produto->estoque}}</td>
+                            <td wire:key="{{$produto->id}}"><input type="number" wire:model="custos.{{ $produto->id }}" placeholder="{{$produto->custo}}" /></td>
                             <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
                                     step="0.01" placeholder="1" min="0.1"/></td>
                             <td wire:key="{{$produto->id}}"><button wire:click="addProdutoCompra({{ $produto->id }})"
