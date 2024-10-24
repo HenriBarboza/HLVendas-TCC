@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vendas', function (Blueprint $table) {
+        Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
-            $table->integer('clienteid');
-            $table->integer('doc');
-            $table->integer('contaid');
+            $table->integer('vendaid');
+            $table->integer('numerotransacao')->nullable();
+            $table->double('valorvenda');
+            $table->double('valorpago');
             $table->string('tabelapreco');
-            $table->integer('pagamentoid');
-            $table->float('percdesconto')->nullable();
-            $table->float('percadicional')->nullable();
-            $table->float('totalvenda');
-            $table->integer('funcionarioid');
+            $table->date('databaixa');
+            $table->integer('condicaopagid');
+            $table->double('trocovenda');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vendas');
+        Schema::dropIfExists('pagamentos');
     }
 };

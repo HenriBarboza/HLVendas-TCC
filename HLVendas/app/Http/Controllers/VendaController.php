@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProdVenda;
 use App\Http\Controllers\ContaController;
+use App\Http\Controllers\PagamentoController;
 use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
@@ -54,6 +55,7 @@ class VendaController extends Controller
                 'pagamentoid' => 1,
                 'contaid' => $request->input('contaid'),
                 'percdesconto' => $request->input('percdesconto'),
+                'tabelapreco' => $request->input('tabelapreco'),
                 'percadicional' => $request->input('percadicional'),
                 'totalvenda' => $request->input('totalvenda'),
                 'funcionarioid' => $request->input('funcionarioid')
@@ -85,15 +87,10 @@ class VendaController extends Controller
                 'ultimacompra' => date("Y-m-d H:i:s"),
                 'totalgasto' => $novototal,
             ]);
-
-
-            ContaController::calcularTotal($request->input('contaid'));
-
+            
             DB::commit();
-
-            return redirect()->route(route: 'venda.create')
-                ->with('success', "Venda registrada com sucesso");
-
+            
+            return PagamentoController::create($request->input('doc'));
 
         } catch (\Exception $e) {
             // Reverter a transação em caso de erro
@@ -102,10 +99,9 @@ class VendaController extends Controller
             // Opcional: registrar o erro ou fornecer feedback ao usuário
             // return redirect()->back()
             //     ->withErrors('Ocorreu um erro ao registrar a compra: ' . $e->getMessage());
-
+            
             dd($e->getMessage()); // remover antes de entregar o TCC
         }
-
     }
 
     /**

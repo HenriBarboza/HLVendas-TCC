@@ -9,6 +9,7 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ContaController;
+use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware(['auth','verificarUsuario'])->group(function () {
     Route::resources(['venda' => VendaController::class]);
     Route::resources(['prodCompra' => prodCompraController::class]);
     Route::resources(['conta' => ContaController::class]);
+    Route::resources(['pagamento' => PagamentoController::class]);
 });
 
 require __DIR__.'/auth.php';
