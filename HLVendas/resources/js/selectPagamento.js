@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(condicaopag == "1"){
             document.getElementById("troco").style.display = "block";
-            document.getElementById("valorpago").removeAttribute("disabled");
+            document.getElementById("valorpago").removeAttribute("readonly");
             inputqntparcelass.value = qntparcelas;
             inputdiasparcelas.value = diasparcelas;
         }else if(condicaopag == "2" || condicaopag == "3" || condicaopag == "4") {
             document.getElementById("numerotransacao").style.display = "block";
-            document.getElementById("valorpago").setAttribute("disabled", "disabled");
+            document.getElementById("valorpago").setAttribute("readonly", "readonly");
             inputqntparcelass.value = qntparcelas;
             inputdiasparcelas.value = diasparcelas;
             restaurarValorOriginal();
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function() {
         inpvalortroco.value = troco.toFixed(2); // Limitar para 2 casas decimais
 
         if(troco < 0){
-            btnsalvar.setAttribute("disabled", "disabled");
+            btnsalvar.setAttribute("readonly", "readonly");
             aviso.style.display = "block";
         } else{
-            btnsalvar.removeAttribute("disabled");
+            btnsalvar.removeAttribute("readonly");
             aviso.style.display = "none";
         }
     };

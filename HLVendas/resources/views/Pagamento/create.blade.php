@@ -28,14 +28,14 @@
                         <label for="doc" class="labelTop">
                             <p>Documento</p>
                         </label>
-                        <input class="inputWrapper number" type="text" name="doc" value="{{$venda->doc}}" disabled
+                        <input class="inputWrapper number" type="number" name="doc" value="{{$venda->doc}}" readonly
                             required>
                     </div>
                     <div class="contentInput">
                         <label for="doc" class="labelTop">
                             <p>Valor Total</p>
                         </label>
-                        <input class="inputWrapper number" type="number" id="valortotal" name="valortotal" disabled
+                        <input class="inputWrapper number" type="number" id="valortotal" name="valortotal" readonly
                             value="{{$venda->totalvenda}}" required>
                     </div>
                     <br>
@@ -59,13 +59,13 @@
                         <label for="doc" class="labelTop">
                             <p>Valor Pagamento</p>
                         </label>
-                        <input class="inputWrapper" type="number" id="valorpago"  name="valorpago" disabled
+                        <input class="inputWrapper" type="text" id="valorpago"  name="valorpago" 
                             value="{{$venda->totalvenda}}" data-original-value="{{$venda->totalvenda}}" required>
                     </div>
                     <div id="troco" class="contentInput ">
                         <label for="doc" class="labelTop">
                         </label>
-                        <input class="inputWrapper number" type="text" id="valortroco" name="troco" disabled required>
+                        <input class="inputWrapper number" type="text" id="valortroco" value="0.0" name="troco" readonly required>
                     </div>
                     <div id="numerotransacao" class="contentInput ">
                         <label for="doc" class="labelTop">
@@ -75,7 +75,7 @@
                     </div>
                     <input id="inputqntparcelas" type="text" name="quantparcelas" required>
                     <input id="inputdiasparcelas"  type="text" name="diasparcelas" required>
-                    <input   type="text" name="tabelapreco" value="{{$venda->tabelapreco}}" required>
+                    <input type="text" name="tabelapreco" value="{{$venda->tabelapreco}}" required>
                     <br>
                     <h4 style="color:red;" id="avisovalor">O valor do pagamento deve ser maior que o valor total.</h4>
                     <div class="button">
@@ -86,6 +86,15 @@
                         </button>
                     </div>
                 </form>
+                <form action="{{route('venda.destroy', $venda->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="">
+                    <div class="">
+                        <button type="submit">Cancelar Venda</button>
+                    </div>
+                </div>
+            </form>
             </div>
         </div>
         <!-- </div> -->

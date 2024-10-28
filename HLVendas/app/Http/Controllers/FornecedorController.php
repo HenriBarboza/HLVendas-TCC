@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fornecedor;
+use App\Models\Compra;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -43,6 +44,24 @@ class FornecedorController extends Controller
 
         return redirect()->route('fornecedor.create')
                          ->with('success', "Fornecedor cadastrado com sucesso.");
+    }
+
+    public static function calcularTotal(string $id){
+        $fornecedor = Fornecedor::findOrFail($id);
+        $compras = Compra::all();
+        $totalCompras = 0;
+        $ultimaData = null;
+
+        foreach($compras as $compra){
+            if($compra->fornecedorid == $id){
+                $totalCompras += $compra->totalcompra;
+                $ultimaData = $compra->created_at;
+            }
+        }
+
+        $fornecedor->totalvendido = $totalCompras;
+        $fornecedor->ultimavenda = $ultimaData;
+        $fornecedor->save();
     }
 
     /**

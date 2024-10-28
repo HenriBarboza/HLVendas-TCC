@@ -136,8 +136,11 @@ class VendaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::beginTransaction();
 
-        // ContaController::calcularTotal($caixa->id);
+        try {
+            $venda = Venda::with('cliente', 'conta')->findOrFail($id);
+            $produtosVenda = ProdVenda::where('vendaid',$venda->id)->get();
+        }
     }
 }

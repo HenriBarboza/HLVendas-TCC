@@ -42,7 +42,7 @@ class ContaController extends Controller
 
     public static function calcularTotal(string $id)
     {
-        $conta = Conta::findOrFail(($id));
+        $conta = Conta::findOrFail( $id);
         $vendas = Venda::all();
         $compras = Compra::all();
         $totalVenda = 0;

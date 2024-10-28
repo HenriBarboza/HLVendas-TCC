@@ -7,7 +7,7 @@ use App\Models\ProdCompra;
 use App\Models\Produto;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ContaController;
-use App\Models\Fornecedor;
+use App\Http\Controllers\FornecedorController;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use App\Models\Conta;
@@ -83,17 +83,8 @@ class CompraController extends Controller
                 ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
             }
 
-
-            $fornecedorAtt = Fornecedor::findOrFail($request->input('fornecedorid'));
-            $totalAtual = $fornecedorAtt->totalvendido;
-            $novoTotal = $totalAtual + $request->input('totalcompra');
-            $fornecedorAtt->update([
-                'ultimavenda' => date("Y-m-d H:i:s"),
-                'totalvendido' => $novoTotal
-            ]);
-
             DB::commit();
-
+            FornecedorController::calcularTotal($request->input('fornecedorid'));
             ContaController::calcularTotal($request->input('contaid'));
 
             return redirect()->route(route: 'compra.create')
@@ -155,7 +146,9 @@ class CompraController extends Controller
             ]);
         }
 
+        
         ContaController::calcularTotal($request->input('contaid'));
+        FornecedorController::calcularTotal($request->input(key: 'fornecedorid'));
 
         $compra->update($request->all());
 
@@ -174,17 +167,11 @@ class CompraController extends Controller
             $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
             $produtosCompra = ProdCompra::where('compraid', $compra->doc)->get();
 
-            $valorCompra = $compra->totalcompra;
-
             // Reverter saldo do fornecedor e caixa
             $fornecedor = $compra->fornecedor;
             $caixa = $compra->conta;
             ContaController::calcularTotal($caixa->id);
-
-            if ($fornecedor) {
-                $fornecedor->totalvendido -= $valorCompra;
-                $fornecedor->save();
-            }
+            FornecedorController::calcularTotal($fornecedor->id);
 
             // Atualizar o estoque dos produtos
             foreach ($produtosCompra as $prodCompra) {

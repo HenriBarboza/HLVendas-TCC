@@ -13,10 +13,12 @@ class Pagamento extends Model
         'vendaid',
         'numerotransacao',
         'valorvenda',
+        'valorparcela',
         'valorpago',
         'tabelapreco',
         'databaixa',
         'condicaopagid',
+        'parcela',
         'trocovenda',
     ];
 }
