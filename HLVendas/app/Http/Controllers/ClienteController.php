@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -46,6 +47,24 @@ class ClienteController extends Controller
 
         return redirect()->route('cliente.create')
                          ->with('success', "Cliente cadastrado com sucesso.");
+    }
+
+    public static function calcularTotal(string $id){
+        $cliente = Cliente::findOrFail($id);
+        $vendas = Venda::all();
+        $totalVendas = 0;
+        $ultimaData = null;
+
+        foreach($vendas as $venda){
+            if($venda->clienteid == $id){
+                $totalVendas += $venda->totalvenda;
+                $ultimaData = $venda->created_at;
+            }
+        }
+
+        $cliente->totalgasto = $totalVendas;
+        $cliente->ultimacompra = $ultimaData;
+        $cliente->save();
     }
 
     /**

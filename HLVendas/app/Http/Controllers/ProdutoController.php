@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Models\ProdVenda;
+use App\Models\ProdCompra;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -54,6 +57,40 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::findOrFail($id);
         return view('produto.show', compact('produtos'));
+    }
+
+    public static function calcularEstoque(string $id){
+        $produtos = Produto::findOrFail($id);
+        $comprasProd = ProdCompra::all();
+        $vendasProd = ProdVenda::all();
+        $quantidadeCompras = 0;
+        $quantidadeVendas = 0;
+        $ultimoCusto = 0;
+        $ultimaVenda = null;
+        $ultimaCompra = null;
+
+        foreach($comprasProd as $cProd){
+            if($cProd->produtoid == $id){
+                $quantidadeCompras += $cProd->quantidade;
+                $ultimoCusto = $cProd->custo;
+                $ultimaCompra = $cProd->updated_at;
+            };
+        }
+        foreach($vendasProd as $vProd){
+            if($vProd->produtoid == $id){
+                $quantidadeVendas += $vProd->quantidade;
+                $ultimaVenda = $vProd->updated_at;
+            }
+        }
+
+        $estoqueTotal = $quantidadeCompras - $quantidadeVendas;
+        
+        $produtos->estoque = $estoqueTotal;
+        $produtos->ultimavenda = $ultimaVenda;
+        $produtos->ultimacompra = $ultimaCompra;
+        $produtos->custo = $ultimoCusto;
+        $produtos->save();
+
     }
 
     /**

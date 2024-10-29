@@ -70,22 +70,16 @@ class CompraController extends Controller
                     'custo' => $produto['custo'],
                 ]);
 
-                // acrescenta o estoque do produto e data da ultima compra no cadastro do produto
-                $prodAtt = Produto::findOrFail($produto['produto_id']);
-                $quantAtual = $prodAtt->estoque;
-                $novoEstoque = $quantAtual + $produto['quantidade'];
-                $prodAtt->update([
-                    'custo' => $produto['custo'],
-                    'estoque' => $novoEstoque,
-                    'ultimacompra' => date("Y-m-d H:i:s")
-                ]);
-
-                ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
             }
 
             DB::commit();
+
+            foreach ($request->input('produtos') as $produto) {
+                ProdutoController::calcularEstoque($produto['produto_id']);
+            }
             FornecedorController::calcularTotal($request->input('fornecedorid'));
             ContaController::calcularTotal($request->input('contaid'));
+            ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
 
             return redirect()->route(route: 'compra.create')
                 ->with('success', "Compra registrada com sucesso");
@@ -142,15 +136,18 @@ class CompraController extends Controller
                 'produtoid' => $produto['produto_id'],
                 'quantidade' => $produto['quantidade'],
                 'custo' => $produto['custo'],
-                'compraid' => $compra->doc, // Certifique-se de que este campo seja correto
+                'compraid' => $compra->doc,
             ]);
         }
 
-        
+        $compra->update($request->all());
+
+        foreach ($request->input('produtos') as $produto) {
+            ProdutoController::calcularEstoque($produto['produto_id']);
+        }
         ContaController::calcularTotal($request->input('contaid'));
         FornecedorController::calcularTotal($request->input(key: 'fornecedorid'));
-
-        $compra->update($request->all());
+        ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
 
         // Redireciona com uma mensagem de sucesso
         return redirect()->route('compra.index')->with('success', 'Compra atualizada com sucesso!');
@@ -176,11 +173,7 @@ class CompraController extends Controller
             // Atualizar o estoque dos produtos
             foreach ($produtosCompra as $prodCompra) {
                 $produto = $prodCompra->produto;
-
-                if ($produto) {
-                    $produto->estoque -= $prodCompra->quantidade;
-                    $produto->save();
-                }
+                ProdutoController::calcularEstoque($produto->id);
 
                 $prodCompra->delete();
             }
