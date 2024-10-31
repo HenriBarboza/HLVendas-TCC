@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ open: @entangle('isOpen') }">
+    <div x-data="{ open: @entangle('isOpen').defer }">
         <div class="button">
             <button @click.prevent="open = true">
                 <p class="text">Produtos</p>

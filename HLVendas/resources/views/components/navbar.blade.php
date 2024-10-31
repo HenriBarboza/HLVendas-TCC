@@ -1,4 +1,4 @@
-@vite(['resources/scss/header.scss', 'resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/scss/header.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/styleButton.js'])
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <div class="content">
     <div class="navbar">
@@ -11,44 +11,44 @@
             <ul class="lista">
                 <li class="text">
                     <a href="/cliente/create">
-                        <i class="fa-solid fa-circle-user"></i>
-                        Clientes
+                        <i class="fa-solid fa-circle-user icon" alt="Clientes"></i>
+                        <!-- Clientes -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/produto/create">
-                        <i class="fa-solid fa-boxes-stacked"></i>
-                        Produtos
+                        <i class="fa-solid fa-boxes-stacked icon"></i>
+                        <!-- Produtos -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/venda/create">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        Venda
+                        <i class="fa-solid fa-money-bill-wave icon"></i>
+                        <!-- Venda -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/compra/create">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                        Compra
+                        <i class="fa-solid fa-basket-shopping icon"></i>
+                        <!-- Compra -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/fornecedor/create">
-                        <i class="fa-solid fa-handshake"></i>
-                        Fornecedores
+                        <i class="fa-solid fa-handshake icon"></i>
+                        <!-- Fornecedores -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/funcionario/create">
-                        <i class="fa-solid fa-user-tie"></i>
-                        Funcionarios
+                        <i class="fa-solid fa-user-tie icon"></i>
+                        <!-- Funcionarios -->
                     </a>
                 </li>
                 <li class="text">
                     <a href="/conta/create">
-                        <i class="fa-solid fa-cash-register"></i>
-                        Conta
+                        <i class="fa-solid fa-cash-register icon"></i>
+                        <!-- Conta -->
                     </a>
                 </li>
             </ul>

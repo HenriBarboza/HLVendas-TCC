@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Funcionario</title>
     @livewireStyles
 </head>
 
 <body>
     <div class="contentFuncionario">
-        @include('components.navbar') 
+        <div class="box">
+            @include('components.navbar') 
+        </div>
 
         <div class="funcionarioCrud">
             <div class="contentForms">
@@ -35,39 +37,75 @@
                 <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
                     @CSRF
                     <div class="contentInput">
-                        <!-- <label for="nome">Nome:</label> -->
-                        <input class="inputWrapper" type="text" name="nome" placeholder="Nome" required autofocus>
+                        <label for="nome" class="labelTop">
+                            Nome
+                        </label>
+                        <input class="inputWrapper" type="text" name="nome" required>
                     </div>
                     <!-- <div class="">
                         <label for="email">Email:</label>
                         <input id="email" type="email" name="email" required><button>Verificar</button>
                         <input id="" type="text" name="" placeholder="Apelido" disabled>
                     </div> -->
-                    <div class="contentInput">
-                        @livewire('verifica-email')
+                    <div class="contentInput" style="display: block;">
+                        <!-- <div class="inputWrapper"> -->
+                            @livewire('verifica-email')
+                        <!-- </div> -->
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper w50 phone" type="text" placeholder="Telefone" name="telefone"
-                            required>
-                        <input class="inputWrapper w50 cpf" type="text" placeholder="CPF" name="cpfcnpj" required>
+                        <div class="inputGroup">
+                            <label for="telefone" class="labelTop">Telefone</label>
+                            <input class="inputWrapper phone" type="text" name="telefone" required>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="cpfcnpj" class="labelTop">CPF</label>
+                            <input class="inputWrapper cpf" type="text" name="cpfcnpj" required>
+                        </div>
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" placeholder="Logradouro" name="logradouro">
+                        <label for="logradouro" class="labelTop">
+                            Logradouro
+                        </label>
+                        <input class="inputWrapper" type="text" name="logradouro">
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50 number" type="text" placeholder="Número" name="numero">
-                        <input class="inputWrapper w50" type="text" placeholder="Bairro" name="bairro">
+                        <div class="inputGroup">
+                            <label for="numero" class="labelTop">
+                                Número
+                            </label>
+                            <input class="inputWrapper number" type="text" name="numero">
+                        </div>
+                        <div class="inputGroup">
+                            <label for="bairro" class="labelTop">
+                                Bairro
+                            </label>
+                            <input class="inputWrapper" type="text" name="bairro">
+                        </div>
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" placeholder="Cidade" name="cidade">
+                        <label for="cidade" class="labelTop">
+                            Cidade
+                        </label>
+                        <input class="inputWrapper" type="text" name="cidade">
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper w50 cep" type="text" placeholder="CEP" name="cep">
-                        <input class="inputWrapper w50" type="text" placeholder="Estado" name="estado">
+                        <div class="inputGroup">
+                            <label for="cep" class="labelTop">
+                                CEP
+                            </label>
+                            <input class="inputWrapper cep" type="text" name="cep">
+                        </div>
+                        <div class="inputGroup">
+                            <label for="estado" class="labelTop">
+                                Estado
+                            </label>
+                            <input class="inputWrapper" type="text" name="estado">
+                        </div>
                     </div>
 
                     <div class="contentInput not-gap">

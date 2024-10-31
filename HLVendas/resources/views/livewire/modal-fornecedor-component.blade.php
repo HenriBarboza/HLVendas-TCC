@@ -3,7 +3,7 @@
         <div class="flex justify-center items-center">
             <button @click.prevent="open = true"
             class="border-solid border-2 border-corBorda mt-5 mb-3 w-1/2 flex justify-center rounded-custom-button text-lg p-1">
-                Buscar Fornecedor
+                <p class="text">Buscar Fornecedor</p>
             </button>
         </div>
 

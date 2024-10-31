@@ -1,8 +1,4 @@
 <div>
-    <style>
-
-    </style>
-
     @if(count($vetProd) > 0)
         <div class="accordion">
             <div x-data="{ open: false }">

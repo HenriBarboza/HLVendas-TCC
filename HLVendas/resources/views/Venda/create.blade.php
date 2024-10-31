@@ -20,14 +20,10 @@
             @include('components.navbar')
         </div>
 
-        <!-- <div class="contentCompra"> -->
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCompra">
-                        <!-- <button>
-                            <p class="text">Nova Compra</p>
-                        </button> -->
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -74,7 +70,6 @@
                     @livewire('modal-component', compact('rota'))
                     @livewire('venda-component')
                     <br>
-                    <!-- <button type="submit">Salvar</button> -->
                     <div class="button">
                         <button type="submit">
                             <p class="text">

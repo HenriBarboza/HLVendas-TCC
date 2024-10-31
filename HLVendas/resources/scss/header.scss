@@ -11,7 +11,7 @@ $black: #2d2c2c;
 
 .navbar {
     max-width: 100%;
-    width: 13rem;
+    width: 15rem;
     background-color: $menu;
     display: flex;
     flex-direction: column;
@@ -27,12 +27,11 @@ $black: #2d2c2c;
 
         .text {
             font-size: 1.125rem;
-            // font-weight: 500;
             transition: 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             cursor: pointer;
 
             a {
@@ -44,28 +43,17 @@ $black: #2d2c2c;
                 i {
                     font-size: 3rem;
                     color: $white;
-                }
-            }
+                    width: 100%;
 
-            &:hover {
-                scale: 1.1;
+                    &.active {
+                        border: 0.2rem solid $white;
+                        border-radius: 50%;
+                        padding: 1rem;
+                    }
+                }
             }
         }
     }
-
-    // .perfil {
-    //     .content-perfil {
-    //         display: flex;
-    //         align-items: center;
-    //         justify-content: center;
-    //         // flex-direction: row;
-    //         background-color: $white;
-
-    //         .text {
-    //             color: $white;
-    //         }
-    //     }
-    // }
 
     .dropdown {
         position: relative;

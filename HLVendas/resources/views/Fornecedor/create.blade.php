@@ -5,78 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Fornecedor</title>
 </head>
 
 <?php 
     $rota = 1;
  ?>
+
 <body>
     <div class="contentFornecedor">
-        @include('components.navbar') 
+        <div class="box">
+            @include('components.navbar') 
+        </div>
 
         <div class="fornecedorCrud">
-            <div class="contentButton">
-                <h1>Novo Fornecedor</h1>
-                @livewire('modal-fornecedor-component', compact('rota'))
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        {{$message}}
+            <div class="contentForms">
+                <div class="contentButton">
+                    <div class="newFornecedor">
+                        <h1>Novo Fornecedor</h1>
                     </div>
-                @endif
-            </div>
 
-            <form class="formFornecedor" action="{{route('fornecedor.store')}}" method="POST">
-                @CSRF
-                <div class="">
-                    <div class="">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" required>
-                    </div>
-                    <div class="">
-                        <label for="nomefantasia">Nome Fantasia:</label>
-                        <input type="text" name="nomefantasia">
-                    </div>
-                    <div class="">
-                        <label for="telefone">Telefone:</label>
-                        <input type="text" id="phone" name="telefone">
-                    </div>
-                    <div class="">
-                        <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" id="cpfcnpj" name="cpfcnpj" required>
-                    </div>
-                    <div class="">
-                        <label for="numero">Logradouro:</label>
-                        <input type="text" name="logradouro" required>
-                    </div>
-                    <div class="">
-                        <label for="numero">Número:</label>
-                        <input type="text" id="number" name="numero" required>
-                    </div>
-                    <div class="">
-                        <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" required>
-                    </div>
-                    <div class="">
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" required>
-                    </div>
-                    <div class="">
-                        <label for="cidade">CEP:</label>
-                        <input type="text" id="cep" name="cep">
-                    </div>
-                    <div class="">
-                        <label for="estado">Estado:</label>
-                        <input type="text" name="estado" required>
-                    </div>
-                    <div class="">
-                        <button type="submit">Salvar</button>
+                    <div class="buscaFornecedor">
+                        @livewire('modal-fornecedor-component', compact('rota'))
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                {{$message}}
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </form>
+
+                <form class="formFornecedor" action="{{route('fornecedor.store')}}" method="POST">
+                    @CSRF
+                    <div class="contentInput not-gap">
+                        <label for="nome" class="labelTop">
+                            <p>Nome</p>
+                        </label>
+                        <input class="inputWrapper" type="text" name="nome" required>
+                    </div>
+
+                    <div class="contentInput">
+                        <label for="nome" class="labelTop">
+                            <p>Nome Fantasia</p>
+                        </label>
+                        <input class="inputWrapper" type="text" name="nomefantasia">
+                    </div>
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <label for="telefone" class="labelTop">
+                                <p>Telefone</p>
+                            </label>
+                            <input class="inputWrapper phone" type="text" name="telefone" required>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="cpfcnpj" class="labelTop">
+                                <p>CPF/CNPJ</p>
+                            </label>
+                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required>
+                        </div>
+                    </div>
+
+                    <div class="contentInput">
+                        <label for="logradouro" class="labelTop">
+                            Logradouro
+                        </label>
+                        <input class="inputWrapper" type="text" name="logradouro" required>
+                    </div>
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <label for="numero" class="labelTop">
+                                Número
+                            </label>
+                            <input class="inputWrapper number" type="text" name="numero" required>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="bairro" class="labelTop">
+                                Bairro
+                            </label>
+                            <input class="inputWrapper" type="text" name="bairro" required>
+                        </div>
+                    </div>
+                    <div class="contentInput">
+                        <label for="cidade" class="labelTop">
+                            Cidade
+                        </label>
+                        <input class="inputWrapper" type="text" name="cidade" required>
+                    </div>
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <label for="cidade" class="labelTop">
+                                CEP
+                            </label>
+                            <input class="inputWrapper cep" type="text" name="cep">
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="estado" class="labelTop">
+                                Estado
+                            </label>
+                            <input class="inputWrapper" type="text" name="estado" required>
+                        </div>
+                    </div>
+  
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text">
+                                Salvar
+                            </p>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
     @livewireScripts
     @include('components.footer') 
