@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('clienteid');
             $table->integer('doc');
             $table->integer('contaid');
+            $table->integer('condicaopagid')->nullable();
             $table->string('tabelapreco');
-            $table->integer('pagamentoid');
             $table->float('percdesconto')->nullable();
             $table->float('percadicional')->nullable();
             $table->float('totalvenda');

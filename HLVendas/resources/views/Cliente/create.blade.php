@@ -8,6 +8,15 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Cliente</title>
+    <style>
+        /* Inicialmente, a div é ocultada */
+        .buscaCliente {
+            display: none; /* Inicialmente, ambas as divs são ocultadas */
+        }
+        #div1 {
+            display: block; /* A div1 será visível inicialmente */
+        }
+    </style>
 </head>
 
 <?php 
@@ -35,7 +44,17 @@
                         @endif
                     </div>
 
-                    <div class="buscaCliente">
+
+                    <div id="div1" class="buscaCliente">
+                        <div class="button">
+                            <button>
+                                <p class="text">
+                                    Carregando ...
+                                </p>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="div2" class="buscaCliente">
                         @livewire('modal-cliente-component', compact(var_name: 'rota'))
                     </div>
                 </div>
@@ -126,6 +145,13 @@
             </div>
         </div>
     </div>
+    <script>
+        // Função que será executada quando a página estiver totalmente carregada
+        window.onload = function() {
+            document.getElementById('div1').style.display = 'none'; // Oculta a div1
+            document.getElementById('div2').style.display = 'block'; // Exibe a div2
+        };
+    </script>
     @livewireScripts
     @include('components.footer') 
 </body>

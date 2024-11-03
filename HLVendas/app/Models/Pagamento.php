@@ -11,6 +11,7 @@ class Pagamento extends Model
 
     protected $fillable = [
         'vendaid',
+        'vendadoc',
         'numerotransacao',
         'valorvenda',
         'valorparcela',
@@ -21,4 +22,13 @@ class Pagamento extends Model
         'parcela',
         'trocovenda',
     ];
+
+    public function condicaoPagamento()
+    {
+        return $this->belongsTo(CondicaoPagamento::class, 'condicaopagid');
+    }
+    public function venda()
+    {
+        return $this->belongsTo(Venda::class, 'vendaid');
+    }
 }

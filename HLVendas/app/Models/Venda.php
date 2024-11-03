@@ -12,7 +12,7 @@ class Venda extends Model
         'clienteid',
         'doc',
         'contaid',
-        'pagamentoid',
+        'condicaopagid',
         'tabelapreco',
         'percdesconto',
         'percadicional',
@@ -34,5 +34,9 @@ class Venda extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'clienteid');
+    }
+    public function condicaoPagamento()
+    {
+        return $this->belongsTo(CondicaoPagamento::class, 'condicaopagid');
     }
 }

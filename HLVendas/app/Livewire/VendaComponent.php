@@ -25,7 +25,7 @@ class VendaComponent extends Component
                 $this->vetProd[] = [
                     'produto_id' => $produto->produtoid,
                     'descricao' => $produto->produto->descricao,
-                    'preco' => $produto->preco,
+                    'preco' => $produto->precovenda,
                     'quantidade' => $produto->quantidade
                 ];
             }

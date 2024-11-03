@@ -29,8 +29,8 @@
                                 </a>
                             </button>
                             <button>
-                                <a href="/venda">
-                                    <p class="text">Ver venda completa</p>
+                                <a href={{route('venda.show', $pagamentos[0]->vendaid)}}>
+                                    <p class="text">Ver venda</p>
                                 </a>
                             </button>
                             <button>
@@ -59,16 +59,15 @@
                     <tbody>
                         @foreach ($pagamentos as $pagamento)
                             <tr>
-                                <td>Sem cliente</td>
                                 <td>{{$pagamento->parcela}}</td>
-                                <!-- <td>{{$pagamento->clienteid}}</td> -->
+                                <td>{{$pagamento->venda->cliente->nome}}</td>
                                 <td>{{$pagamento->numerotransacao}}</td>
                                 <td>R${{$pagamento->valorvenda}}</td>
                                 <td>R${{$pagamento->valorpago}}</td>
                                 <td>R${{$pagamento->valorparcela}}</td>
                                 <td>{{$pagamento->tabelapreco}}</td>
                                 <td>{{$pagamento->databaixa}}</td>
-                                <td>{{$pagamento->condicaopagid}}</td>
+                                <td>{{$pagamento->condicaoPagamento->descricao}}</td>
                                 <td>{{$pagamento->trocovenda == null ? 'Sem troco' : 'R$' . $pagamento->trocovenda}} </td>
                             </tr>
                         @endforeach

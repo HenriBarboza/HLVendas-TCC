@@ -25,11 +25,11 @@
                 <form class="formCompra" action="{{route('pagamento.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
+                        <input class="inputWrapper number" type="number" name="vendaid" value="{{$venda->id}}" readonly hidden required>
                         <label for="doc" class="labelTop">
                             <p>Documento</p>
                         </label>
-                        <input class="inputWrapper number" type="number" name="doc" value="{{$venda->doc}}" readonly
-                            required>
+                        <input class="inputWrapper number" type="number" name="doc" value="{{$venda->doc}}" readonly required>
                     </div>
                     <div class="contentInput">
                         <label for="doc" class="labelTop">
@@ -64,6 +64,7 @@
                     </div>
                     <div id="troco" class="contentInput ">
                         <label for="doc" class="labelTop">
+                            <p>Troco</p>
                         </label>
                         <input class="inputWrapper number" type="text" id="valortroco" value="0.0" name="troco" readonly required>
                     </div>
@@ -73,9 +74,9 @@
                         </label>
                         <input class="inputWrapper number" type="text" name="numerotransacao" value="Sem número" required>
                     </div>
-                    <input id="inputqntparcelas" type="text" name="quantparcelas" required>
-                    <input id="inputdiasparcelas"  type="text" name="diasparcelas" required>
-                    <input type="text" name="tabelapreco" value="{{$venda->tabelapreco}}" required>
+                    <input id="inputqntparcelas" type="text" name="quantparcelas" hidden required>
+                    <input id="inputdiasparcelas"  type="text" name="diasparcelas" hidden required>
+                    <input type="text" name="tabelapreco" value="{{$venda->tabelapreco}}" hidden required>
                     <br>
                     <h4 style="color:red;" id="avisovalor">O valor do pagamento deve ser maior que o valor total.</h4>
                     <div class="button">

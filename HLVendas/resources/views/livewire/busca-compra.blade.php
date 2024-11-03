@@ -16,9 +16,9 @@
             @foreach($compras as $compra)
                 <tr>
                     <td>{{ $compra->doc }}</td>
-                    <td>{{ $compra->fornecedor->nome ?? 'Fornecedor não encontrado' }}</td>
-                    <td>{{ $compra->funcionario->nome ?? 'Fornecedor não encontrado' }}</td>
-                    <td>{{ $compra->totalcompra ?? 'Fornecedor não encontrado' }}</td>
+                    <td>{{ $compra->fornecedor->nome}}</td>
+                    <td>{{ $compra->funcionario->nome}}</td>
+                    <td>{{ $compra->totalcompra}}</td>
                     <td>{{ $compra->created_at }}</td>
                     <td><a href="{{ route('compra.show', $compra->id) }}">Visualizar</a></td>
                 </tr>

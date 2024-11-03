@@ -138,16 +138,22 @@ class CompraController extends Controller
                 'custo' => $produto['custo'],
                 'compraid' => $compra->doc,
             ]);
+            // acrescenta o estoque do produto e data da ultima compra no cadastro do produto
+            $prodAtt = Produto::findOrFail($produto['produto_id']);
+            $quantAtual = $prodAtt->estoque;
+            $novoEstoque = $quantAtual + $produto['quantidade'];
+            $prodAtt->update([
+                'custo' => $produto['custo'],
+                'estoque' => $novoEstoque,
+                'ultimacompra' => date("Y-m-d H:i:s")
+            ]);
+
+            ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
         }
 
         $compra->update($request->all());
-
-        foreach ($request->input('produtos') as $produto) {
-            ProdutoController::calcularEstoque($produto['produto_id']);
-        }
         ContaController::calcularTotal($request->input('contaid'));
         FornecedorController::calcularTotal($request->input(key: 'fornecedorid'));
-        ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
 
         // Redireciona com uma mensagem de sucesso
         return redirect()->route('compra.index')->with('success', 'Compra atualizada com sucesso!');
@@ -166,15 +172,14 @@ class CompraController extends Controller
 
             // Reverter saldo do fornecedor e caixa
             $fornecedor = $compra->fornecedor;
-            $caixa = $compra->conta;
-            ContaController::calcularTotal($caixa->id);
+            $conta = $compra->conta;
+            ContaController::calcularTotal($conta->id);
             FornecedorController::calcularTotal($fornecedor->id);
 
             // Atualizar o estoque dos produtos
             foreach ($produtosCompra as $prodCompra) {
                 $produto = $prodCompra->produto;
                 ProdutoController::calcularEstoque($produto->id);
-
                 $prodCompra->delete();
             }
 

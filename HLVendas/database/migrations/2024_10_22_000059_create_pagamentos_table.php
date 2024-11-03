@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
             $table->integer('vendaid');
+            $table->integer('vendadoc');
             $table->string('numerotransacao')->nullable();
             $table->string('parcela')->nullable();
             $table->double('valorvenda');

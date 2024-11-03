@@ -21,12 +21,9 @@ class PagamentoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public static function create(string $docVenda)
+    public static function create(string $idVenda)
     {
-
-        // static   string $docVenda
-
-        $venda = Venda::where('doc',$docVenda)->first();
+        $venda = Venda::findOrFail($idVenda);
         $formaPagamentos = CondicaoPagamento::all();
         return view('pagamento.create', compact('venda','formaPagamentos' ));  
     }
@@ -36,6 +33,7 @@ class PagamentoController extends Controller
      */
     public function store(Request $request)
     {
+        $vendaid = $request->input('vendaid');
         $doc = $request->input('doc');
         $qntparcela = $request->input('quantparcelas');
         $qntdias = $request->input('diasparcelas');
@@ -58,7 +56,8 @@ class PagamentoController extends Controller
                 $databaixa = date("Y-m-d", strtotime("+" . $dias . " days", strtotime(date("Y-m-d"))));
     
                 Pagamento::create([
-                    'vendaid'=> $doc,
+                    'vendaid'=> $vendaid,
+                    'vendadoc'=> $doc,
                     'numerotransacao'=>$numerotransacao,
                     'valorvenda'=>$valortotal,
                     'valorpago'=>$valorpago,
@@ -75,7 +74,8 @@ class PagamentoController extends Controller
             $parcela = '1/1';
 
             Pagamento::create([
-                'vendaid'=>$doc,
+                'vendaid'=> $vendaid,
+                'vendadoc'=> $doc,
                 'numerotransacao'=>$numerotransacao,
                 'valorvenda'=>$valortotal,
                 'valorparcela'=>$valorParcela,
@@ -87,7 +87,13 @@ class PagamentoController extends Controller
                 'trocovenda'=>$troco
             ]);
         }
-        return redirect()->route('pagamento.show',$doc)
+
+        $venda = Venda::findOrFail($vendaid);
+        $venda->update([
+            'condicaopagid' => $formapag
+        ]);
+
+        return redirect()->route('pagamento.show', $vendaid)
                          ->with('success', "Venda e pagamento cadastrados com sucesso.")  ;     
 
     }
