@@ -1,5 +1,5 @@
 <div>
-    <input type="search" wire:model.live="busca" id="busca" placeholder="Digite uma descrição...">
+    <input class="search" type="search" wire:model.live="busca" id="busca" placeholder="Digite uma descrição...">
     @if(count($produtos) > 0)
         <table>
             @if($rota == 1)
@@ -23,7 +23,7 @@
                             <td>{{$produto->precoaprazo}}</td>
                             <td>{{$produto->categoria}}</td>
                             <td>{{$produto->estoque}}</td>
-                            <td><a href="{{route('produto.show', $produto->id) }}">Visualizar</a></td>
+                            <td class="acao"><a href="{{route('produto.show', $produto->id) }}">Visualizar</a></td>
                         </tr>
                     @endforeach
                 </tbody>

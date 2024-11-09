@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss','resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Fornecedor</title>
 </head>
 
@@ -69,47 +69,47 @@
 
                     <div class="contentInput">
                         <label for="logradouro" class="labelTop">
-                            Logradouro
+                            <p>Logradouro</p>
                         </label>
                         <input class="inputWrapper" type="text" name="logradouro" required>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
                             <label for="numero" class="labelTop">
-                                Número
+                                <p>Número</p>
                             </label>
                             <input class="inputWrapper number" type="text" name="numero" required>
                         </div>
 
                         <div class="inputGroup">
                             <label for="bairro" class="labelTop">
-                                Bairro
+                                <p>Bairro</p>
                             </label>
                             <input class="inputWrapper" type="text" name="bairro" required>
                         </div>
                     </div>
                     <div class="contentInput">
                         <label for="cidade" class="labelTop">
-                            Cidade
+                            <p>Cidade</p>
                         </label>
                         <input class="inputWrapper" type="text" name="cidade" required>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
                             <label for="cidade" class="labelTop">
-                                CEP
+                                <p>CEP</p>
                             </label>
                             <input class="inputWrapper cep" type="text" name="cep">
                         </div>
 
                         <div class="inputGroup">
                             <label for="estado" class="labelTop">
-                                Estado
+                                <p>Estado</p>
                             </label>
                             <input class="inputWrapper" type="text" name="estado" required>
                         </div>
                     </div>
-  
+
                     <div class="button">
                         <button type="submit">
                             <p class="text">

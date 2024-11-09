@@ -1,11 +1,14 @@
 <div>
     <div x-data="{ open: @entangle('isOpen') }">
-        <div class="flex justify-center items-center">
-            <button @click.prevent="open = true"
-            class="border-solid border-2 border-corBorda mt-5 mb-3 w-1/2 flex justify-center rounded-custom-button text-lg p-1">
-                <p class="text">Buscar Fornecedor</p>
-            </button>
-        </div>
+        <!-- <div class="contentInput"> -->
+        <!-- <div class="inputGroup"> -->
+            <!-- <div class="inputWrapper buttonForn"> -->
+                <button @click.prevent="open = true">
+                    <p class="text">Buscar Fornecedor</p>
+                </button>
+            <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
 
         <div x-show="open" @click.away="open = false"
             class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">

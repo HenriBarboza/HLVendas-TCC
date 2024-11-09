@@ -2,7 +2,7 @@
     <!-- <label for="email">Email</label> -->
     <div class="contenInput">
         <label for="email" class="labelTop">
-            Email
+            <p>Email</p>
         </label>
         <input class="inputWrapper" type="search" name="email" wire:model.live="email" required>
     </div>

@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 $sombra: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 $cinza: #6b6b6a;
 $menu: #2d2c2c;
 $white: #ffffff;
 $black: #2d2c2c;
+$font-montserrat: "Montserrat", sans-serif;
+
+* {
+    font-family: $font-montserrat;
+    font-weight: 500;
+    font-size: 1rem;
+    color: $black;
+}
 
 .content {
     display: flex;

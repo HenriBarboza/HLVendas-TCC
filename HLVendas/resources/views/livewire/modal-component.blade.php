@@ -1,9 +1,11 @@
 <div>
     <div x-data="{ open: @entangle('isOpen').defer }">
-        <div class="button">
-            <button @click.prevent="open = true">
-                <p class="text">Produtos</p>
-            </button>
+        <div class="contentInput">
+            <div @click.prevent="open = true" class="inputWrapper buttonProd">
+                <button >
+                    <p class="text">Produtos</p>
+                </button>
+            </div>
         </div>
         <div x-show="open" @click.away="open = false"
             class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">

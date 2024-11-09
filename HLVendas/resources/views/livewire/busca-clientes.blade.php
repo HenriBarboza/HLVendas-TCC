@@ -1,5 +1,5 @@
 <div>
-    <input type="search" wire:model.live="busca" placeholder="Digite um nome...">
+    <input class="search" type="search" wire:model.live="busca" placeholder="Digite um nome...">
     @if(count($clientes) > 0)
     <table>
         <thead>
@@ -9,6 +9,7 @@
                 <th>Telefone</th>
                 <th>CPF/CNPJ</th>
                 <th>Cidade</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
                     <td>{{$cliente->cpfcnpj}}</td>
                     <td>{{$cliente->cidade}}</td>
                     @if($rota == 1)
-                            <td><a href="{{ route('cliente.show', $cliente->id) }}">Visualizar</a></td>
+                            <td class="acao"><a href="{{ route('cliente.show', $cliente->id) }}">Visualizar</a></td>
                         @elseif($rota == 2 || 3)
                             <td>
                                 <button @click.prevent class="btn-cliente-id" value="{{$cliente->id}}"

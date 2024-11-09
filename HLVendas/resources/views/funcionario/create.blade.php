@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
     <title>Novo Funcionario</title>
     @livewireStyles
 </head>
@@ -38,35 +38,33 @@
                     @CSRF
                     <div class="contentInput">
                         <label for="nome" class="labelTop">
-                            Nome
+                            <p>Nome</p>
                         </label>
                         <input class="inputWrapper" type="text" name="nome" required>
                     </div>
-                    <!-- <div class="">
-                        <label for="email">Email:</label>
-                        <input id="email" type="email" name="email" required><button>Verificar</button>
-                        <input id="" type="text" name="" placeholder="Apelido" disabled>
-                    </div> -->
+
                     <div class="contentInput" style="display: block;">
-                        <!-- <div class="inputWrapper"> -->
-                            @livewire('verifica-email')
-                        <!-- </div> -->
+                        @livewire('verifica-email')
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="telefone" class="labelTop">Telefone</label>
+                            <label for="telefone" class="labelTop">
+                                <P>Telefone</P>
+                            </label>
                             <input class="inputWrapper phone" type="text" name="telefone" required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="cpfcnpj" class="labelTop">CPF</label>
+                            <label for="cpfcnpj" class="labelTop">
+                                <P>CPF</P>
+                            </label>
                             <input class="inputWrapper cpf" type="text" name="cpfcnpj" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
                         <label for="logradouro" class="labelTop">
-                            Logradouro
+                            <p>Logradouro</p>
                         </label>
                         <input class="inputWrapper" type="text" name="logradouro">
                     </div>
@@ -74,13 +72,13 @@
                     <div class="contentInput">
                         <div class="inputGroup">
                             <label for="numero" class="labelTop">
-                                Número
+                                <p>NNúmero</p>
                             </label>
                             <input class="inputWrapper number" type="text" name="numero">
                         </div>
                         <div class="inputGroup">
                             <label for="bairro" class="labelTop">
-                                Bairro
+                                <p>Bairro</p>
                             </label>
                             <input class="inputWrapper" type="text" name="bairro">
                         </div>
@@ -88,7 +86,7 @@
 
                     <div class="contentInput">
                         <label for="cidade" class="labelTop">
-                            Cidade
+                            <p>Cidade</p>
                         </label>
                         <input class="inputWrapper" type="text" name="cidade">
                     </div>
@@ -96,13 +94,13 @@
                     <div class="contentInput">
                         <div class="inputGroup">
                             <label for="cep" class="labelTop">
-                                CEP
+                                <p>CEP</p>
                             </label>
                             <input class="inputWrapper cep" type="text" name="cep">
                         </div>
                         <div class="inputGroup">
                             <label for="estado" class="labelTop">
-                                Estado
+                                <p>Estado</p>
                             </label>
                             <input class="inputWrapper" type="text" name="estado">
                         </div>
