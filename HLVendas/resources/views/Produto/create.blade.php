@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/header.scss','resources/scss/produto.scss','resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', "resources/js/placeholder.js"])
+    @vite(['resources/scss/header.scss','resources/scss/produto.scss','resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Novo Produto</title>
 </head>
 
@@ -17,6 +17,9 @@
     <div class="contentProduto">
         <div class="box">
             @include('components.navbar') 
+        </div>
+        <div class="loader">
+            <div class="loading"></div>
         </div>
 
         <div class="produtoCrud">
@@ -46,74 +49,74 @@
                 <form class="formProduto" action="{{route('produto.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <label for="descricao" class="labelTop">
+                        <input class="inputWrapper" autocomplete="off" type="text" name="descricao" required>
+                        <label for="descricao" class="userLabel">
                             <p>Descrição</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="descricao" required>
                     </div>
 
                     <div class="contentInput">
-                        <label for="custo" class="labelTop">
+                        <input class="inputWrapper number" autocomplete="off" type="text" id="custo" step="0.01" name="custo" required>
+                        <label for="custo" class="userLabel">
                             <p>Custo</p>
                         </label>
-                        <input class="inputWrapper number" type="text" id="custo" step="0.01" name="custo" required>
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="perccusto" class="labelTop">
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="perccusto" step="0.01" name="perccusto"
+                            required>
+                            <label for="perccusto" class="userLabel">
                                 <p>% Custo</p>
                             </label>
-                            <input class="inputWrapper number" type="text" id="perccusto" step="0.01" name="perccusto"
-                                required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="precoavista" class="labelTop">
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoavista" name="precoavista"
+                            step="0.01" required>
+                            <label for="precoavista" class="userLabel">
                                 <p>Preço à Vista</p>
                             </label>
-                            <input class="inputWrapper number" type="text" id="precoavista" name="precoavista"
-                                step="0.01" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="percprazo" class="labelTop">
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="percprazo" step="0.01" name="percprazo"
+                            required>
+                            <label for="percprazo" class="userLabel">
                                 <p>% Prazo</p>
                             </label>
-                            <input class="inputWrapper number" type="text" id="percprazo" step="0.01" name="percprazo"
-                                required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="precoaprazo" class="labelTop">
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoaprazo" step="0.01"
+                            name="precoaprazo" required>
+                            <label for="precoaprazo" class="userLabel">
                                 <p>Preço à Prazo</p>
                             </label>
-                            <input class="inputWrapper number" type="text" id="precoaprazo" step="0.01"
-                                name="precoaprazo" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="unidade" class="labelTop">
+                        <input class="inputWrapper" type="text" autocomplete="off" name="unidade" required>
+                        <label for="unidade" class="userLabel">
                             <p>Unidade de medida</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="unidade" required>
                     </div>
 
                     <div class="contentInput">
-                        <label for="codigoBarras" class="labelTop">
+                        <input class="inputWrapper number" type="text" autocomplete="off" name="codigoBarras" required>
+                        <label for="codigoBarras" class="userLabel">
                             <p>Código de Barras</p>
                         </label>
-                        <input class="inputWrapper number" type="text" name="codigoBarras" required>
                     </div>
 
                     <div class="contentInput">
-                        <label for="categoria" class="labelTop">
+                        <input class="inputWrapper" type="text" autocomplete="off" name="categoria" required>
+                        <label for="categoria" class="userLabel">
                             <p>Categoria (Ex. Alimento)</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="categoria" required>
                     </div>
 
                     <div class="button">

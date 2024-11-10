@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss','resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Nova Venda</title>
 </head>
 
@@ -15,15 +15,18 @@
  ?>
 
 <body>
-    <div class="contentCompra">
+    <div class="contentVenda">
         <div class="box">
             @include('components.navbar')
         </div>
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
 
-        <div class="compraCrud">
+        <div class="vendaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <div class="newCompra">
+                    <div class="newVenda">
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -34,41 +37,55 @@
                             </div>
                         @endif
                     </div>
-                    <div class="buscaCompra">
+                    <div class="buscaVenda">
                         @livewire('modal-venda-component')
                     </div>
                 </div>
-                <form class="formCompra" action="{{route('venda.store')}}" method="POST">
+                <form class="formVenda" action="{{route('venda.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="doc" placeholder="Documento" required>
+                        <input autocomplete="off" class="inputWrapper number" type="text" name="doc" required="">
+                        <label for="doc" class="userLabel">
+                            <p>Documento</p>
+                        </label>
                     </div>
-                    @livewire('modal-cliente-component', compact(var_name: 'rota'))
                     <div class="contentInput">
-                        <input class="inputWrapper" type="number" name="clienteid" id="inpClienteId" hidden required>
-                        <input class="inputWrapper w50" type="text" placeholder="Cliente" id="inpClienteNome" disabled>
-
-                        <select class="inputWrapper w50" name="contaid">
-                            @foreach($contas as $conta)
-                                <option value="{{$conta->id}}">{{$conta->nome}}</option>
-                            @endforeach
-                        </select>
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="number" name="clienteid" id="inpClienteId" hidden>
+                            <input style="border-color: #0B57D0;" class="inputWrapper" type="text" placeholder="Cliente" id="inpClienteNome" disabled>
+                        </div>
+                        <div class="inputGroup">
+                            @livewire('modal-cliente-component', compact(var_name: 'rota'))
+                        </div>
                     </div>
                     <div class="contentInput">
                         <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
-                            placeholder="Funcionário da Venda" required>
-                        <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
-                        <div x-data="{ tabelapreco: 'AV' }">
-                            <select  x-model="tabelapreco" class="inputWrapper w50" name="tabelapreco"
-                                @change="$dispatch('tabelaPrecoAtualizada', {tabelaPreco: tabelapreco})">
-                                <option value="AV">À vista</option>
-                                <option value="AP">A prazo</option>
+                            placeholder="Funcionário da Venda" required="">
+                        <input style="border-color: #0B57D0;" class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+                    </div>
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <select class="inputWrapper" name="contaid" required>
+                                @foreach($contas as $conta)
+                                    <option value="{{$conta->id}}">{{$conta->nome}}</option>
+                                @endforeach
                             </select>
                         </div>
+
+                        <div class="inputGroup">
+                            <div x-data="{ tabelapreco: 'AV' }" required="">
+                                <select x-model="tabelapreco" class="inputWrapper" name="tabelapreco"
+                                    @change="$dispatch('tabelaPrecoAtualizada', {tabelaPreco: tabelapreco})" required="">
+                                    <option value="AV">À vista</option>
+                                    <option value="AP">A prazo</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <br>
-                    @livewire('modal-component', compact('rota'))
-                    @livewire('venda-component')
+                    <div class="livewire">
+                        @livewire('modal-component', compact('rota'))
+                        @livewire('venda-component')
+                    </div>
                     <br>
                     <div class="button">
                         <button type="submit">

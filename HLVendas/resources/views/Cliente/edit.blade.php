@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    @include('components.navbar') 
+    <div class="box">
+        @include('components.navbar') 
+    </div>
+
     <div class="corpo">
         <div class="top">
             <h1>Editar Cliente</h1>

@@ -14,9 +14,9 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/calculoCusto.js',
                 'resources/js/inputValidation.js',
-                'resources/js/placeholder.js',
                 'resources/js/buttonSelect.js',
                 'resources/js/selectPagamento.js',
+                'resources/js/loadingPage.js'
             ],
             refresh: true,
         }),

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/header.scss','resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss','resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Nova Compra</title>
 </head>
 
@@ -18,7 +18,9 @@
         <div class="box">
             @include('components.navbar')
         </div>
-
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
         <!-- <div class="contentCompra"> -->
         <div class="compraCrud">
             <div class="contentForms">
@@ -44,16 +46,15 @@
                 <form class="formCompra" action="{{route('compra.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <label for="doc" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper number" type="text" name="doc" required>
+                        <label for="doc" class="userLabel">
                             <p>Documento</p>
                         </label>
-                        <input class="inputWrapper number" type="text" name="doc" required>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
-                                required>
-                            <input class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
+                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden>
+                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
                                 disabled>
                         </div>
                         <div class="inputGroup">
@@ -73,7 +74,7 @@
                         <div class="inputGroup">
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
                                 name="funcionarioid" placeholder="Funcionário da Venda" required>
-                            <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
                         </div>
                     </div>
 
@@ -98,7 +99,6 @@
         <!-- </div> -->
         @include('components.footer')
     </div>
-
     @livewireScripts
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>

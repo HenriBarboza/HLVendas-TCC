@@ -23,7 +23,7 @@
                     @if($rota == 1)
                             <td class="acao"><a href="{{ route('cliente.show', $cliente->id) }}">Visualizar</a></td>
                         @elseif($rota == 2 || 3)
-                            <td>
+                            <td class="acao">
                                 <button @click.prevent class="btn-cliente-id" value="{{$cliente->id}}"
                                     data-nome="{{$cliente->nome}}" @click="open = false">Selecionar</button>
                             </td>

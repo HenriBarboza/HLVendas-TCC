@@ -6,37 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/header.scss','resources/scss/cliente.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Novo Cliente</title>
-    <style>
-        /* Inicialmente, a div é ocultada */
-        .buscaCliente {
-            display: none; /* Inicialmente, ambas as divs são ocultadas */
-        }
-        #div1 {
-            display: block; /* A div1 será visível inicialmente */
-        }
-    </style>
 </head>
 
 <?php 
     $rota = 1;
  ?>
 
-
 <body>
     <div class="contentCliente">
         <div class="box">
             @include('components.navbar')
+        </div>
+        <div class="loader">
+            <div class="loading"></div>
         </div>
 
         <div class="clienteCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCliente">
-                        <!-- <button>
-                            <p class="text">Novo Cliente</p>
-                        </button> -->
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -44,16 +34,6 @@
                         @endif
                     </div>
 
-
-                    <div id="div1" class="buscaCliente">
-                        <div class="button">
-                            <button>
-                                <p class="text">
-                                    Carregando ...
-                                </p>
-                            </button>
-                        </div>
-                    </div>
                     <div id="div2" class="buscaCliente">
                         @livewire('modal-cliente-component', compact(var_name: 'rota'))
                     </div>
@@ -62,76 +42,78 @@
                 <form class="formCliente" action="{{route('cliente.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput not-gap">
-                        <label for="nome" class="labelTop">
+                        <input class="inputWrapper" type="text" name="nome" required="">
+                        <label for="nome" class="userLabel">
                             <p>Nome</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nome" required>
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="nome" class="labelTop">
+                            <input class="inputWrapper phone" type="text" name="telefone" required="">
+                            <label for="nome" class="userLabel">
                                 <p>Telefone</p>
                             </label>
-                            <input class="inputWrapper phone" type="text" name="telefone">
                         </div>
 
                         <div class="inputGroup">
-                            <label for="cpfcnpj" class="labelTop">
+                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required="">
+                            <label for="cpfcnpj" class="userLabel">
                                 <p>CPF/CNPJ</p>
                             </label>
-                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="logradouro" class="labelTop">
+                        <input class="inputWrapper" type="text" name="logradouro" required="">
+                        <label for="logradouro" class="userLabel">
                             <p>Logradouro</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="logradouro" required>
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="numero" class="labelTop">
+                            <input class="inputWrapper number" type="text" name="numero" required="">
+                            <label for="numero" class="userLabel">
                                 <p>Número</p>
                             </label>
-                            <input class="inputWrapper number" type="text" name="numero" required>
                         </div>
                         <div class="inputGroup">
-                            <label for="bairro" class="labelTop">
+                            <input class="inputWrapper" type="text" name="bairro" required="">
+                            <label for="bairro" class="userLabel">
                                 <p>Bairro</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="bairro" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="cidade" class="labelTop">
+                        <input class="inputWrapper" type="text" name="cidade" required="">
+                        <label for="cidade" class="userLabel">
                             <p>Cidade</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="cidade" required>
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="cep" class="labelTop">
+                            <input class="inputWrapper cep" type="text" name="cep" required="">
+                            <label for="cep" class="userLabel">
                                 <p>CEP</p>
                             </label>
-                            <input class="inputWrapper cep" type="text" name="cep">
                         </div>
 
                         <div class="inputGroup">
-                            <label for="estado" class="labelTop">
+                            <input class="inputWrapper" type="text" name="estado" required="">
+                            <label for="estado" class="userLabel">
                                 <p>Estado</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="estado" required>
                         </div>
                     </div>
 
                     <div class="contentInput not-gap">
-                        <label class="labelDate" for="datanasc">Data de Nascimento:</label>
-                        <input class="inputWrapper" type="date" name="datanasc">
+                        <label class="labelDate" for="datanasc">
+                            <p>Data de Nascimento:</p>
+                        </label>
+                        <input class="inputWrapper" type="date" name="datanasc" required="">
                     </div>
 
                     <div class="button">
@@ -145,15 +127,7 @@
             </div>
         </div>
     </div>
-    <script>
-        // Função que será executada quando a página estiver totalmente carregada
-        window.onload = function() {
-            document.getElementById('div1').style.display = 'none'; // Oculta a div1
-            document.getElementById('div2').style.display = 'block'; // Exibe a div2
-        };
-    </script>
     @livewireScripts
-    @include('components.footer') 
 </body>
 
 </html>

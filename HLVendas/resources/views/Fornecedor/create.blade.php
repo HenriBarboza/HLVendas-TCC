@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/header.scss','resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss','resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Novo Fornecedor</title>
 </head>
 
@@ -18,7 +18,10 @@
         <div class="box">
             @include('components.navbar') 
         </div>
-
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
+        
         <div class="fornecedorCrud">
             <div class="contentForms">
                 <div class="contentButton">
@@ -39,74 +42,74 @@
                 <form class="formFornecedor" action="{{route('fornecedor.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput not-gap">
-                        <label for="nome" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="nome" required="">
+                        <label for="nome" class="userLabel">
                             <p>Nome</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nome" required>
                     </div>
 
                     <div class="contentInput">
-                        <label for="nome" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="nomefantasia" required="">
+                        <label for="nome" class="userLabel">
                             <p>Nome Fantasia</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nomefantasia">
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="telefone" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone" required="">
+                            <label for="telefone" class="userLabel">
                                 <p>Telefone</p>
                             </label>
-                            <input class="inputWrapper phone" type="text" name="telefone" required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="cpfcnpj" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required="">
+                            <label for="cpfcnpj" class="userLabel">
                                 <p>CPF/CNPJ</p>
                             </label>
-                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="logradouro" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="logradouro" required="">
+                        <label for="logradouro" class="userLabel">
                             <p>Logradouro</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="logradouro" required>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="numero" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper number" type="text" name="numero" required="">
+                            <label for="numero" class="userLabel">
                                 <p>Número</p>
                             </label>
-                            <input class="inputWrapper number" type="text" name="numero" required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="bairro" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="bairro" required="">
+                            <label for="bairro" class="userLabel">
                                 <p>Bairro</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="bairro" required>
                         </div>
                     </div>
                     <div class="contentInput">
-                        <label for="cidade" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="cidade" required="">
+                        <label for="cidade" class="userLabel">
                             <p>Cidade</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="cidade" required>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="cidade" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper cep" type="text" name="cep" required="">
+                            <label for="cidade" class="userLabel">
                                 <p>CEP</p>
                             </label>
-                            <input class="inputWrapper cep" type="text" name="cep">
                         </div>
 
                         <div class="inputGroup">
-                            <label for="estado" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="estado" required="">
+                            <label for="estado" class="userLabel">
                                 <p>Estado</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="estado" required>
                         </div>
                     </div>
 

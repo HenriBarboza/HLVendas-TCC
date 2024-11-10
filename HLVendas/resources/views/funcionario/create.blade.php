@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/header.scss', 'resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Novo Funcionario</title>
     @livewireStyles
 </head>
@@ -13,6 +13,9 @@
     <div class="contentFuncionario">
         <div class="box">
             @include('components.navbar') 
+        </div>
+        <div class="loader">
+            <div class="loading"></div>
         </div>
 
         <div class="funcionarioCrud">
@@ -37,10 +40,10 @@
                 <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
                     @CSRF
                     <div class="contentInput">
-                        <label for="nome" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="nome" required="">
+                        <label for="nome" class="userLabel">
                             <p>Nome</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="nome" required>
                     </div>
 
                     <div class="contentInput" style="display: block;">
@@ -48,67 +51,69 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="telefone" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone" required="">
+                            <label for="telefone" class="userLabel">
                                 <P>Telefone</P>
                             </label>
-                            <input class="inputWrapper phone" type="text" name="telefone" required>
                         </div>
 
                         <div class="inputGroup">
-                            <label for="cpfcnpj" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper cpf" type="text" name="cpfcnpj" required="">
+                            <label for="cpfcnpj" class="userLabel">
                                 <P>CPF</P>
                             </label>
-                            <input class="inputWrapper cpf" type="text" name="cpfcnpj" required>
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="logradouro" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="logradouro" required="">
+                        <label for="logradouro" class="userLabel">
                             <p>Logradouro</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="logradouro">
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="numero" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper number" type="text" name="numero" required="">
+                            <label for="numero" class="userLabel">
                                 <p>NNúmero</p>
                             </label>
-                            <input class="inputWrapper number" type="text" name="numero">
                         </div>
                         <div class="inputGroup">
-                            <label for="bairro" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="bairro" required="">
+                            <label for="bairro" class="userLabel">
                                 <p>Bairro</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="bairro">
                         </div>
                     </div>
 
                     <div class="contentInput">
-                        <label for="cidade" class="labelTop">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="cidade" required="">
+                        <label for="cidade" class="userLabel">
                             <p>Cidade</p>
                         </label>
-                        <input class="inputWrapper" type="text" name="cidade">
                     </div>
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label for="cep" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper cep" type="text" name="cep" required="">
+                            <label for="cep" class="userLabel">
                                 <p>CEP</p>
                             </label>
-                            <input class="inputWrapper cep" type="text" name="cep">
                         </div>
                         <div class="inputGroup">
-                            <label for="estado" class="labelTop">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="estado" required="">
+                            <label for="estado" class="userLabel">
                                 <p>Estado</p>
                             </label>
-                            <input class="inputWrapper" type="text" name="estado">
                         </div>
                     </div>
 
                     <div class="contentInput not-gap">
-                        <label for="datanasc">Data De Nascimento:</label>
-                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc">
+                        <label for="datanasc" class="labelDate">
+                            <p>Data De Nascimento:</p>
+                        </label>
+                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc" required="">
                     </div>
 
                     <div class="contentInput radio">

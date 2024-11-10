@@ -16,7 +16,7 @@ $texto = 'Vizualizar';
 
 <body>
     <div class="contentCliente">
-        @include('components.navbar')
+            @include('components.navbar')
 
         <div class="top">
             <h1>Buscar Cliente</h1>
@@ -24,7 +24,6 @@ $texto = 'Vizualizar';
             @livewire('busca-clientes', compact('rota', 'texto'))
         </div>
     </div>
-    @include('components.footer') 
     @livewireScripts
 </body>
 

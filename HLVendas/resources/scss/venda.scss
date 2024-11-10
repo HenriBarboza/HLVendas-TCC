@@ -41,18 +41,18 @@ body {
   }
 }
 
-.contentCliente {
+.contentVenda {
   display: flex;
   position: relative;
   width: 100%;
   height: 100%;
-
+  
   .box {
     position: relative;
     z-index: 999;
   }
 
-  .clienteCrud {
+  .vendaCrud {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,9 +81,9 @@ body {
         align-items: center;
         justify-content: space-between;
 
-        .newCliente,
-        .buscaCliente {
-
+        .newVenda,
+        .buscaVenda {
+          
           button {
             width: 10rem;
             border: 0.2rem solid $black;
@@ -107,7 +107,7 @@ body {
         }
       }
 
-      .formCliente {
+      .formVenda {
         width: 40rem;
         margin-top: 1rem;
 
@@ -142,6 +142,16 @@ body {
             transition: 0.4s;
             margin-top: 0.5rem;
 
+            &.buttonProd {
+              padding: 0.2rem;
+              text-align: center;
+              cursor: pointer;
+            }
+
+            &.buttonCli {
+              padding: 0.4rem;
+            }
+
             &:focus,
             &:valid {
               outline: none;
@@ -159,17 +169,6 @@ body {
 
               p {
                 color: #0B57D0;
-              }
-            }
-
-            &.showCliente { 
-              &:not([value=""]) ~ .userLabel {
-                transform: translateY(-0.3rem) scale(0.8);
-                background-color: $white;
-                padding: 0 0.25em;
-                outline: none;
-                box-shadow: none;
-                border-color: #0B57D0;
               }
             }
           }
@@ -212,34 +211,6 @@ body {
               .text {
                 color: $white;
               }
-            }
-          }
-        }
-      }
-
-      .contentFormAcao {
-        padding-top: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 80%;
-        height: 100%;
-
-        .editCliente,
-        .deleteCliente {
-          width: 10rem;
-          height: 100%;
-          button {
-            width: 100%;
-            border: 0.2rem solid $black;
-            padding: 0.5rem;
-            margin: 0;
-            border-radius: 2rem;
-            transition: 0.4s;
-            
-            &:hover {
-              background-color: $black;
-              color: $white;
             }
           }
         }

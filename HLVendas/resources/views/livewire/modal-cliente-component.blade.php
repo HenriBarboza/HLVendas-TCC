@@ -1,9 +1,9 @@
 <div>
-<div x-data="{ open: $wire.entangle('isOpen').live }">
+    <div x-data="{ open: $wire.entangle('isOpen').live }">
         <div class="flex justify-center items-center">
             <button @click.prevent="open = true"
-            class="border-solid border-2 border-corBorda w-1/2 flex justify-center rounded-custom-button text-lg p-1">
-            <p class="text">Buscar Cliente</p>
+                class=" inputWrapper buttonCli">
+                <p class="text">Buscar Cliente</p>
             </button>
         </div>
 

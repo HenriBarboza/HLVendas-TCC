@@ -10,7 +10,7 @@
 
 <body>
     @include('components.navbar') 
-    <!-- <div class="container">
+    <div class="container">
         <div class="box-content">
             <div class="content-text">
                 <h1 class="title">
@@ -24,8 +24,7 @@
                 </p>
             </div>
         </div>
-    </div> -->
-    @include('components.footer')
+    </div>
 </body>
 
 </html>
