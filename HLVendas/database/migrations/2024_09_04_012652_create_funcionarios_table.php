@@ -36,7 +36,7 @@ return new class extends Migration
                 'email' => 'admin@email.com',
                 'telefone' => '000000000',
                 'cpfcnpj' => '000000000',
-                'tipo' => 'G',
+                'tipo' => 'g',
                 'idauth' => '1',
             ]
         );

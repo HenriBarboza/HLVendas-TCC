@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\Venda;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AutorizacaoController;
 
 class ClienteController extends Controller
 {

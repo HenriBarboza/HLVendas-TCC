@@ -47,10 +47,15 @@
                         <p>Conta: {{ $venda->conta->nome }}</p>
                         <p>Cliente: {{ $venda->cliente->nome }}</p>
                         <p>Funcionário: {{ $venda->funcionario->nome }}</p>
-                        <p>Tabela de preco: {{ $venda->tabelapreco == 'AV' ? 'Avista' : ($venda->tabelapreco == 'AP' ? 'Aprazo' : '') }}</p>
-                        <p>Condição de pagamento: {{$venda->condicaoPagamento == null  ? 'Sem condição de pagamento' : $venda->condicaoPagamento->descricao}}</p>
+                        <p>Tabela de preco:
+                            {{ $venda->tabelapreco == 'AV' ? 'Avista' : ($venda->tabelapreco == 'AP' ? 'Aprazo' : '') }}
+                        </p>
+                        <p>Condição de pagamento:
+                            {{$venda->condicaoPagamento == null ? 'Sem condição de pagamento' : $venda->condicaoPagamento->descricao}}
+                        </p>
                         <p>Desconto %: {{ $venda->percdesconto == 0 ? 'Sem desconto' : $venda->percdesconto }}</p>
-                        <p>Valor adicional %: {{ $venda->percadicional == 0 ? 'Sem adicional' : $venda->percadiciona }}</p>
+                        <p>Valor adicional %: {{ $venda->percadicional == 0 ? 'Sem adicional' : $venda->percadiciona }}
+                        </p>
 
                         <p>Data: {{ $venda->created_at }}</p>
 
@@ -96,9 +101,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <div>
-                                <button type="submit">
-                                    <p class="text">Excluir</p>
-                                </button>
+                                    <button type="submit">
+                                        <p class="text">Excluir</p>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -106,7 +111,6 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
         @livewireScripts
         @include('components.footer')
     </div>

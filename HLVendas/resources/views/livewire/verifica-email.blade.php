@@ -11,8 +11,8 @@
         <h3>O email inserido já está sendo utilizado</h3>
         <input type="text" required hidden>
     @elseif($user)
-        <!-- <i class="fa-solid fa-check"></i> -->
-        <input type="text" value="{{$user->name}}" disable>
+        <i class="fa-solid fa-check"></i>
+        <input type="text" class="inputWrapper" value="{{$user->name}}" disable>
         <input type="number" name="idauth" value="{{$user->id}}" hidden>
     @elseif($email == '')
         <!-- <i class="fa-solid fa-xmark"></i> -->

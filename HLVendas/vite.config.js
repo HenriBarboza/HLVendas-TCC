@@ -16,7 +16,7 @@ export default defineConfig({
                 'resources/js/inputValidation.js',
                 'resources/js/buttonSelect.js',
                 'resources/js/selectPagamento.js',
-                'resources/js/loadingPage.js'
+                'resources/js/loadingPage.js',
             ],
             refresh: true,
         }),

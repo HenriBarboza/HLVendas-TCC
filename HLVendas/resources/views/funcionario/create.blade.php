@@ -76,7 +76,7 @@
                         <div class="inputGroup">
                             <input autocomplete="off" class="inputWrapper number" type="text" name="numero" required="">
                             <label for="numero" class="userLabel">
-                                <p>NNúmero</p>
+                                <p>Número</p>
                             </label>
                         </div>
                         <div class="inputGroup">

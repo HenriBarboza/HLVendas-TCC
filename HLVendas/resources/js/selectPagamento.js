@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
         inpvalortroco.value = troco.toFixed(2); // Limitar para 2 casas decimais
 
         if(troco < 0){
-            btnsalvar.setAttribute("readonly", "readonly");
+            btnsalvar.setAttribute("disabled", "disabled");
             aviso.style.display = "block";
         } else{
             btnsalvar.removeAttribute("readonly");
