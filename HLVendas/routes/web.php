@@ -12,6 +12,8 @@ use App\Http\Controllers\ContaController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AutorizacaoController;
+use App\Http\Controllers\LancarEstoqueController;
+use App\Http\Controllers\CondicaoPagamentoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -45,6 +47,8 @@ Route::middleware(['auth','verificarUsuario','verificarGerente'])->group(functio
     Route::resources(['prodCompra' => prodCompraController::class]);
     Route::resources(['conta' => ContaController::class]);
     Route::resources(['pagamento' => PagamentoController::class]);
+    Route::resources(['estoque' => LancarEstoqueController::class]);
+    Route::resources(['condicaoPagamento' => CondicaoPagamentoController::class]);
     Route::get('/verificacao/auth', [AutorizacaoController::class, 'auth'])->name('verificacao.auth');
     Route::post('/verificacao/confirmar', [AutorizacaoController::class, 'confirmarAuth'])->name('verificacao.confirmar');
 });

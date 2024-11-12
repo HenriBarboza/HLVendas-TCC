@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CondicaoPagamento;
 
-class CondicaoPagamentoController extends Controller
+class LancarEstoqueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class CondicaoPagamentoController extends Controller
      */
     public function create()
     {
-        return view('condicaoPagamento.create');
+        //
     }
 
     /**
@@ -29,16 +28,7 @@ class CondicaoPagamentoController extends Controller
      */
     public function store(Request $request)
     {
-        CondicaoPagamento::create([
-            'descricao' => $request->input('descricao'),
-            'quantparcelas' => $request->input('quantparcelas'),
-            'diasparcelas' => $request->input('diasparcelas'),
-            'alterarvalor' => $request->input('alterarvalor'),
-        ]);
-
-        return redirect()->route('condicaoPagamento.create')
-                         ->with('success', "Condição de pagamento cadastrada com sucesso.");
-
+        //
     }
 
     /**

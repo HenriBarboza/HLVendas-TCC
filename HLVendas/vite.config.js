@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/js/buttonSelect.js',
                 'resources/js/selectPagamento.js',
                 'resources/js/loadingPage.js',
+                'resources/js/alert.js',
             ],
             refresh: true,
         }),
