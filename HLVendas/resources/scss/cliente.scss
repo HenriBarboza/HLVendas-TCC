@@ -82,15 +82,24 @@ body {
         justify-content: space-between;
 
         .newCliente,
-        .buscaCliente {
+        .buscaCliente,
+        .buttonBack {
 
-          button {
+          button,
+          .return {
             width: 10rem;
             border: 0.2rem solid $black;
             background-color: $white;
             border-radius: 2rem;
             padding: 0.5rem;
             transition: 0.5s;
+
+            &.return {
+              padding: 0.5rem 2rem 0.5rem 2rem;
+              &:hover {
+                color: $white; 
+              }
+            }
 
             .text {
               margin: 0;

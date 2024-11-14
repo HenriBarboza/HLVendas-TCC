@@ -38,10 +38,12 @@ body,html {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 2rem;
+        padding-top: 3rem;
         .logo {
-            width: 5rem;
-            height: 5rem;
+            img {
+                max-width: 12rem;
+                max-height: 12rem;
+            }
         }
     }
 

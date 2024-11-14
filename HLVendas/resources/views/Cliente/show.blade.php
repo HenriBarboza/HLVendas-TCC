@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
     <title>Cliente</title>
 </head>
 
@@ -13,12 +13,18 @@
         <div class="box">
             @include('components.navbar') 
         </div>
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
 
         <div class="clienteCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <h1>Cliente</h1>
-                    <a href="/cliente">Buscar cliente</a>
+
+                    <div class="buttonBack">
+                        <a class="return" href="{{route('cliente.create')}}">Voltar</a>
+                    </div>
                 </div>
 
                 <form class="formCliente">
@@ -133,12 +139,6 @@
                     </div>
                 </form>
                 <div class="contentFormAcao">
-                    <form class="editCliente" action="{{route('cliente.create', $clientes->id) }}">
-                        <button type="submit">
-                            Voltar
-                        </button>
-                    </form>
-
                     <form class="editCliente" action="{{route('cliente.edit', $clientes->id) }}">
                         <button type="submit">
                             Editar

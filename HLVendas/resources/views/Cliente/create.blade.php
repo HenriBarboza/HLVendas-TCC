@@ -42,7 +42,7 @@
                 <form class="formCliente" action="{{route('cliente.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput not-gap">
-                        <input class="inputWrapper" type="text" name="nome" required="">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="nome" required="">
                         <label for="nome" class="userLabel">
                             <p>Nome</p>
                         </label>
@@ -50,14 +50,14 @@
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper phone" type="text" name="telefone" required="">
+                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone" required="">
                             <label for="nome" class="userLabel">
                                 <p>Telefone</p>
                             </label>
                         </div>
 
                         <div class="inputGroup">
-                            <input class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required="">
+                            <input autocomplete="off" class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required="">
                             <label for="cpfcnpj" class="userLabel">
                                 <p>CPF/CNPJ</p>
                             </label>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="logradouro" required="">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="logradouro" required="">
                         <label for="logradouro" class="userLabel">
                             <p>Logradouro</p>
                         </label>
@@ -73,13 +73,13 @@
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper number" type="text" name="numero" required="">
+                            <input autocomplete="off" class="inputWrapper number" type="text" name="numero" required="">
                             <label for="numero" class="userLabel">
                                 <p>Número</p>
                             </label>
                         </div>
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="text" name="bairro" required="">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="bairro" required="">
                             <label for="bairro" class="userLabel">
                                 <p>Bairro</p>
                             </label>
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="cidade" required="">
+                        <input autocomplete="off" class="inputWrapper" type="text" name="cidade" required="">
                         <label for="cidade" class="userLabel">
                             <p>Cidade</p>
                         </label>
@@ -95,14 +95,14 @@
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper cep" type="text" name="cep" required="">
+                            <input autocomplete="off" class="inputWrapper cep" type="text" name="cep" required="">
                             <label for="cep" class="userLabel">
                                 <p>CEP</p>
                             </label>
                         </div>
 
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="text" name="estado" required="">
+                            <input autocomplete="off" class="inputWrapper" type="text" name="estado" required="">
                             <label for="estado" class="userLabel">
                                 <p>Estado</p>
                             </label>

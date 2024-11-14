@@ -13,7 +13,7 @@
         <div class="navbar">
             <div class="contentLogo">
                 <div class="logo">
-                    <img src="{{ asset('images/revenue.png') }}" alt="">
+                    <img src="{{ asset('images/logo02.png') }}" alt="">
                 </div>
             </div>
 
