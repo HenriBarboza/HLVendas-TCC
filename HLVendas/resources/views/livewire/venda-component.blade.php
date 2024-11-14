@@ -5,17 +5,26 @@
                 <button @click.prevent class="accordion-header" @click="open = !open">Opções de preço</button>
                 <div class="accordion-content" x-show="open" x-transition>
                     <div class="contentInput">
-                        <label for="percdesconto">% Desconto</label>
-                        <input class="inputWrapper w50 number" type="number" min="0" wire:model="percdesconto"
-                            name="percdesconto" placeholder="Desconto %">
-                        <label for="percadicional">% Adicional</label>
-                        <input class="inputWrapper w50 number" type="number" min="0" wire:model="percadicional"
-                            name="percadicional" placeholder="Preço adicional %">
+                        <div class="inputGroup">
+                            <input class="inputWrapper number" type="number" min="0" wire:model="percdesconto"
+                                name="percdesconto" placeholder="Desconto %">
+                            <label for="percdesconto" class="userLabel">
+                                <p>% Desconto</p>
+                            </label>
+                        </div>
+
+                        <div class="inputGroup">
+                            <input class="inputWrapper number" type="number" min="0" wire:model="percadicional"
+                                name="percadicional" placeholder="Preço adicional %">
+                            <label for="percadicional" class="userLabel">
+                                <p>% Adicional</p>
+                            </label>
+                        </div>
                         <button @click.prevent wire:click="calcularOutros">Calcular</button>
                     </div>
                 </div>
             </div>
-            <h4>Produtos na venda</h4>
+            <h4>Produtos da venda</h4>
             <table>
                 <thead>
                     <tr>
@@ -44,13 +53,17 @@
                 </tbody>
             </table>
             <div>
-                <label for="total">Total R$</label>
-                <input type="number" name="totalvenda" value="{{ $this->calcularTotal() }}" readonly>
+                <div class="contentInput">
+                    <input class="inputWrapper showProduto" type="number" name="totalvenda" value="{{ $this->calcularTotal() }}"
+                        readonly>
+                    <label for="totalvenda" class="userLabel">
+                        <p>Total R$</p>
+                    </label>
+                </div>
             </div>
         </div>
     @else
-        <br>
-        <h4>Adicione produtos na venda</h4>
+        <h4 style="margin-top: 1rem;">Adicione produtos na venda</h4>
         <input type="text" hidden required>
     @endif
 </div>

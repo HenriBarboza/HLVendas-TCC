@@ -26,6 +26,8 @@ body,html {
 
 .navbar {
     max-width: 100%;
+    position: fixed;  /* ou absolute */
+    z-index: 1000;
     width: 15rem;
     height: 100%;
     background-color: $menu;

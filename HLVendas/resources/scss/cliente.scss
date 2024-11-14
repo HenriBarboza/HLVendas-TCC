@@ -11,6 +11,10 @@ $body: #f5f5f5;
 
 body {
   background-color: $body;
+
+  .swal2-shown {
+    overflow: hidden;
+  }
 }
 
 .loader {
@@ -43,7 +47,7 @@ body {
 
 .contentCliente {
   display: flex;
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 100%;
 

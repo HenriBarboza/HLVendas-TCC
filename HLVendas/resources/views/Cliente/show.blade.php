@@ -144,12 +144,12 @@
                             Editar
                         </button>
                     </form>
-                    <form class="deleteCliente" action="{{route('cliente.destroy', $clientes->id)}}" method="POST">
+                    <form class="deleteCliente" id="deleteForm" action="{{route('cliente.destroy', $clientes->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="">
                             <div class="">
-                                <button type="submit">Excluir</button>
+                                <button type="button" onclick="confirmarExclusao()">Excluir</button>
                             </div>
                         </div>
                     </form>
@@ -157,7 +157,25 @@
             </div>
         </div>
     </div>
-    @include('components.footer') 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmarExclusao() {
+            Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Você não poderá reverter isso!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
