@@ -19,7 +19,9 @@
                     <td>{{$funcionario->email}}</td>
                     <td>{{$funcionario->telefone}}</td>
                     <td>{{$funcionario->cpfcnpj}}</td>
-                    <td><a href="{{ route('funcionario.' . $rota, $funcionario->id) }}">{{$texto}}</a></td>
+                    @if($rota == 1)
+                    <td><a href="{{ route('funcionario.show', $funcionario->id) }}">Visaualizar</a></td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

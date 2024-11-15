@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="buscaCliente">
-                        @livewire('modal-conta-component', compact('rota'))
+                        @livewire('modal-condicao-pagamento-component', compact('rota'))
                     </div>
                 </div>
 

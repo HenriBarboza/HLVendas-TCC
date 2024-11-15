@@ -9,6 +9,10 @@
     @livewireStyles
 </head>
 
+<?php 
+    $rota = 1;
+ ?>
+
 <body>
     <div class="contentFuncionario">
         <div class="box">
@@ -30,11 +34,7 @@
                     </div>
 
                     <div class="buscaFuncionario">
-                        <button>
-                            <p class="text">
-                                <a href="/funcionario">Buscar funcionario</a>
-                            </p>
-                        </button>
+                        @livewire('modal-funcionario-component', compact(var_name: 'rota'))
                     </div>
                 </div>
                 <form class="formFuncionario" method="POST" action="{{ route('funcionario.store') }}">
@@ -51,7 +51,8 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone" required="">
+                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone"
+                                required="">
                             <label for="telefone" class="userLabel">
                                 <P>Telefone</P>
                             </label>
@@ -113,7 +114,8 @@
                         <label for="datanasc" class="labelDate">
                             <p>Data De Nascimento:</p>
                         </label>
-                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc" required="">
+                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc"
+                            required="">
                     </div>
 
                     <div class="contentInput radio">

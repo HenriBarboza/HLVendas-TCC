@@ -4,18 +4,15 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class ModalFuncionarioComponent extends Component
+class ModalCondicaoPagamentoComponent extends Component
 {
-
     public $isOpen = false;
     public $rota;
     public $listeners = ['open','close'];
-
     public function render()
     {
-        return view('livewire.modal-funcionario-component');
+        return view('livewire.modal-condicao-pagamento-component');
     }
-
     public function openModal()
     {
         $this->isOpen = true;
