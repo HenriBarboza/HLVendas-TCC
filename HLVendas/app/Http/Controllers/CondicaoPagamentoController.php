@@ -13,7 +13,7 @@ class CondicaoPagamentoController extends Controller
      */
     public function index()
     {
-        //
+        return view('condicaoPagamento.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class CondicaoPagamentoController extends Controller
         ]);
 
         return redirect()->route('condicaoPagamento.create')
-                         ->with('success', "Condição de pagamento cadastrada com sucesso.");
+                         ->with('success', "Condição de pagamento cadastrada com sucesso!");
 
     }
 
@@ -46,7 +46,8 @@ class CondicaoPagamentoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $condicoes = CondicaoPagamento::findOrFail($id);
+        return view('condicaoPagamento.show', compact('condicoes'));
     }
 
     /**
@@ -54,7 +55,8 @@ class CondicaoPagamentoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $condicoes = CondicaoPagamento::findOrFail($id);
+        return view('condicaoPagamento.edit', compact('condicoes'));
     }
 
     /**
@@ -62,7 +64,11 @@ class CondicaoPagamentoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $condicoes = CondicaoPagamento::findOrFail($id);
+        $condicoes->update($request->all());
+
+        return redirect()->route('condicaoPagamento.create')
+                         ->with('success', "Condição de pagamento alterada com suceeso!");
     }
 
     /**
@@ -70,6 +76,10 @@ class CondicaoPagamentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $condicoes = CondicaoPagamento::findOrFail($id);
+        $condicoes->delete();
+
+        return redirect()->route('condicaoPagamento.create')
+                         ->with('success',"Condição de pagamento excluída com sucesso!");
     }
 }
