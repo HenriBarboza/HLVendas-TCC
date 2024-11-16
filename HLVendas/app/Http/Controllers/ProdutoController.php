@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Produto;
 use App\Models\ProdVenda;
 use App\Models\ProdCompra;
-use App\Models\Venda;
+use App\Models\MovimentoEstoque;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -63,6 +63,7 @@ class ProdutoController extends Controller
         $produtos = Produto::findOrFail($id);
         $comprasProd = ProdCompra::all();
         $vendasProd = ProdVenda::all();
+        $movimentoEstoque = MovimentoEstoque::all();
         $quantidadeCompras = 0;
         $quantidadeVendas = 0;
         $ultimoCusto = 0;
@@ -80,6 +81,16 @@ class ProdutoController extends Controller
             if($vProd->produtoid == $id){
                 $quantidadeVendas += $vProd->quantidade;
                 $ultimaVenda = $vProd->updated_at;
+            }
+        }
+        foreach($movimentoEstoque as $mov){
+            if($mov->produtoid == $id){
+                if($mov->tipomovimentacao == 'E'){
+                    $quantidadeCompras += $mov->quantidade;
+                }
+                elseif($mov->tipomovimentacao == 'S'){
+                    $quantidadeCompras -= $mov->quantidade;
+                }
             }
         }
 

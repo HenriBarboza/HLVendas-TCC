@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
-    @vite(['resources/scss/header.scss','resources/scss/produto.scss','resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/produto.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>Novo Produto</title>
 </head>
 
@@ -38,12 +38,18 @@
                         </div>
                     @endif
                     <div class="buscaProduto">
-                        <!-- <button> -->
-                        <!-- <a href="/produto">Buscar produto</a> -->
+                        <p class="text">
+                        <div @click.prevent="open = true" class="inputWrapper buttonProd">
+                            <button>
+                                <a class="text" href="/estoque/create">Manutenção de Estoque</a>
+                            </button>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="buscaProduto">
                         <p class="text">
                             @livewire('modal-component', compact('rota'))
                         </p>
-                        <!-- </button> -->
                     </div>
                 </div>
                 <form class="formProduto" action="{{route('produto.store')}}" method="POST">
@@ -56,7 +62,8 @@
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper number" autocomplete="off" type="text" id="custo" step="0.01" name="custo" required>
+                        <input class="inputWrapper number" autocomplete="off" type="text" id="custo" step="0.01"
+                            name="custo" required>
                         <label for="custo" class="userLabel">
                             <p>Custo</p>
                         </label>
@@ -64,16 +71,16 @@
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper number" autocomplete="off" type="text" id="perccusto" step="0.01" name="perccusto"
-                            required>
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="perccusto" step="0.01"
+                                name="perccusto" required>
                             <label for="perccusto" class="userLabel">
                                 <p>% Custo</p>
                             </label>
                         </div>
 
                         <div class="inputGroup">
-                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoavista" name="precoavista"
-                            step="0.01" required>
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoavista"
+                                name="precoavista" step="0.01" required>
                             <label for="precoavista" class="userLabel">
                                 <p>Preço à Vista</p>
                             </label>
@@ -82,16 +89,16 @@
 
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper number" autocomplete="off" type="text" id="percprazo" step="0.01" name="percprazo"
-                            required>
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="percprazo" step="0.01"
+                                name="percprazo" required>
                             <label for="percprazo" class="userLabel">
                                 <p>% Prazo</p>
                             </label>
                         </div>
 
                         <div class="inputGroup">
-                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoaprazo" step="0.01"
-                            name="precoaprazo" required>
+                            <input class="inputWrapper number" autocomplete="off" type="text" id="precoaprazo"
+                                step="0.01" name="precoaprazo" required>
                             <label for="precoaprazo" class="userLabel">
                                 <p>Preço à Prazo</p>
                             </label>

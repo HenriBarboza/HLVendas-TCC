@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/scss/home.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
-    <title>Cliente</title>
+    <title>Editar Condição de Pagmamento</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <div class="clienteCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Editar Cliente</h1>
+                    <h1>Editar Condição de Pagmamento</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{ route('condicaoPagamento.create') }}">Cancelar</a>

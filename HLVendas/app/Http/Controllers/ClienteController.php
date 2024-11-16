@@ -15,8 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::all();
-        return view("cliente.index", compact('clientes'));
+        return view('cliente.create');
     }
 
     /**
@@ -107,6 +106,6 @@ class ClienteController extends Controller
         $clientes->delete();
 
         return redirect()->route('cliente.create')
-                        ->with('success','Cliente excluído com sucesso!') ;
+                        ->with('success',"Cliente excluído com sucesso!") ;
     }
 }

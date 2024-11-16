@@ -48,9 +48,10 @@
                             <td>R${{$produto->custo}}</td>
                             <td>{{$produto->categoria}}</td>
                             <td>{{$produto->estoque}}</td>
-                            <td wire:key="{{$produto->id}}"><input type="number" wire:model="custos.{{ $produto->id }}" placeholder="{{$produto->custo}}" /></td>
+                            <td wire:key="{{$produto->id}}"><input type="number" wire:model="custos.{{ $produto->id }}"
+                                    placeholder="{{$produto->custo}}" /></td>
                             <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
-                                    step="0.01" placeholder="1" min="0.1"/></td>
+                                    step="0.01" placeholder="1" min="0.1" /></td>
                             <td wire:key="{{$produto->id}}"><button wire:click="addProdutoCompra({{ $produto->id }})"
                                     @click="open = false" @click.prevent>Adicionar</button></td>
                         </tr>
@@ -76,8 +77,36 @@
                             <td>R${{$produto->precoavista}}</td>
                             <td>R${{$produto->precoaprazo}}</td>
                             <td>{{$produto->estoque}}</td>
-                            <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}" step="0.01" placeholder="1" min="0.1" /></td>
-                            <td wire:key="{{$produto->id}}"><button wire:click="addProdutoVenda({{ $produto->id }})" @click="open = false" @click.prevent>Adicionar</button></td>
+                            <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
+                                    step="0.01" placeholder="1" min="0.1" /></td>
+                            <td wire:key="{{$produto->id}}"><button wire:click="addProdutoVenda({{ $produto->id }})"
+                                    @click="open = false" @click.prevent>Adicionar</button></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            @elseif($rota == 4)
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descricao</th>
+                        <th>Preço AV</th>
+                        <th>Preço AP</th>
+                        <th>Categoria</th>
+                        <th>Estoque</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($produtos as $produto)
+                        <tr>
+                            <td>{{$produto->id}}</td>
+                            <td>{{$produto->descricao}}</td>
+                            <td>{{$produto->precoavista}}</td>
+                            <td>{{$produto->precoaprazo}}</td>
+                            <td>{{$produto->categoria}}</td>
+                            <td>{{$produto->estoque}}</td>
+                            <td class="acao"><button @click.prevent class="btn-produto-id" value="{{$produto->id}}"
+                                    data-nome="{{$produto->descricao}}" @click="open = false">Selecionar</button></td>
                         </tr>
                     @endforeach
                 </tbody>
