@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('motivo');
             $table->integer('produtoid');
             $table->float('quantidade');
-            $table->string('observacao');
-            $table->string('tipomovimentacao')->nullable();
+            $table->string('observacao')->nullable();
+            $table->string('tipomovimentacao');
             $table->timestamps();
 
         });
