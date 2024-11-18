@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss','resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
-    <title>Nova Venda</title>
+    <title>HLVendas | Nova venda</title>
 </head>
 
 <?php 

@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/loadingPage.js'])
-    <title>Nova Conta</title>
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
+    @vite(['resources/scss/tableBusca.scss','resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/loadingPage.js'])
+    <title>HLVendas | Nova conta</title>
 </head>
 
 <?php 

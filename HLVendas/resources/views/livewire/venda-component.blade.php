@@ -25,37 +25,45 @@
                 </div>
             </div>
             <h4>Produtos da venda</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Descrição</th>
-                        <th>Quantidade</th>
-                        <th>Preco</th>
-                        <th>Total</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($vetProd as $index => $produto)
+            <div class="tableHead">
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ $produto['produto_id'] }}</td>
-                            <td>{{ $produto['descricao'] }}</td>
-                            <td>{{ $produto['quantidade'] }}</td>
-                            <td>R$ {{ $produto['preco'] }}</td>
-                            <td>R$ {{ $produto['preco'] * $produto['quantidade'] }}</td>
-                            <td><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
-                            <input type="hidden" name="produtos[{{$index}}][produto_id]" value="{{ $produto['produto_id'] }}">
-                            <input type="hidden" name="produtos[{{$index}}][quantidade]" value="{{ $produto['quantidade'] }}">
-                            <input type="hidden" name="produtos[{{$index}}][preco]" value="{{ $produto['preco'] }}">
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Quantidade</th>
+                            <th>Preco</th>
+                            <th>Total</th>
+                            <th>Ações</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                </table>
+            </div>
+            <div class="tableBody">
+                <table>
+                    <tbody>
+                        @foreach($vetProd as $index => $produto)
+                            <tr>
+                                <td>{{ $produto['produto_id'] }}</td>
+                                <td>{{ $produto['descricao'] }}</td>
+                                <td>{{ $produto['quantidade'] }}</td>
+                                <td>R$ {{ $produto['preco'] }}</td>
+                                <td>R$ {{ $produto['preco'] * $produto['quantidade'] }}</td>
+                                <td><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
+                                <input type="hidden" name="produtos[{{$index}}][produto_id]"
+                                    value="{{ $produto['produto_id'] }}">
+                                <input type="hidden" name="produtos[{{$index}}][quantidade]"
+                                    value="{{ $produto['quantidade'] }}">
+                                <input type="hidden" name="produtos[{{$index}}][preco]" value="{{ $produto['preco'] }}">
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <div>
                 <div class="contentInput">
-                    <input class="inputWrapper showProduto" type="number" name="totalvenda" value="{{ $this->calcularTotal() }}"
-                        readonly>
+                    <input class="inputWrapper showVend" type="number" name="totalvenda"
+                        value="{{ $this->calcularTotal() }}" readonly>
                     <label for="totalvenda" class="userLabel">
                         <p>Total R$</p>
                     </label>
@@ -63,7 +71,7 @@
             </div>
         </div>
     @else
-        <h4 style="margin-top: 1rem;">Adicione produtos na venda</h4>
+        <h4 style="margin-top: 0.5rem;">Adicione produtos na venda</h4>
         <input type="text" hidden required>
     @endif
 </div>

@@ -17,7 +17,7 @@ class BuscaClientes extends Component
     {  
         
         return view('livewire.busca-clientes', [
-            'clientes' => cliente::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),
+            'clientes' => cliente::where('nome', 'like', '%' . $this->busca . '%')->get(),
         ]);
     }
 }

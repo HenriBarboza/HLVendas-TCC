@@ -2,56 +2,110 @@ $white: #ffffff;
 $black: #2d2c2c;
 
 .search {
-  border-radius: 0.5rem !important;
-  width: 100%;
+    border-radius: 0.5rem !important;
+    width: 100%;
 }
 
-table {
-  width: 100%;
-  margin-top: 2rem;
-  border-collapse: collapse;
+.tableHead {
+    table {
+        width: 100%;
+        margin-top: 2rem;
+        border-collapse: collapse;
 
-  thead {
-    tr {
-      th {
-        text-align: center;
-        padding: 0.5rem;
-        border-top: 0.3rem solid $black;
-        border-bottom: 0.3rem solid $black;
-        font-weight: bold;
-      }
+        thead {
+            tr {
+                th {
+                    width: calc(100% / 8);
+                    text-align: center;
+                    padding: 0.5rem;
+                    border-top: 0.3rem solid $black;
+                    border-bottom: 0.3rem solid $black;
+                    font-weight: bold;
+                }
+            }
+        }
     }
-  }
+}
 
-  tbody {
-    tr {
-      &:nth-child(odd) {
-        background-color: #ececec;
-      }
+.tableBody {
+    height: 10rem;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-      td {
-        padding: 1rem;
-        text-align: center;
-        border-bottom: 0.2rem solid $black;
-        font-size: 1rem;
-        transition: 0.4s;
-
-        &:not(:nth-of-type(1)) {
-          border-top: 0.2rem solid $black;
-        }
-
-        &.acao {
-          &:hover {
-            background-color: $black;
-            color: $white;
-          }
-        }
-
-        input[type="number"] {
-          border: 0.1rem solid $black;
-          border-radius: 0.5rem;
-        }
-      }
+    &::-webkit-scrollbar {
+      width: 0.3rem;
     }
-  }
+  
+    &::-webkit-scrollbar-track {
+      background-color: rgba($white, 0.2);
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: $black;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        tbody {
+            tr {
+                &:nth-child(odd) {
+                    background-color: #ececec;
+                }
+
+                td {
+                    width: calc(100% / 8);
+                    padding: 1rem;
+                    text-align: center;
+                    border-bottom: 0.2rem solid $black;
+                    font-size: 1rem;
+                    transition: 0.4s;
+
+                    &.acao {
+                        &:hover {
+                            background-color: $black;
+                            color: $white;
+                            text-decoration: underline;
+                        }
+                    }
+
+                    input[type="number"] {
+                        border: 0.1rem solid $black;
+                        border-radius: 0.5rem;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.tableHead06 {
+    @extend .tableHead;
+
+    table {
+        thead {
+            tr {
+                th {
+                    width: calc(100% / 6);
+                }
+            }
+        }
+    }
+}
+
+.tableBody06 {
+    @extend .tableBody;
+
+    table {
+        tbody {
+            tr {
+                td {
+                    width: calc(100% / 6);
+                }
+            }
+        }
+    }
 }

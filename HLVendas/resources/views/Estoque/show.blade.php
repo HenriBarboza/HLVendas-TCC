@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
-    <title>Manutenção de estoque</title>
+    <title>HLVendas | Manutenção de estoque</title>
 </head>
 
 <body>
@@ -95,8 +96,8 @@
                             Editar
                         </button>
                     </form>
-                    <form class="deleteCliente" id="deleteForm"
-                        action="{{route('estoque.destroy', $movimentos->id)}}" method="POST">
+                    <form class="deleteCliente" id="deleteForm" action="{{route('estoque.destroy', $movimentos->id)}}"
+                        method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="">

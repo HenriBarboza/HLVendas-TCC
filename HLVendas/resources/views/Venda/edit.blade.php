@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
-    <title>Editar Venda</title>
+    <title>HLVendas | Editar venda</title>
 </head>
 
 <?php 
@@ -15,15 +16,15 @@
  ?>
 
 <body>
-    <div class="contentCompra">
+    <div class="contentVenda">
         <div class="box">
             @include('components.navbar')
         </div>
 
-        <div class="compraCrud">
+        <div class="vendaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <div class="newCompra">
+                    <div class="newVenda">
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -34,11 +35,11 @@
                             </div>
                         @endif
                     </div>
-                    <div class="buscaCompra">
+                    <div class="buscaVenda">
                         @livewire('modal-venda-component')
                     </div>
                 </div>
-                <form class="formCompra" action="{{route('venda.update', $venda->id)}}" method="POST">
+                <form class="formVenda" action="{{route('venda.update', $venda->id)}}" method="POST">
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">

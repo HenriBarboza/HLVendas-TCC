@@ -13,7 +13,9 @@
         <div class="navbar">
             <div class="contentLogo">
                 <div class="logo">
-                    <img src="{{ asset('images/logo02.png') }}" alt="">
+                    <a href="/">
+                        <img src="{{ asset('images/logo02.png') }}" alt="">
+                    </a>
                 </div>
             </div>
 
@@ -21,44 +23,37 @@
                 <ul class="lista">
                     <li class="text">
                         <a href="/cliente/create">
-                            <i class="fa-solid fa-circle-user icon" alt="Clientes"></i>
-                            <!-- Clientes -->
+                            <i class="fa-solid fa-circle-user icon tooltip" data-tooltip="Clientes"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a href="/produto/create">
-                            <i class="fa-solid fa-boxes-stacked icon"></i>
-                            <!-- Produtos -->
+                            <i class="fa-solid fa-boxes-stacked icon tooltip" data-tooltip="Produtos"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a href="/venda/create">
-                            <i class="fa-solid fa-money-bill-wave icon"></i>
-                            <!-- Venda -->
+                            <i class="fa-solid fa-money-bill-wave icon tooltip" data-tooltip="Venda"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a href="/compra/create">
-                            <i class="fa-solid fa-basket-shopping icon"></i>
-                            <!-- Compra -->
+                            <i class="fa-solid fa-basket-shopping icon tooltip" data-tooltip="Compra"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a href="/fornecedor/create">
-                            <i class="fa-solid fa-handshake icon"></i>
-                            <!-- Fornecedores -->
+                            <i class="fa-solid fa-handshake icon tooltip" data-tooltip="Fornecedores"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a href="/funcionario/create">
-                            <i class="fa-solid fa-user-tie icon"></i>
-                            <!-- Funcionarios -->
+                            <i class="fa-solid fa-user-tie icon tooltip" data-tooltip="Funcionarios"></i>
                         </a>
                     </li>
                     <li class="text">
                         <a id="btn-conta">
-                            <i class="fa-solid fa-cash-register icon"></i>
-                            <!-- Conta -->
+                            <i class="fa-solid fa-cash-register icon tooltip" data-tooltip="Conta"></i>
                         </a>
                     </li>
                 </ul>
@@ -81,15 +76,14 @@
 
                     <div class="dropdown-content">
                         <a href="<?php    echo route('profile.edit'); ?>" class="dropdown-link">
-                            <?php    echo __('Profile'); ?>
+                            <?php    echo __('Perfil'); ?>
                         </a>
 
-                        <!-- Authentication -->
                         <form method="POST" action="<?php    echo route('logout'); ?>" id="logout-form">
                             <?php    echo csrf_field(); ?>
                             <a href="<?php    echo route('logout'); ?>" class="dropdown-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <?php    echo __('Log Out'); ?>
+                                <?php    echo __('Sair'); ?>
                             </a>
                         </form>
                     </div>
@@ -111,4 +105,3 @@
 </body>
 
 </html>
-

@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
-    <title>Visualizar Compra</title>
+    <title>HLVendas | Visualizar compra</title>
 </head>
 
 <body>
@@ -48,7 +49,8 @@
                         <p>Fornecedor: {{ $compra->fornecedor->nome }}</p>
                         <p>Funcionário: {{ $compra->funcionario->nome }}</p>
                         <p>Desconto %: {{ $compra->percdesconto == 0 ? 'Sem adicional' : $compra->percdesconto }}</p>
-                        <p>Valor adicional %: {{ $compra->percadicional == 0 ? 'Sem adicional' : $compra->percadiciona }}</p>
+                        <p>Valor adicional %:
+                            {{ $compra->percadicional == 0 ? 'Sem adicional' : $compra->percadiciona }}</p>
 
                         <p>Data: {{ $compra->created_at }}</p>
 
@@ -89,9 +91,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <div>
-                                <button type="submit">
-                                    <p class="text">Excluir</p>
-                                </button>
+                                    <button type="submit">
+                                        <p class="text">Excluir</p>
+                                    </button>
                                 </div>
                             </form>
                         </div>

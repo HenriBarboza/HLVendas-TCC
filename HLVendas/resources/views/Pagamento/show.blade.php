@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/selectPagamento.js'])
-    <title>Pagamento</title>
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/selectPagamento.js', 'resources/js/printPdf.js'])
+    <title>HLVendas | Visualizar pagamento</title>
 </head>
 
 <body>
     <div class="contentCompra">
-        <div class="box">
+        <div class="box not-print">
             @include('components.navbar')
         </div>
 
@@ -20,23 +21,21 @@
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Pagamento</h1>
+                    <h1 class="not-print">Pagamento</h1>
                     <div class="newCompra">
                         <div class="button">
                             <button>
                                 <a href="/venda">
-                                    <p class="text">Nova venda</p>
+                                    <p class="text not-print">Nova venda</p>
                                 </a>
                             </button>
                             <button>
                                 <a href={{route('venda.show', $pagamentos[0]->vendaid)}}>
-                                    <p class="text">Ver venda</p>
+                                    <p class="text not-print">Ver venda</p>
                                 </a>
                             </button>
-                            <button>
-                                <a href="/venda">
-                                    <p class="text">Imprimir</p>
-                                </a>
+                            <button id="download-btn">
+                                <p class="text not-print">Imprimir</p>
                             </button>
                         </div>
                     </div>
@@ -75,9 +74,7 @@
                 </table>
             </div>
         </div>
-        <!-- </div> -->
         @livewireScripts
-        @include('components.footer')
     </div>
 </body>
 
