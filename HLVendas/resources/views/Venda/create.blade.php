@@ -52,17 +52,25 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="clienteid" id="inpClienteId" hidden>
-                            <input style="border-color: #0B57D0;" class="inputWrapper" type="text" placeholder="Cliente" id="inpClienteNome" disabled>
+                            <input class="inputWrapper" type="number" name="clienteid" id="inpClienteId" required="" hidden>
+                            <input style="border-color: #0B57D0;" class="inputWrapper" type="text" id="inpClienteNome" disabled>
+                            <label for="clienteid" class="userLabel">
+                                <p>Cliente</p>
+                            </label>
                         </div>
                         <div class="inputGroup">
-                            @livewire('modal-cliente-component', compact(var_name: 'rota'))
+                            <div class="livewire">
+                                @livewire('modal-cliente-component', compact(var_name: 'rota'))
+                            </div>
                         </div>
                     </div>
                     <div class="contentInput">
                         <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
-                            placeholder="Funcionário da Venda" required="">
+                         required="">
                         <input style="border-color: #0B57D0;" class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+                        <label for="funcionarioid" class="userLabel">
+                            <p>Funcionário da venda</p>
+                        </label>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">

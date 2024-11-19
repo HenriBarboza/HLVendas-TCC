@@ -12,7 +12,7 @@
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <p class="text">Buscar Vendas</p>
                 @livewire('busca-venda')
-                <button @click.prevent="open = false" class="mt-4">
+                <button @click.prevent="open = false" class="mt-4 buttonVendClose">
                     <p class="text">Fechar</p>
                 </button>
             </div>

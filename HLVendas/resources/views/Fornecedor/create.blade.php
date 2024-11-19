@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/tableBusca.scss','resources/scss/header.scss','resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/tableBusca.scss', 'resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Novo fornecedor</title>
 </head>
 
@@ -22,21 +22,20 @@
         <div class="loader">
             <div class="loading"></div>
         </div>
-        
+
         <div class="fornecedorCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newFornecedor">
-                        <h1>Novo Fornecedor</h1>
-                    </div>
-
-                    <div class="buscaFornecedor">
-                        @livewire('modal-fornecedor-component', compact('rota'))
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
                             </div>
                         @endif
+                    </div>
+
+                    <div class="buscaFornecedor">
+                        @livewire('modal-fornecedor-component', compact('rota'))
                     </div>
                 </div>
 
@@ -57,14 +56,16 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone" required="">
+                            <input autocomplete="off" class="inputWrapper phone" type="text" name="telefone"
+                                required="">
                             <label for="telefone" class="userLabel">
                                 <p>Telefone</p>
                             </label>
                         </div>
 
                         <div class="inputGroup">
-                            <input autocomplete="off" class="inputWrapper cpfcnpj" type="text" name="cpfcnpj" required="">
+                            <input autocomplete="off" class="inputWrapper cpfcnpj" type="text" name="cpfcnpj"
+                                required="">
                             <label for="cpfcnpj" class="userLabel">
                                 <p>CPF/CNPJ</p>
                             </label>

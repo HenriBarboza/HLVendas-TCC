@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/header.scss','resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Nova compra</title>
 </head>
 
@@ -54,12 +54,16 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden>
-                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text" placeholder="Fornecedor" id="inpFornecedorNome"
-                                disabled>
+                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId"
+                                required="" hidden>
+                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text"
+                                id="inpFornecedorNome" disabled>
+                            <label for="fornecedorid" class="userLabel">
+                                <p>Fornecedor</p>
+                            </label>
                         </div>
                         <div class="inputGroup">
-                            <div class="inputWrapper buttonForn">
+                            <div class="livewire">
                                 @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                             </div>
                         </div>
@@ -74,8 +78,12 @@
                         </div>
                         <div class="inputGroup">
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
-                                name="funcionarioid" placeholder="Funcionário da Venda" required>
-                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                                name="funcionarioid" required>
+                            <input style="border-color: #0B57D0;" class="inputWrapper w50" type="text"
+                                value="{{Auth::user()->name}}" disabled>
+                            <label for="funcionarioid" class="userLabel">
+                                <p>Funcionário da venda</p>
+                            </label>
                         </div>
                     </div>
 

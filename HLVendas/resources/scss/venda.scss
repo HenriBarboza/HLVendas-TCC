@@ -9,6 +9,11 @@ $body: #f5f5f5;
     gap: 0 !important;
 }
 
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
 body {
     background-color: $body;
 }
@@ -75,6 +80,15 @@ body {
             flex-direction: column;
             border-radius: 1rem;
 
+            &.tables {
+                width: 65rem;
+
+                .title {
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                }
+            }
+
             .contentButton {
                 width: 90%;
                 display: flex;
@@ -82,6 +96,10 @@ body {
                 justify-content: space-between;
 
                 .newVenda,
+                .showVenda,
+                .pdfVenda,
+                .buttonBack,
+                .deleteVend,
                 .buscaVenda {
                     button {
                         width: 10rem;
@@ -100,6 +118,45 @@ body {
 
                             .text {
                                 color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .overflow {
+                margin-top: 2rem;
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+
+                    thead {
+                        tr {
+                            th {
+                                width: calc(100% / 10);
+                                text-align: center;
+                                padding: 0.5rem;
+                                border-top: 0.2rem solid $black;
+                                border-bottom: 0.2rem solid $black;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            &:not(:nth-of-type(1)) {
+                                border-top: 0.2rem solid $black;
+                            }
+
+                            &:last-child {
+                                border-bottom: 0.2rem solid $black;
+                            }
+
+                            td {
+                                width: calc(100% / 10);
+                                text-align: center;
+                                padding: 0.5rem;
                             }
                         }
                     }
@@ -179,6 +236,23 @@ body {
                                 outline: none;
                                 box-shadow: none;
                                 border-color: #0b57d0;
+                            }
+                        }
+
+                        &.placeholderActive {
+                            border-color: $black !important;
+
+                            ~ .userLabel {
+                                transform: translateY(-0.3rem) scale(0.8);
+                                background-color: $white;
+                                padding: 0 0.25em;
+                                outline: none;
+                                box-shadow: none;
+
+                                p {
+                                    color: $black;
+                                    /* Cor diferente para distinguir */
+                                }
                             }
                         }
                     }
@@ -282,9 +356,9 @@ body {
                             border-collapse: collapse;
                             tbody {
                                 tr {
-                                  &:not(:nth-of-type(1)){
-                                    border-top: 0.2rem solid $black;
-                                  }
+                                    &:not(:nth-of-type(1)) {
+                                        border-top: 0.2rem solid $black;
+                                    }
                                     td {
                                         width: calc(100% / 4);
                                         text-align: center;
@@ -302,6 +376,68 @@ body {
                         &:nth-of-type(11) {
                             margin-top: 1rem;
                             border-top: 0.1rem solid $black;
+                        }
+                    }
+                }
+
+                .livewire {
+                    .buttonProdClose,
+                    .buttonCliClose {
+                        width: 10rem;
+                        border: 0.2rem solid $black;
+                        background-color: $white;
+                        border-radius: 2rem;
+                        padding: 0.5rem;
+                        transition: 0.5s;
+
+                        .text {
+                            margin: 0;
+                        }
+
+                        &:hover {
+                            background-color: $black;
+
+                            .text {
+                                color: $white;
+                            }
+                        }
+                    }
+
+                    .accordion {
+                        .subtitle {
+                            margin-top: 0.5rem;
+                            font-size: 1.2rem;
+                            font-weight: bold;
+                        }
+
+                        .buttonCalc {
+                            width: 20%;
+                            border: 0.2rem solid $black;
+                            border-radius: 2rem;
+                            padding: 0.5rem;
+                            transition: 0.4s;
+
+                            &:hover {
+                                color: $white;
+                                background-color: $black;
+                            }
+                        }
+
+                        .buttonOp {
+                            @extend .buttonCalc;
+                            width: 50%;
+                            padding: 0.2rem;
+                            margin-top: 1rem;
+                        }
+
+                        .tableHead {
+                            table {
+                                margin-top: 0.5rem;
+                            }
+                        }
+
+                        .tableBody {
+                            height: 7rem;
                         }
                     }
                 }

@@ -79,7 +79,8 @@ body {
 
         .newFornecedor,
         .buscaFornecedor {
-          button {
+          button,
+          .buttonForn {
             width: 15rem;
             border: 0.2rem solid $black;
             background-color: $white;

@@ -2,7 +2,7 @@
     @if(count($vetProd) > 0)
         <div class="accordion">
             <div x-data="{ open: false }">
-                <button @click.prevent class="accordion-header" @click="open = !open">Opções de preço</button>
+                <button @click.prevent class="accordion-header buttonOp" @click="open = !open">Opções de preço</button>
                 <div class="accordion-content" x-show="open" x-transition>
                     <div class="contentInput">
                         <div class="inputGroup">
@@ -20,11 +20,11 @@
                                 <p>% Adicional</p>
                             </label>
                         </div>
-                        <button @click.prevent wire:click="calcularOutros">Calcular</button>
+                        <button @click.prevent wire:click="calcularOutros" class="buttonCalc">Calcular</button>
                     </div>
                 </div>
             </div>
-            <h4>Produtos da venda</h4>
+            <h4 class="subtitle">Produtos da venda</h4>
             <div class="tableHead">
                 <table>
                     <thead>
@@ -49,7 +49,7 @@
                                 <td>{{ $produto['quantidade'] }}</td>
                                 <td>R$ {{ $produto['preco'] }}</td>
                                 <td>R$ {{ $produto['preco'] * $produto['quantidade'] }}</td>
-                                <td><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
+                                <td class="acao"><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
                                 <input type="hidden" name="produtos[{{$index}}][produto_id]"
                                     value="{{ $produto['produto_id'] }}">
                                 <input type="hidden" name="produtos[{{$index}}][quantidade]"

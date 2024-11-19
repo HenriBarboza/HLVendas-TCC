@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/tableBusca.scss','resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/buttonSelect.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/tableBusca.scss', 'resources/scss/header.scss', 'resources/scss/estoque.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/buttonSelect.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Manutenção de estoque</title>
 </head>
 
@@ -16,7 +16,7 @@
  ?>
 
 <body>
-    <div class="contentCliente">
+    <div class="contentEstoque">
         <div class="box">
             @include('components.navbar')
         </div>
@@ -24,10 +24,10 @@
             <div class="loading"></div>
         </div>
 
-        <div class="clienteCrud">
+        <div class="estoqueCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <div class="newCliente">
+                    <div class="newEstoque">
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -35,12 +35,12 @@
                         @endif
                     </div>
 
-                    <div id="div2" class="buscaCliente">
+                    <div id="div2" class="buscaEstoque">
                         @livewire('modal-estoque-component', compact(var_name: 'rota'))
                     </div>
                 </div>
 
-                <form class="formCliente" action="{{route('estoque.store')}}" method="POST">
+                <form class="formEstoque" action="{{route('estoque.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput not-gap">
                         <input autocomplete="off" class="inputWrapper" type="text" name="motivo" required="">
@@ -53,20 +53,26 @@
                         <div class="inputGroup">
                             <input class="inputWrapper" type="number" name="produtoid" id="inpProdutoId" required
                                 hidden>
-                            <input style="border-color: #0B57D0;" class="inputWrapper" type="text" placeholder="Produto"
+                            <input style="border-color: #0B57D0;" class="inputWrapper" type="text" 
                                 id="inpProdutoNome" disabled>
+                            <label for="produtoid" class="userLabel">
+                                <p>Produto</p>
+                            </label>
                         </div>
                         <div class="inputGroup">
-                            @livewire('modal-component', compact(var_name: 'rota'))
+                            <div class="livewire">
+                                @livewire('modal-component', compact(var_name: 'rota'))
+                            </div>
                         </div>
                     </div>
                     <div class="contentInput">
-                        <div class="inputGroup">
-                            <input autocomplete="off" class="inputWrapper" type="text" name="quantidade" required>
-                            <label for="quantidade" class="userLabel">
-                                <p>Quantidade</p>
-                            </label>
-                        </div>
+                        <input autocomplete="off" class="inputWrapper" type="text" name="quantidade" required>
+                        <label for="quantidade" class="userLabel">
+                            <p>Quantidade</p>
+                        </label>
+                    </div>
+
+                    <div class="contentInput">
                         <div class="contentInput radio">
                             <p class="text"><label for="tipomovimentacao">Tipo de movimentação:</label></p>
                             <input type="radio" id="entrada" value="E" name="tipomovimentacao" checked>
@@ -76,8 +82,8 @@
                         </div>
                     </div>
                     <div class="contentInput not-gap">
-                        <input  class="inputWrapper" type="text" name="observacao">
-                        <label for="observacao" class="userLabel" >
+                        <input class="inputWrapper placeholderActive" type="text" name="observacao">
+                        <label for="observacao" class="userLabel">
                             <p>Observação</p>
                         </label>
                     </div>

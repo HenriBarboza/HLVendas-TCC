@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/header.scss', 'resources/scss/estoque.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Manutenção de estoque</title>
 </head>
 
 <body>
-    <div class="contentCliente">
+    <div class="contentEstoque">
         <div class="box">
             @include('components.navbar') 
         </div>
@@ -18,7 +18,7 @@
             <div class="loading"></div>
         </div>
 
-        <div class="clienteCrud">
+        <div class="estoqueCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <h1>Manutenção de estoque</h1>
@@ -28,18 +28,18 @@
                     </div>
                 </div>
 
-                <form class="formCliente">
+                <form class="formEstoque">
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="id" value="{{$movimentos->id}}"
+                        <input class="inputWrapper showEstoque" type="text" name="id" value="{{$movimentos->id}}"
                             readonly>
                         <label for="id" class="userLabel">
                             <p>Id:</p>
                         </label>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="motivo"
+                        <input class="inputWrapper showEstoque" type="text" name="motivo"
                             value="{{$movimentos->motivo}}" readonly>
                         <label for="motivo" class="userLabel">
                             <p>Motivo:</p>
@@ -47,14 +47,14 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper showCliente" type="text" name="produtoid"
+                            <input class="inputWrapper showEstoque" type="text" name="produtoid"
                                 value="{{$movimentos->produto->descricao}}" readonly>
                             <label for="produtoid" class="userLabel">
                                 <p>Produto:</p>
                             </label>
                         </div>
                         <div class="inputGroup">
-                            <input class="inputWrapper showCliente" type="text" name="quantidade"
+                            <input class="inputWrapper showEstoque" type="text" name="quantidade"
                                 value="{{$movimentos->quantidade}}" readonly>
                             <label class="userLabel" for="quantidade">
                                 <p>Quantidade:</p>
@@ -70,33 +70,32 @@
                         @endif
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="observacao"
+                        <input class="inputWrapper showEstoque" type="text" name="observacao"
                             value="{{$movimentos->observacao}}" readonly>
                         <label for="observacao" class="userLabel">
                             <p>Observação:</p>
                         </label>
                     </div>
                     <div class="contentInput">
-                        <div class="contentInput">
-                            <div class="inputGroup">
-                                <label class="labelDate" for="created_at">Data De Cadastro:</label>
-                                <input class="inputWrapper" type="datetime-local" name="created_at"
-                                    value="{{$movimentos->created_at}}" readonly>
-                            </div>
-                            <div class="inputGroup">
-                                <label class="labelDate" for="updated_at">Última Alteração:</label>
-                                <input class="inputWrapper" type="datetime-local" name="updated_at"
-                                    value="{{$movimentos->updated_at}}" readonly>
-                            </div>
+                        <div class="inputGroup">
+                            <label class="labelDate" for="created_at">Data De Cadastro:</label>
+                            <input class="inputWrapper" type="datetime-local" name="created_at"
+                                value="{{$movimentos->created_at}}" readonly>
                         </div>
+                        <div class="inputGroup">
+                            <label class="labelDate" for="updated_at">Última Alteração:</label>
+                            <input class="inputWrapper" type="datetime-local" name="updated_at"
+                                value="{{$movimentos->updated_at}}" readonly>
+                        </div>
+                    </div>
                 </form>
                 <div class="contentFormAcao">
-                    <form class="editCliente" action="{{route('estoque.edit', $movimentos->id) }}">
+                    <form class="editEstoque" action="{{route('estoque.edit', $movimentos->id) }}">
                         <button type="submit">
                             Editar
                         </button>
                     </form>
-                    <form class="deleteCliente" id="deleteForm" action="{{route('estoque.destroy', $movimentos->id)}}"
+                    <form class="deleteEstoque" id="deleteForm" action="{{route('estoque.destroy', $movimentos->id)}}"
                         method="POST">
                         @csrf
                         @method('DELETE')

@@ -1,5 +1,5 @@
 <div>
-    <input type="search" wire:model.live="busca" placeholder="Digite um nome...">
+    <input class="search" type="search" wire:model.live="busca" placeholder="Digite um nome...">
     @if(count($fornecedores) > 0)
         <div class="tableHead06">
 

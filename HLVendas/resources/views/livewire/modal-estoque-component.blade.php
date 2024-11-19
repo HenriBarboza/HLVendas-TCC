@@ -1,7 +1,7 @@
 <div>
     <div x-data="{ open: $wire.entangle('isOpen').live }">
         <div class="flex justify-center items-center">
-            <button @click.prevent="open = true" class=" inputWrapper">
+            <button @click.prevent="open = true" class=" inputWrapper buttonEsto">
                 <p class="text">Buscar Manutenção de Est.</p>
             </button>
         </div>
@@ -11,8 +11,11 @@
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-lg">Buscar Manutenção de Estoque</h2>
                 @livewire('busca-estoque', compact('rota'))
-                <button @click.prevent="open = false"
-                    class="mt-4 bg-blue-500 text-black px-4 py-2 rounded">Fechar</button>
+                <button @click.prevent="open = false" class="mt-4 buttonEstoClose">
+                    <p class="text">
+                        Fechar
+                    </p>
+                </button>
             </div>
         </div>
     </div>

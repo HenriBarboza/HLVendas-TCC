@@ -3,6 +3,6 @@ window.onload = function () {
   if (loader) {
       setTimeout(function () {
           loader.classList.add('hide'); // Esconde o loader
-      }, 500)
+      }, 700)
   }
 };

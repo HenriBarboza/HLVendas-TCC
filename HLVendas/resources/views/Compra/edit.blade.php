@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/scc/tableBusca.scss' ,'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar compra</title>
 </head>
 
@@ -20,8 +20,10 @@
         <div class="box">
             @include('components.navbar')
         </div>
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
 
-        <!-- <div class="contentCompra"> -->
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
@@ -47,33 +49,53 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="text" name="doc" placeholder="Documento"
+                        <input class="inputWrapper number showCompra" type="text" name="doc"
                             value="{{$compra->doc}}" disabled>
+                        <label for="doc" class="userLabel">
+                            <p class="text">
+                                Documento
+                            </p>
+                        </label>
                     </div>
-                    @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
                     <div class="contentInput">
-                        <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
+                        <div class="inputGroup">
+                            <input class="inputWrapper placeholderActive" type="number" name="fornecedorid" id="inpFornecedorId" hidden
                             value="{{$compra->fornecedorid}}"  required>
-                        <input class="inputWrapper w50" type="text" placeholder="Fornecedor"
+                            <input class="inputWrapper" type="text"
                             value="{{$compra->fornecedor->nome}}" id="inpFornecedorNome" disabled>
-                        <select class="inputWrapper w50" name="contaid">
-                            <option value="{{$compra->contaid}}">{{$compra->conta->nome}}</option>
-                            @foreach ($contas as $conta)
-                                <option value="{{$conta->id}}">{{$conta->nome}}</option>
-                            @endforeach
-                        </select>
+                            <label for="fornecedorid" class="userLabel">
+                                <p class="text">
+                                    Fornecedor
+                                </p>
+                            </label>
+                        </div>
+
+                        <div class="inputGroup">
+                            @livewire('modal-fornecedor-component', compact(var_name: 'rota'))
+                        </div>
                     </div>
 
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
-                            placeholder="Funcionário da Venda" required>
-                        <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                        <div class="inputGroup">
+                            <select class="inputWrapper w50" name="contaid">
+                                <option value="{{$compra->contaid}}">{{$compra->conta->nome}}</option>
+                                @foreach ($contas as $conta)
+                                    <option value="{{$conta->id}}">{{$conta->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
+                                placeholder="Funcionário da Venda" required>
+                            <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                        </div>
+                    </div>
+                    
+                    <div class="livewire">
+                        @livewire('modal-component', compact('rota'))
+                        @livewire('compra-component', ['compra' => $produtos])
                     </div>
                     <br>
-                    @livewire('modal-component', compact('rota'))
-                    @livewire('compra-component', ['compra' => $produtos])
-                    <br>
-                    <!-- <button type="submit">Salvar</button> -->
                     <div class="button">
                         <button type="submit">
                             <p class="text">
@@ -84,9 +106,7 @@
                 </form>
             </div>
         </div>
-        <!-- </div> -->
         @livewireScripts
-        @include('components.footer')
     </div>
 </body>
 

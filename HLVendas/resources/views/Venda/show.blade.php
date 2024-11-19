@@ -24,11 +24,6 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newVenda">
-                        <button @click.prevent type="submit">
-                            <a href="{{ route('venda.index') }}">
-                                <p class="text">Voltar </p>
-                            </a>
-                        </button>
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -39,8 +34,12 @@
                             </div>
                         @endif
                     </div>
-                    <div class="buscaVenda">
-                        @livewire('modal-venda-component')
+                    <div class="buttonBack">
+                        <button @click.prevent type="submit">
+                            <a href="{{ route('venda.index') }}">
+                                <p class="text">Voltar </p>
+                            </a>
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -48,29 +47,28 @@
                         <div class="contentShowVend">
                             <h1 class="title">Detalhes da Venda</h1>
                             <h3 class="subtitle">Informações da Venda</h3>
-                            <p class="text">ID: {{ $venda->id }}</p>
-                            <p class="text">Documento: {{ $venda->doc }}</p>
-                            <p class="text">Conta: {{ $venda->conta->nome }}</p>
-                            <p class="text">Cliente: {{ $venda->cliente->nome }}</p>
-                            <p class="text">Funcionário: {{ $venda->funcionario->nome }}</p>
-                            <p class="text">Tabela de preco:
+                            <p class="text"><b>ID</b>: {{ $venda->id }}</p>
+                            <p class="text"><b>Documento</b>: {{ $venda->doc }}</p>
+                            <p class="text"><b>Conta</b>: {{ $venda->conta->nome }}</p>
+                            <p class="text"><b>Cliente</b>: {{ $venda->cliente->nome }}</p>
+                            <p class="text"><b>Funcionário</b>: {{ $venda->funcionario->nome }}</p>
+                            <p class="text"><b>Tabela de preco</b>:
                                 {{ $venda->tabelapreco == 'AV' ? 'Avista' : ($venda->tabelapreco == 'AP' ? 'Aprazo' : '') }}
                             </p>
-                            <p class="text">Condição de pagamento:
+                            <p class="text"><b>Condição de pagamento</b>:
                                 {{$venda->condicaoPagamento == null ? 'Sem condição de pagamento' : $venda->condicaoPagamento->descricao}}
                             </p>
-                            <p class="text">Desconto %:
+                            <p class="text"><b>Desconto %</b>:
                                 {{ $venda->percdesconto == 0 ? 'Sem desconto' : $venda->percdesconto }}
                             </p>
-                            <p class="text">Valor adicional %:
+                            <p class="text"><b>Valor adicional %</b>:
                                 {{ $venda->percadicional == 0 ? 'Sem adicional' : $venda->percadiciona }}
                             </p>
 
-                            <p class="text">Data: {{ $venda->created_at }}</p>
+                            <p class="text"><b>Data</b>: {{ $venda->created_at }}</p>
 
                             <h3 class="subtitle">Produtos da venda</h3>
                             <div class="tableHead">
-
                                 <table>
                                     <thead>
                                         <tr>
@@ -96,7 +94,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text">Total da venda: R$ {{ $venda->totalvenda }}</p>
+                            <p class="text"><b>Total da venda</b>: R$ {{ $venda->totalvenda }}</p>
                         </div>
                     </div>
 

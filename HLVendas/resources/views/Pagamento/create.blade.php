@@ -7,76 +7,90 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/selectPagamento.js'])
+    @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/selectPagamento.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Pagamento</title>
 </head>
 
 <body>
-    <div class="contentCompra">
+    <div class="contentVenda">
         <div class="box">
             @include('components.navbar')
         </div>
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
 
-        <!-- <div class="contentCompra"> -->
-        <div class="compraCrud">
+        <div class="vendaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Pagamento</h1>
+                    <h1 class="title">Pagamento</h1>
+
+                    <form action="{{route('venda.destroy', $venda->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="deleteVend">
+                            <button type="submit">
+                                <p class="text">Cancelar Venda</p>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form class="formCompra" action="{{route('pagamento.store')}}" method="POST">
+                <form class="formVenda" action="{{route('pagamento.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput">
-                        <input class="inputWrapper number" type="number" name="vendaid" value="{{$venda->id}}" readonly hidden required>
-                        <label for="doc" class="labelTop">
+                        <input class="inputWrapper number showVend" type="number" name="vendaid" value="{{$venda->id}}"
+                            readonly hidden required>
+                        <input class="inputWrapper number" type="number" name="doc" value="{{$venda->doc}}" readonly
+                            required>
+                        <label for="doc" class="userLabel">
                             <p>Documento</p>
                         </label>
-                        <input class="inputWrapper number" type="number" name="doc" value="{{$venda->doc}}" readonly required>
                     </div>
                     <div class="contentInput">
-                        <label for="doc" class="labelTop">
+                        <input class="inputWrapper number showVend" type="number" id="valortotal" name="valortotal"
+                            readonly value="{{$venda->totalvenda}}" required>
+                        <label for="doc" class="userLabel">
                             <p>Valor Total</p>
                         </label>
-                        <input class="inputWrapper number" type="number" id="valortotal" name="valortotal" readonly
-                            value="{{$venda->totalvenda}}" required>
                     </div>
                     <br>
                     <hr>
                     <div class="contentInput">
-                        <label for="doc" class="labelTop">
-                            <p>Forma de pagamento</p>
-                        </label>
                         <select class="inputWrapper w50" id="formaPagamentoSelect" name="condicaopagid">
                             @foreach($formaPagamentos as $formaPagamento)
-                                <option value="{{$formaPagamento->id}}"
-                                    data-alterar="{{$formaPagamento->alterarvalor}}"
+                                <option value="{{$formaPagamento->id}}" data-alterar="{{$formaPagamento->alterarvalor}}"
                                     data-qntparcelas="{{$formaPagamento->quantparcelas}}"
-                                    data-diasparcelas="{{$formaPagamento->diasparcelas}}"
-                                    >{{$formaPagamento->descricao}}
+                                    data-diasparcelas="{{$formaPagamento->diasparcelas}}">{{$formaPagamento->descricao}}
                                 </option>
                             @endforeach
                         </select>
+                        <label for="doc" class="userLabel">
+                            <p>Forma de pagamento</p>
+                        </label>
                     </div>
                     <div class="contentInput">
-                        <label for="doc" class="labelTop">
+                        <input class="inputWrapper showVend" type="text" id="valorpago" name="valorpago"
+                            value="{{$venda->totalvenda}}" data-original-value="{{$venda->totalvenda}}" required>
+                        <label for="doc" class="userLabel">
                             <p>Valor Pagamento</p>
                         </label>
-                        <input class="inputWrapper" type="text" id="valorpago"  name="valorpago" 
-                            value="{{$venda->totalvenda}}" data-original-value="{{$venda->totalvenda}}" required>
                     </div>
                     <div id="troco" class="contentInput ">
-                        <label for="doc" class="labelTop">
+                        <input class="inputWrapper number showVend" type="text" id="valortroco" value="0.0" name="troco"
+                            readonly required>
+                        <label for="doc" class="userLabel">
                             <p>Troco</p>
                         </label>
-                        <input class="inputWrapper number" type="text" id="valortroco" value="0.0" name="troco" readonly required>
                     </div>
                     <div id="numerotransacao" class="contentInput ">
-                        <label for="doc" class="labelTop">
+                        <input class="inputWrapper number" type="text" name="numerotransacao" value="Sem número"
+                            required>
+                        <label for="doc" class="userLabel">
                             <p>Numero da transação</p>
                         </label>
-                        <input class="inputWrapper number" type="text" name="numerotransacao" value="Sem número" required>
                     </div>
                     <input id="inputqntparcelas" type="text" name="quantparcelas" hidden required>
-                    <input id="inputdiasparcelas"  type="text" name="diasparcelas" hidden required>
+                    <input id="inputdiasparcelas" type="text" name="diasparcelas" hidden required>
                     <input type="text" name="tabelapreco" value="{{$venda->tabelapreco}}" hidden required>
                     <br>
                     <h4 style="color:red;" id="avisovalor">O valor do pagamento deve ser maior que o valor total.</h4>
@@ -88,15 +102,6 @@
                         </button>
                     </div>
                 </form>
-                <form action="{{route('venda.destroy', $venda->id)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="">
-                    <div class="">
-                        <button type="submit">Cancelar Venda</button>
-                    </div>
-                </div>
-            </form>
             </div>
         </div>
         <!-- </div> -->

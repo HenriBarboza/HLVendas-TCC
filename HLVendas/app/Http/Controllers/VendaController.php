@@ -103,13 +103,13 @@ class VendaController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {  
+    {
         $venda = Venda::with(['cliente', 'funcionario', 'conta'])->findOrFail($id);
-        if($venda->condicaopagid == null){
+        if ($venda->condicaopagid == null) {
             return PagamentoController::create($venda->id);
         }
         $produtos = ProdVenda::where('vendaid', $venda->doc)->with('produto')->get();
-        return view('venda.show', compact('venda','produtos'));
+        return view('venda.show', compact('venda', 'produtos'));
     }
 
     /**
@@ -117,10 +117,10 @@ class VendaController extends Controller
      */
     public function edit(string $id)
     {
-        $venda = Venda::with(['cliente','funcionario','conta'])->findOrFail($id);
-        $produtos = ProdVenda::where('vendaid',$venda->doc)->with('produto')->get();
+        $venda = Venda::with(['cliente', 'funcionario', 'conta'])->findOrFail($id);
+        $produtos = ProdVenda::where('vendaid', $venda->doc)->with('produto')->get();
         $contas = Conta::all();
-        return view('venda.edit', compact('venda','produtos','contas'));
+        return view('venda.edit', compact('venda', 'produtos', 'contas'));
     }
 
     /**
@@ -132,7 +132,7 @@ class VendaController extends Controller
         $pagamentos = Pagamento::where('vendaid', $id)->get();
         $venda->prodVendas()->delete();
 
-        foreach($request->input('produtos') as $produto){
+        foreach ($request->input('produtos') as $produto) {
             $venda->prodVendas()->create([
                 'produtoid' => $produto['produto_id'],
                 'quantidade' => $produto['quantidade'],
@@ -152,6 +152,7 @@ class VendaController extends Controller
         foreach ($pagamentos as $pagamento){
             $pagamento->delete();
         }
+
         ContaController::calcularTotal($request->input('contaid'));
         ClienteController::calcularTotal($request->input('clienteid'));
 
@@ -180,7 +181,7 @@ class VendaController extends Controller
                 ProdutoController::calcularEstoque($produto->id);
                 $prodVenda->delete();
             }
-            foreach ($pagamentos as $pagamento){
+            foreach ($pagamentos as $pagamento) {
                 $pagamento->delete();
             }
             $venda->delete();
@@ -189,11 +190,11 @@ class VendaController extends Controller
             DB::commit();
 
             return redirect()->route('venda.create')->with('success', "Venda removida com sucesso");
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
 
             DB::rollBack();
 
-            return redirect()->back()->withErrors('ocorreu um erro ao remover a venda: '. $e->getMessage());
+            return redirect()->back()->withErrors('ocorreu um erro ao remover a venda: ' . $e->getMessage());
         }
     }
 }

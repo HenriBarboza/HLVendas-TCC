@@ -6,312 +6,344 @@ $black: #2d2c2c;
 $body: #f5f5f5;
 
 .not-gap {
-  gap: 0 !important;
+    gap: 0 !important;
 }
 
 body {
-  background-color: $body;
+    background-color: $body;
 
-  .swal2-shown {
-    overflow: hidden;
-  }
+    .swal2-shown {
+        overflow: hidden;
+    }
 }
 
 .loader {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  background-color: #ccc;
-
-  &.hide {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .loading {
-    border: 4px solid rgba(0, 0, 0, .3);
-    border-left-color: transparent;
-    border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-    animation: spin89345 1s linear infinite;
-  }
-}
-
-.contentEstoque {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-
-  .box {
-    position: relative;
-    z-index: 999;
-  }
-
-  .estoqueCrud {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #ccc;
+
+    &.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loading {
+        border: 4px solid rgba(0, 0, 0, 0.3);
+        border-left-color: transparent;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        animation: spin89345 1s linear infinite;
+    }
+}
+
+.contentEstoque {
+    display: flex;
+    position: fixed;
     width: 100%;
     height: 100%;
 
-    .contentForms {
-      width: 50rem;
-      padding: 2.5rem;
-      box-shadow: $sombra;
-      background-color: $white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      border-radius: 1rem;
+    .box {
+        position: relative;
+        z-index: 999;
+    }
 
-      .contentButton {
-        width: 90%;
+    .estoqueCrud {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-
-        .newEstoque,
-        .buttonBack {
-
-          button,
-          .return {
-            width: 10rem;
-            border: 0.2rem solid $black;
-            background-color: $white;
-            border-radius: 2rem;
-            padding: 0.5rem;
-            transition: 0.5s;
-
-            &.return {
-              padding: 0.5rem 2rem 0.5rem 2rem;
-
-              &:hover {
-                color: $white;
-              }
-            }
-
-            .text {
-              margin: 0;
-            }
-
-            &:hover {
-              background-color: $black;
-
-              .text {
-                color: $white;
-              }
-            }
-          }
-        }
-
-        .buscaEstoque {
-          border: 0.2rem solid $black;
-          background-color: $white;
-          border-radius: 2rem;
-          padding: 0.5rem;
-          transition: 0.5s;
-
-          &:hover {
-            background-color: $black;
-
-            .text {
-              color: $white;
-            }
-          }
-        }
-      }
-
-      .formEstoque {
-        width: 40rem;
-        margin-top: 1rem;
-
-        .contentInput {
-          display: flex;
-          flex-wrap: wrap;
-          margin: 0.5rem 0 0 0;
-          gap: 1rem;
-          position: relative;
-
-          .labelDate {
-            color: $black;
-            font-size: 1.125rem;
-            margin-bottom: -0.5rem;
-          }
-
-          input[type="date"] {
-            color: #575656;
-          }
-
-          .inputGroup {
-            position: relative;
-            width: calc(50% - 0.5rem);
-            display: inline-block;
-          }
-
-          .inputWrapper {
-            width: 100%;
-            border: 0.15rem solid $black;
-            background-color: $white;
-            border-radius: 1rem;
-            transition: 0.4s;
-            margin-top: 0.5rem;
-
-            &.buttonProd {
-              margin: 0;
-              padding: 0.5rem;
-              text-align: center;
-              cursor: pointer;
-            }
-
-            &.buttonEstoque {
-              width: 100%;
-            }
-
-            &:focus,
-            &:valid {
-              outline: none;
-              box-shadow: none;
-              border-color: #0B57D0;
-            }
-
-            &:focus~.userLabel,
-            &:valid~.userLabel {
-              transform: translateY(-0.3rem) scale(0.8);
-              background-color: $white;
-              padding: 0 0.25em;
-              outline: none;
-              box-shadow: none;
-
-              p {
-                color: #0B57D0;
-              }
-            }
-
-            &.showEstoque {
-              &:not([value=""])~.userLabel {
-                transform: translateY(-0.3rem) scale(0.8);
-                background-color: $white;
-                padding: 0 0.25em;
-                outline: none;
-                box-shadow: none;
-                border-color: #0B57D0;
-              }
-            }
-
-            &.placeholderActive {
-              border-color: $black !important;
-
-              ~.userLabel {
-                transform: translateY(-0.3rem) scale(0.8);
-                background-color: $white;
-                padding: 0 0.25em;
-                outline: none;
-                box-shadow: none;
-
-                p {
-                  color: $black;
-                  /* Cor diferente para distinguir */
-                }
-              }
-            }
-          }
-
-          .userLabel {
-            position: absolute;
-            left: 15px;
-            pointer-events: none;
-            transform: translateY(1.2rem);
-            transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
-            p {
-              opacity: 0.8;
-            }
-          }
-        }
-
-        .button {
-          margin-top: 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          button {
-            width: 40%;
-            border: 0.2rem solid $black;
-            background-color: $white;
-            border-radius: 2rem;
-            padding: 0.5rem;
-            transition: 0.5s;
-
-            .text {
-              margin: 0;
-              color: $black;
-            }
-
-            &:hover {
-              background-color: $black;
-
-              .text {
-                color: $white;
-              }
-            }
-          }
-        }
-      }
-
-      .contentFormAcao {
-        padding-top: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 80%;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
         height: 100%;
 
-        .editCliente,
-        .deleteCliente {
-          width: 10rem;
-          height: 100%;
+        .contentForms {
+            width: 50rem;
+            padding: 2.5rem;
+            box-shadow: $sombra;
+            background-color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 1rem;
 
-          button {
-            width: 100%;
-            border: 0.2rem solid $black;
-            padding: 0.5rem;
-            margin: 0;
-            border-radius: 2rem;
-            transition: 0.4s;
+            .contentButton {
+                width: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
 
-            &:hover {
-              background-color: $black;
-              color: $white;
+                .newEstoque,
+                .buscaEstoque,
+                .buttonBack {
+                    button,
+                    .buttonEsto,
+                    .return {
+                        width: 10rem;
+                        border: 0.2rem solid $black;
+                        background-color: $white;
+                        border-radius: 2rem;
+                        padding: 0.5rem;
+                        transition: 0.5s;
+
+                        &.return {
+                            padding: 0.5rem 2rem 0.5rem 2rem;
+
+                            &:hover {
+                                color: $white;
+                            }
+                        }
+
+                        &.buttonEsto {
+                            width: 100%;
+                        }
+
+                        .text {
+                            margin: 0;
+                        }
+
+                        &:hover {
+                            background-color: $black;
+
+                            .text {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+
+                .buttonEstoClose {
+                    border: 0.2rem solid $black;
+                    background-color: $white;
+                    border-radius: 2rem;
+                    padding: 0.5rem;
+                    transition: 0.5s;
+
+                    .text {
+                        color: $black;
+                    }
+
+                    &:hover {
+                        background-color: $black;
+
+                        .text {
+                            color: $white;
+                        }
+                    }
+                }
             }
-          }
+
+            .formEstoque {
+                width: 40rem;
+                margin-top: 1rem;
+
+                .contentInput {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0.5rem 0 0 0;
+                    gap: 1rem;
+                    position: relative;
+
+                    .labelDate {
+                        color: $black;
+                        font-size: 1.125rem;
+                        margin-bottom: -0.5rem;
+                    }
+
+                    input[type="date"] {
+                        color: #575656;
+                    }
+
+                    .inputGroup {
+                        position: relative;
+                        width: calc(50% - 0.5rem);
+                        display: inline-block;
+                    }
+
+                    .inputWrapper {
+                        width: 100%;
+                        border: 0.15rem solid $black;
+                        background-color: $white;
+                        border-radius: 1rem;
+                        transition: 0.4s;
+                        margin-top: 0.5rem;
+
+                        &.buttonProd {
+                            margin: 0;
+                            padding: 0.5rem;
+                            text-align: center;
+                            cursor: pointer;
+                        }
+
+                        &.buttonEstoque {
+                            width: 100%;
+                        }
+
+                        &:focus,
+                        &:valid {
+                            outline: none;
+                            box-shadow: none;
+                            border-color: #0b57d0;
+                        }
+
+                        &:focus ~ .userLabel,
+                        &:valid ~ .userLabel {
+                            transform: translateY(-0.3rem) scale(0.8);
+                            background-color: $white;
+                            padding: 0 0.25em;
+                            outline: none;
+                            box-shadow: none;
+
+                            p {
+                                color: #0b57d0;
+                            }
+                        }
+
+                        &.showEstoque {
+                            &:not([value=""]) ~ .userLabel {
+                                transform: translateY(-0.3rem) scale(0.8);
+                                background-color: $white;
+                                padding: 0 0.25em;
+                                outline: none;
+                                box-shadow: none;
+                                border-color: #0b57d0;
+                            }
+                        }
+
+                        &.placeholderActive {
+                            border-color: $black !important;
+
+                            ~ .userLabel {
+                                transform: translateY(-0.3rem) scale(0.8);
+                                background-color: $white;
+                                padding: 0 0.25em;
+                                outline: none;
+                                box-shadow: none;
+
+                                p {
+                                    color: $black;
+                                    /* Cor diferente para distinguir */
+                                }
+                            }
+                        }
+                    }
+
+                    .userLabel {
+                        position: absolute;
+                        left: 15px;
+                        pointer-events: none;
+                        transform: translateY(1.2rem);
+                        transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+                        p {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
+                .button {
+                    margin-top: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        width: 40%;
+                        border: 0.2rem solid $black;
+                        background-color: $white;
+                        border-radius: 2rem;
+                        padding: 0.5rem;
+                        transition: 0.5s;
+
+                        .text {
+                            margin: 0;
+                            color: $black;
+                        }
+
+                        &:hover {
+                            background-color: $black;
+
+                            .text {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+
+                .livewire {
+                    .buttonProdClose{
+                        width: 10rem;
+                        border: 0.2rem solid $black;
+                        background-color: $white;
+                        border-radius: 2rem;
+                        padding: 0.5rem;
+                        transition: 0.5s;
+
+                        .text {
+                            margin: 0;
+                        }
+
+                        &:hover {
+                            background-color: $black;
+
+                            .text {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .contentFormAcao {
+                padding-top: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+
+                .editEstoque,
+                .deleteEstoque {
+                    width: 10rem;
+                    height: 100%;
+
+                    button {
+                        width: 100%;
+                        border: 0.2rem solid $black;
+                        padding: 0.5rem;
+                        margin: 0;
+                        border-radius: 2rem;
+                        transition: 0.4s;
+
+                        &:hover {
+                            background-color: $black;
+                            color: $white;
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @keyframes spin89345 {
-  0% {
-    transform: rotate(0deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
 
-  100% {
-    transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
 }
