@@ -88,7 +88,8 @@ body {
         .newProduto,
         .buscaProduto,
         .buttonBack {
-          button,
+
+          .buttonProd,
           .return {
             width: 10rem;
             border: 0.2rem solid $black;
@@ -96,11 +97,13 @@ body {
             border-radius: 2rem;
             padding: 0.5rem;
             transition: 0.5s;
+            text-align: center;
 
             &.return {
               padding: 0.5rem 2rem 0.5rem 2rem;
+
               &:hover {
-                color: $white; 
+                color: $white;
               }
             }
 
@@ -114,6 +117,22 @@ body {
               .text {
                 color: $white;
               }
+            }
+          }
+        }
+
+        .buscaEstoque {
+          border: 0.2rem solid $black;
+          background-color: $white;
+          border-radius: 2rem;
+          padding: 0.5rem;
+          transition: 0.5s;
+
+          &:hover {
+            background-color: $black;
+
+            .text {
+              color: $white;
             }
           }
         }
@@ -165,7 +184,7 @@ body {
             }
 
             &.showProduto {
-              &:not([value=""]) ~ .userLabel {
+              &:not([value=""])~.userLabel {
                 transform: translateY(-0.3rem) scale(0.8);
                 background-color: $white;
                 padding: 0 0.25em;
@@ -231,6 +250,7 @@ body {
         .deleteProduto {
           width: 10rem;
           height: 100%;
+
           button {
             width: 100%;
             border: 0.2rem solid $black;
@@ -238,7 +258,7 @@ body {
             margin: 0;
             border-radius: 2rem;
             transition: 0.4s;
-            
+
             &:hover {
               background-color: $black;
               color: $white;

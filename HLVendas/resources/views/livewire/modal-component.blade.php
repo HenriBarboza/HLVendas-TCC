@@ -1,7 +1,7 @@
 <div>
     <div x-data="{ open: @entangle('isOpen').defer }">
         <div class="contentInput">
-            <div @click.prevent="open = true" class="inputWrapper buttonProd">
+            <div @click.prevent="open = true" class="inputWrapper buttonProd items-center">
                 <button >
                     <p class="text">Produtos</p>
                 </button>

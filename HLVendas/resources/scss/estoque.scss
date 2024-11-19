@@ -45,7 +45,7 @@ body {
   }
 }
 
-.contentCliente {
+.contentEstoque {
   display: flex;
   position: fixed;
   width: 100%;
@@ -56,7 +56,7 @@ body {
     z-index: 999;
   }
 
-  .clienteCrud {
+  .estoqueCrud {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,11 +85,10 @@ body {
         align-items: center;
         justify-content: space-between;
 
-        .newCliente,
-        .buscaCliente,
+        .newEstoque,
         .buttonBack {
 
-          .buttonCli,
+          button,
           .return {
             width: 10rem;
             border: 0.2rem solid $black;
@@ -100,8 +99,9 @@ body {
 
             &.return {
               padding: 0.5rem 2rem 0.5rem 2rem;
+
               &:hover {
-                color: $white; 
+                color: $white;
               }
             }
 
@@ -118,9 +118,25 @@ body {
             }
           }
         }
+
+        .buscaEstoque {
+          border: 0.2rem solid $black;
+          background-color: $white;
+          border-radius: 2rem;
+          padding: 0.5rem;
+          transition: 0.5s;
+
+          &:hover {
+            background-color: $black;
+
+            .text {
+              color: $white;
+            }
+          }
+        }
       }
 
-      .formCliente {
+      .formEstoque {
         width: 40rem;
         margin-top: 1rem;
 
@@ -155,6 +171,17 @@ body {
             transition: 0.4s;
             margin-top: 0.5rem;
 
+            &.buttonProd {
+              margin: 0;
+              padding: 0.5rem;
+              text-align: center;
+              cursor: pointer;
+            }
+
+            &.buttonEstoque {
+              width: 100%;
+            }
+
             &:focus,
             &:valid {
               outline: none;
@@ -175,14 +202,31 @@ body {
               }
             }
 
-            &.showCliente { 
-              &:not([value=""]) ~ .userLabel {
+            &.showEstoque {
+              &:not([value=""])~.userLabel {
                 transform: translateY(-0.3rem) scale(0.8);
                 background-color: $white;
                 padding: 0 0.25em;
                 outline: none;
                 box-shadow: none;
                 border-color: #0B57D0;
+              }
+            }
+
+            &.placeholderActive {
+              border-color: $black !important;
+
+              ~.userLabel {
+                transform: translateY(-0.3rem) scale(0.8);
+                background-color: $white;
+                padding: 0 0.25em;
+                outline: none;
+                box-shadow: none;
+
+                p {
+                  color: $black;
+                  /* Cor diferente para distinguir */
+                }
               }
             }
           }
@@ -242,6 +286,7 @@ body {
         .deleteCliente {
           width: 10rem;
           height: 100%;
+
           button {
             width: 100%;
             border: 0.2rem solid $black;
@@ -249,7 +294,7 @@ body {
             margin: 0;
             border-radius: 2rem;
             transition: 0.4s;
-            
+
             &:hover {
               background-color: $black;
               color: $white;

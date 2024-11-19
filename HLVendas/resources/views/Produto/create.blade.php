@@ -27,22 +27,19 @@
             <div class="contentForms">
 
                 <div class="contentButton">
-                    <div class="newProduto">
-                        <!-- <button>
-                            <p class="text">Novo Produto</p>
-                        </button> -->
-                    </div>
-
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
                             {{$message}}
                         </div>
                     @endif
-                    <div class="buscaProduto">
+                    <div class="buscaEstoque">
                         <p class="text">
                         <div @click.prevent="open = true" class="inputWrapper buttonProd">
+
                             <button>
-                                <a class="text" href="/estoque/create">Manutenção de Estoque</a>
+                                <a class="text" href="/estoque/create">
+                                    Manutenção de Estoque
+                                </a>
                             </button>
                         </div>
                         </p>

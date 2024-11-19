@@ -1,7 +1,7 @@
 <div>
     <div x-data="{ open: $wire.entangle('isOpen').live }">
         <div class="flex justify-center items-center">
-            <button @click.prevent="open = true" class=" inputWrapper buttonCli">
+            <button @click.prevent="open = true" class=" inputWrapper">
                 <p class="text">Buscar Manutenção de Est.</p>
             </button>
         </div>
