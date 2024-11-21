@@ -81,7 +81,6 @@ $black: #2d2c2c;
     }
 }
 
-
 .tableHead06 {
     @extend .tableHead;
 
@@ -104,6 +103,34 @@ $black: #2d2c2c;
             tr {
                 td {
                     width: calc(100% / 6);
+                }
+            }
+        }
+    }
+}
+
+.tableHead04 {
+    @extend .tableHead;
+
+    table {
+        thead {
+            tr {
+                th {
+                    width: calc(100% / 4);
+                }
+            }
+        }
+    }
+}
+
+.tableBody04 {
+    @extend .tableBody;
+
+    table {
+        tbody {
+            tr {
+                td {
+                    width: calc(100% / 4);
                 }
             }
         }

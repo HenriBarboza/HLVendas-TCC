@@ -5,69 +5,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar fornecedor</title>
 </head>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
-        <div class="top">
-            <h1>Editar Fornecedor</h1>
-            <a href="/fornecedor">Buscar fornecedor</a>
+    <div class="contentFornecedor">
+        <div class="box">
+            @include('components.navbar') 
         </div>
-        <div>
-            <form action="{{route('fornecedor.update', $fornecedores->id)}}" method="POST">
-                @CSRF
-                @method('PUT')
-                <div class="">
-                    <div class="">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$fornecedores->nome}}" required>
+
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
+        <div class="fornecedorCrud">
+            <div class="contentForms">
+                <div class="contentButton">
+                    <div class="newFornecedor">
+                        <h1>Editar Fornecedor</h1>
                     </div>
-                    <div class="">
-                        <label for="nomefantasia">Nome Fantasia:</label>
-                        <input type="text" name="nomefantasia" value="{{$fornecedores->nomefantasia}}" required>
+
+                    <div class="buttonBack">
+                        <a class="return" href="{{route("fornecedor.create")}}">Cancelar</a>
                     </div>
-                    <div class="">
-                        <label for="telefone">Telefone:</label>
-                        <input type="text" name="telefone" value="{{$fornecedores->telefone}}" required>
+                </div>
+                <form class="formFornecedor" action="{{route('fornecedor.update', $fornecedores->id)}}" method="POST">
+                    @CSRF
+                    @method('PUT')
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="nome" value="{{$fornecedores->nome}}" required>
+                        <label for="nome" class="userLabel">
+                            <p>Nome:</p>
+                        </label>
                     </div>
-                    <div class="">
-                        <label for="cpfcnpj">CPF/CNPJ:</label>
-                        <input type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}" required>
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="nomefantasia"
+                            value="{{$fornecedores->nomefantasia}}" required>
+                        <label for="nomefantasia" class="userLabel">
+                            <p>Nome Fantasia:</p>
+                        </label>
                     </div>
-                    <div class="">
-                        <label for="logradouro">Logradouro:</label>
-                        <input type="text" name="logradouro" value="{{$fornecedores->logradouro}}">
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="telefone" value="{{$fornecedores->telefone}}"
+                                required>
+                            <label for="telefone" class="userLabel">
+                                <p>Telefone:</p>
+                            </label>
+                        </div>
+
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="cpfcnpj" value="{{$fornecedores->cpfcnpj}}"
+                                required>
+                            <label for="cpfcnpj" class="userLabel">
+                                <p>CPF/CNPJ:</p>
+                            </label>
+                        </div>
                     </div>
-                    <div class="">
-                        <label for="numero">Número:</label>
-                        <input type="text" name="numero" value="{{$fornecedores->numero}}">
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="logradouro" value="{{$fornecedores->logradouro}}">
+                        <label for="logradouro" class="userLabel">
+                            <p>Logradouro:</p>
+                        </label>
                     </div>
-                    <div class="">
-                        <label for="bairro">Bairro:</label>
-                        <input type="text" name="bairro" value="{{$fornecedores->bairro}}">
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="numero" value="{{$fornecedores->numero}}">
+                            <label for="numero" class="userLabel">
+                                <p>Número:</p>
+                            </label>
+                        </div>
+
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="bairro" value="{{$fornecedores->bairro}}">
+                            <label for="bairro" class="userLabel">
+                                <p>Bairro:</p>
+                            </label>
+                        </div>
                     </div>
-                    <div class="">
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" name="cidade" value="{{$fornecedores->cidade}}">
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="cidade" value="{{$fornecedores->cidade}}">
+                        <label for="cidade" class="userLabel">
+                            <p>Cidade:</p>
+                        </label>
                     </div>
-                    <div class="">
-                        <label for="cep">CEP:</label>
-                        <input type="text" name="cep" value="{{$fornecedores->cep}}">
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="cep" value="{{$fornecedores->cep}}">
+                            <label for="cep" class="userLabel">
+                                <p>CEP:</p>
+                            </label>
+                        </div>
+
+                        <div class="inputGroup">
+                            <input class="inputWrapper" type="text" name="estado" value="{{$fornecedores->estado}}">
+                            <label for="estado" class="userLabel">
+                                <p>Estado:</p>
+                            </label>
+                        </div>
                     </div>
-                    <div class="">
-                        <label for="estado">Estado:</label>
-                        <input type="text" name="estado" value="{{$fornecedores->estado}}">
-                    </div>
-                    <div class="">
-                        <button type="submit">Salvar</button>
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text">
+                                Salvar
+                            </p>
+                        </button>
                     </div>
                 </form>
-                </div>
+            </div>
         </div>
-    </div>
     </div>
     @include('components.footer') 
 </body>

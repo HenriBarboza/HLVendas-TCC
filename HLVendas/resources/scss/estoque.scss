@@ -9,6 +9,13 @@ $body: #f5f5f5;
     gap: 0 !important;
 }
 
+.title {
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
 body {
     background-color: $body;
 
@@ -283,7 +290,7 @@ body {
                 }
 
                 .livewire {
-                    .buttonProdClose{
+                    .buttonProdClose {
                         width: 10rem;
                         border: 0.2rem solid $black;
                         background-color: $white;
@@ -311,11 +318,12 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width: 100%;
+                width: 90%;
                 height: 100%;
 
                 .editEstoque,
-                .deleteEstoque {
+                .deleteEstoque,
+                .pdfManutencao {
                     width: 10rem;
                     height: 100%;
 
@@ -330,6 +338,14 @@ body {
                         &:hover {
                             background-color: $black;
                             color: $white;
+                        }
+                    }
+
+                    &.pdfManutencao {
+                        &:hover {
+                            .text {
+                                color: $white;
+                            }
                         }
                     }
                 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/tableBusca.scss','resources/scss/header.scss', 'resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/tableBusca.scss', 'resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Novo funcionário</title>
     @livewireStyles
 </head>
@@ -112,11 +112,11 @@
                     </div>
 
                     <div class="contentInput not-gap">
-                        <label for="datanasc" class="labelDate">
+                        <input class="inputWrapper placeholderActive" type="date" name="datanasc"
+                        required="">
+                        <label for="datanasc" class="userLabel">
                             <p>Data De Nascimento:</p>
                         </label>
-                        <input class="inputWrapper" type="date" placeholder="Data De Nascimento" name="datanasc"
-                            required="">
                     </div>
 
                     <div class="contentInput radio">

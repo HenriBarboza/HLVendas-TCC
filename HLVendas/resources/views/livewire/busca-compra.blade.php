@@ -2,7 +2,6 @@
     <input class="search" type="search" wire:model.debounce.500ms="busca" id="busca" placeholder="Digite uma descrição...">
     @if(count($compras) > 0)
         <div class="tableHead06">
-
             <table>
                 <thead>
                     <tr>

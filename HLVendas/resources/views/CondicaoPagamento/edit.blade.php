@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/home.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
+    @vite(['resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
     <title>Editar Condição de Pagmamento</title>
 </head>
 
 <body>
-    <div class="contentCliente">
+    <div class="contentConta">
         <div class="box">
             @include('components.navbar') 
         </div>
@@ -17,20 +18,20 @@
             <div class="loading"></div>
         </div>
 
-        <div class="clienteCrud">
+        <div class="contaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Editar Condição de Pagmamento</h1>
+                    <h1 class="title">Editar Condição de Pagmamento</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{ route('condicaoPagamento.create') }}">Cancelar</a>
                     </div>
                 </div>
-                <form class="formCliente" action="{{route('condicaoPagamento.update', $condicoes->id)}}" method="POST">
+                <form class="formConta" action="{{route('condicaoPagamento.update', $condicoes->id)}}" method="POST">
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="id" value="{{$condicoes->id}}"
+                        <input class="inputWrapper showConta" type="text" name="id" value="{{$condicoes->id}}"
                             disabled>
                         <label for="id" class="userLabel">
                             <p>Id:</p>
@@ -86,7 +87,6 @@
             </div>
         </div>
     </div>
-    @include('components.footer') 
 </body>
 
 </html>

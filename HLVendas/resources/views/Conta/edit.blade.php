@@ -5,39 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/home.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar conta</title>
 </head>
 
 <body>
-    @include('components.navbar') 
-    <div class="corpo">
-        <div class="top">
-            <h1>Editar Conta</h1>
-            <a href="/conta">Buscar conta</a>
+    <div class="contentConta">
+        <div class="box">
+            @include('components.navbar')
         </div>
-        <div>
-            <form action="{{route('conta.update', $contas->id)}}" method="POST">
-                @CSRF
-                @method('PUT')
-                <div class="">
-                    <div class="">
-                        <label for="id">Id:</label>
-                        <input type="text" name="id" value="{{$contas->id}}" disabled>
+        <div class="loader">
+            <div class="loading"></div>
+        </div>
+
+        <div class="contaCrud">
+            <div class="contentForms">
+                <div class="contentButton">
+                    <div class="newConta">
+                        <h1 class="title">Editar Conta</h1>
                     </div>
-                    <div class="">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value="{{$contas->nome}}" required>
+
+                    <div class="buttonBack">
+                        <a class="return" href="{{route('conta.create')}}">Cancelar</a>
                     </div>
-                    <div class="">
-                        <button type="submit">Salvar</button>
+                </div>
+                <form class="formConta" action="{{route('conta.update', $contas->id)}}" method="POST">
+                    @CSRF
+                    @method('PUT')
+                    <div class="contentInput">
+                        <input class="inputWrapper showConta" type="text" name="id" value="{{$contas->id}}" disabled>
+                        <label class="userLabel" for="id">
+                            <p>Id:</p>
+                        </label>
+                    </div>
+                    <div class="contentInput">
+                        <input class="inputWrapper" type="text" name="nome" value="{{$contas->nome}}" required>
+                        <label class="userLabel" for="nome">
+                            <p>Nome:</p>
+                        </label>
+                    </div>
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text">
+                                Salvar
+                            </p>
+                        </button>
                     </div>
                 </form>
-                </div>
+            </div>
         </div>
     </div>
-    </div>
-    @include('components.footer') 
 </body>
 
 </html>

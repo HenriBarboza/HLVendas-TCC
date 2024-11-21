@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js'])
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
+    @vite(['resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js', 'resources/js/deleteAlert.js'])
     <title>Condição de Pagamento</title>
 </head>
 
 <body>
-    <div class="contentCliente">
+    <div class="contentConta">
         <div class="box">
             @include('components.navbar') 
         </div>
@@ -17,7 +18,7 @@
             <div class="loading"></div>
         </div>
 
-        <div class="clienteCrud">
+        <div class="contaCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <h1>Condição de Pagamento</h1>
@@ -27,18 +28,17 @@
                     </div>
                 </div>
 
-                <form class="formCliente">
+                <form class="formConta">
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="id" value="{{$condicoes->id}}"
-                            readonly>
+                        <input class="inputWrapper showConta" type="text" name="id" value="{{$condicoes->id}}" readonly>
                         <label for="id" class="userLabel">
                             <p>Id:</p>
                         </label>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper showCliente" type="text" name="descricao"
+                        <input class="inputWrapper showConta" type="text" name="descricao"
                             value="{{$condicoes->descricao}}" readonly>
                         <label for="descricao" class="userLabel">
                             <p>Descrição:</p>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper showCliente" type="text" name="datanasc"
+                            <input class="inputWrapper showConta" type="text" name="datanasc"
                                 value="{{$condicoes->quantparcelas}}" disabled>
                             <label class="userLabel" for="datanasc">
                                 <p>Quantidade de parcelas:</p>
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="inputGroup">
-                            <input class="inputWrapper showCliente" type="text" name="created_at"
+                            <input class="inputWrapper showConta" type="text" name="created_at"
                                 value="{{$condicoes->diasparcelas}}" disabled>
                             <label class="userLabel" for="created_at">
                                 <p>Quantidade de dias entre parcelas</p>
@@ -63,14 +63,18 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label class="labelDate" for="created_at">Data De Cadastro:</label>
-                            <input class="inputWrapper" type="datetime-local" name="created_at"
+                            <input class="inputWrapper placeholderActive" type="datetime-local" name="created_at"
                                 value="{{$condicoes->created_at}}" disabled>
+                            <label class="userLabel" for="created_at">
+                                <p>Data De Cadastro:</p>
+                            </label>
                         </div>
                         <div class="inputGroup">
-                            <label class="labelDate" for="updated_at">Última Alteração:</label>
-                            <input class="inputWrapper" type="datetime-local" name="updated_at"
+                            <input class="inputWrapper placeholderActive" type="datetime-local" name="updated_at"
                                 value="{{$condicoes->updated_at}}" disabled>
+                            <label class="userLabel" for="updated_at">
+                                <p>Última Alteração:</p>
+                            </label>
                         </div>
                     </div>
                     <div class="contentInput">
@@ -83,44 +87,21 @@
                     </div>
                 </form>
                 <div class="contentFormAcao">
-                    <form class="editCliente" action="{{route('condicaoPagamento.edit', $condicoes->id) }}">
+                    <form class="editConta" action="{{route('condicaoPagamento.edit', $condicoes->id) }}">
                         <button type="submit">
                             Editar
                         </button>
                     </form>
-                    <form class="deleteCliente" id="deleteForm"
+                    <form class="deleteConta" id="deleteForm"
                         action="{{route('condicaoPagamento.destroy', $condicoes->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <div class="">
-                            <div class="">
-                                <button type="button" onclick="confirmarExclusao()">Excluir</button>
-                            </div>
-                        </div>
+                        <button type="submit">Excluir</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function confirmarExclusao() {
-            Swal.fire({
-                title: 'Tem certeza?',
-                text: 'Você não poderá reverter isso!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, excluir!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('deleteForm').submit();
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>

@@ -18,7 +18,8 @@ export default defineConfig({
                 'resources/js/selectPagamento.js',
                 'resources/js/loadingPage.js',
                 'resources/js/alert.js',
-                'resources/js/printPdf.js'
+                'resources/js/printPdf.js',
+                'resources/js/deleteAlert.js'
             ],
             refresh: true,
         }),

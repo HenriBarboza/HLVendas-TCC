@@ -109,7 +109,9 @@ class VendaController extends Controller
             return PagamentoController::create($venda->id);
         }
         $produtos = ProdVenda::where('vendaid', $venda->doc)->with('produto')->get();
-        return view('venda.show', compact('venda', 'produtos'));
+
+        $pagamentos = Pagamento::where('vendaid', $id)->get();
+        return view('venda.show', compact('venda', 'produtos', 'pagamentos'));
     }
 
     /**
@@ -149,7 +151,7 @@ class VendaController extends Controller
             ]);
         }
         $venda->update($request->all());
-        foreach ($pagamentos as $pagamento){
+        foreach ($pagamentos as $pagamento) {
             $pagamento->delete();
         }
 

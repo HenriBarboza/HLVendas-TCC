@@ -2,7 +2,6 @@
     <input class="search" type="search" wire:model.live="busca" placeholder="Digite um nome...">
     @if(count($clientes) > 0)
         <div class="tableHead">
-
             <table>
                 <thead>
                     <tr>

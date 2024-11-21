@@ -1,13 +1,25 @@
 document.querySelector("#download-btn").addEventListener("click", () => {
   // Seleciona todos os elementos desejados da página (tabelas, títulos, parágrafos, etc.), ignorando os elementos com a classe 'not-print'
-  const elementos = document.body.querySelectorAll("table, h1, h2, h3, h4, h5, h6, p");
+  const elementos = document.body.querySelectorAll("table, h1, h2, h3, h4, h5, h6, p, .inputWrapper");
   let conteudo = "";
 
   // Percorre os elementos selecionados e adiciona o conteúdo deles
   elementos.forEach(elemento => {
     // Verifica se o elemento tem a classe 'not-print' e ignora se necessário
     if (!elemento.classList.contains("not-print")) {
-      conteudo += elemento.outerHTML;
+      if (elemento.classList.contains("inputWrapper")) {
+        // Busca o valor do input
+        const valor = elemento.value || "Sem resposta";
+
+        // Busca o texto dentro do label associado
+        const label = elemento.nextElementSibling; // Seleciona o próximo irmão (label)
+        const customPlaceholder = label?.querySelector("p")?.innerText || "Sem título";
+
+        // Adiciona o conteúdo no formato "placeholder - resposta"
+        conteudo += `<p><b>${customPlaceholder}</b> ${valor}</p>`;
+      } else {
+        conteudo += elemento.outerHTML;
+      }
     }
   });
 
@@ -37,12 +49,15 @@ document.querySelector("#download-btn").addEventListener("click", () => {
           }
           th, td {
             border: 1px solid black;
-            padding: 7px;
+            padding: 6px;
             text-align: left;
           }
           h1, h2, h3, h4, h5, h6, p {
             font-weight: normal;
             margin: 10px 0;
+          }
+          .for-print {
+            display: block
           }
         </style>
       </head>

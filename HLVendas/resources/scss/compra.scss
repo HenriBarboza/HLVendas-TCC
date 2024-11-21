@@ -82,14 +82,23 @@ body {
                 justify-content: space-between;
 
                 .newCompra,
+                .buttonBack,
                 .buscaCompra {
-                    button {
+                    button,
+                    .return {
                         width: 10rem;
                         border: 0.2rem solid $black;
                         background-color: $white;
                         border-radius: 2rem;
                         padding: 0.5rem;
                         transition: 0.5s;
+
+                        &.return {
+                            padding: 0.5rem 2rem 0.5rem 2rem;
+                            &:hover {
+                                color: $white;
+                            }
+                        }
 
                         .text {
                             margin: 0;
@@ -300,11 +309,11 @@ body {
                                         border-bottom: 0.2rem solid $black;
 
                                         &.acao {
-                                          &:hover {
-                                            background-color: $black;
-                                            color: $white;
-                                            text-decoration: underline;
-                                          }
+                                            &:hover {
+                                                background-color: $black;
+                                                color: $white;
+                                                text-decoration: underline;
+                                            }
                                         }
                                     }
                                 }
@@ -393,7 +402,7 @@ body {
                 width: 100%;
                 height: 100%;
 
-                .backCompra,
+                .pdfVenda,
                 .editCompra,
                 .deleteCompra {
                     width: 10rem;
@@ -409,6 +418,14 @@ body {
                         &:hover {
                             background-color: $black;
                             color: $white;
+                        }
+                    }
+
+                    &.pdfVenda {
+                        &:hover {
+                            .text {
+                                color: $white;
+                            }
                         }
                     }
                 }

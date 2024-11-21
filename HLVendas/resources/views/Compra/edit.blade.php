@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/scc/tableBusca.scss' ,'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss' ,'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar compra</title>
 </head>
 
@@ -28,9 +28,6 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCompra">
-                        <!-- <button>
-                            <p class="text">Nova Compra</p>
-                        </button> -->
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -41,8 +38,10 @@
                             </div>
                         @endif
                     </div>
-                    <div class="buscaCompra">
-                        @livewire('modal-compra-component')
+                    <div class="buttonBack">
+                        <a class="return" href="{{ route('compra.create') }}">
+                            Cancelar
+                        </a>
                     </div>
                 </div>
                 <form class="formCompra" action="{{route('compra.update', $compra->id)}}" method="POST">
@@ -87,7 +86,7 @@
                         <div class="inputGroup">
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
                                 placeholder="Funcionário da Venda" required>
-                            <input class="inputWrapper w50" type="text" value="{{Auth::user()->name}}" disabled>
+                            <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
                         </div>
                     </div>
                     

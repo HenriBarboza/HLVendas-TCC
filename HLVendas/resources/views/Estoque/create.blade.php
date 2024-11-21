@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input autocomplete="off" class="inputWrapper" type="text" name="quantidade" required>
+                        <input autocomplete="off" class="inputWrapper number" type="text" name="quantidade" required>
                         <label for="quantidade" class="userLabel">
                             <p>Quantidade</p>
                         </label>

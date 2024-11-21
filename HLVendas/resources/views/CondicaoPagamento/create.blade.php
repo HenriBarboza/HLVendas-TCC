@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(["resources/scss/tableBusca.scss",'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/loadingPage.js'])
+    <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
+    @vite(["resources/scss/tableBusca.scss",'resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js', 'resources/js/loadingPage.js'])
     <title>Condição de Pagamento</title>
 </head>
 
@@ -13,7 +14,7 @@
  ?>
 
 <body>
-    <div class="contentCliente">
+    <div class="contentConta">
         <div class="box">
             @include('components.navbar')
         </div>
@@ -21,11 +22,11 @@
             <div class="loading"></div>
         </div>
 
-        <div class="clienteCrud">
+        <div class="contaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <div class="newCliente">
-                        <h1>Nova condição de pagamento</h1>
+                    <div class="newConta">
+                        <h1 class="title">Nova condição de pagamento</h1>
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
                                 {{$message}}
@@ -33,12 +34,12 @@
                         @endif
                     </div>
 
-                    <div class="buscaCliente">
+                    <div class="buscaConta">
                         @livewire('modal-condicao-pagamento-component', compact('rota'))
                     </div>
                 </div>
 
-                <form class="formCliente" action="{{route('condicaoPagamento.store')}}" method="POST">
+                <form class="formConta" action="{{route('condicaoPagamento.store')}}" method="POST">
                     @CSRF
                     <div class="contentInput not-gap">
                         <input class="inputWrapper" type="text" name="descricao" required>
@@ -48,13 +49,13 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="quantparcelas" required>
+                            <input class="inputWrapper number" type="text" name="quantparcelas" required>
                             <label for="quantparcelas" class="userLabel">
                                 <p>Quantidade de parcelas</p>
                             </label>
                         </div>
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="diasparcelas" required>
+                            <input class="inputWrapper number" type="text" name="diasparcelas" required>
                             <label for="diasparcelas" class="userLabel">
                                 <p>Quantidade de dias entre parcelas</p>
                             </label>
@@ -69,9 +70,9 @@
                             <p class="text"><label for="nao">Não</label><br></p>
                         </div>
                     </div>
-                    <span
+                    <!-- <span
                         title="A opção permitir alterar valores caso esteja marcada como 'Sim', faz com que o usuário consiga definir o valor no momento do pagamento, ativando a função troco."><i
-                            class="fa-solid fa-question"></i></span>
+                            class="fa-solid fa-question"></i></span> -->
                     <div class="button">
                         <button type="submit">
                             <p class="text">

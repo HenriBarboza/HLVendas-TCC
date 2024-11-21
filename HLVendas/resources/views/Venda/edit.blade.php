@@ -36,11 +36,9 @@
                         @endif
                     </div>
                     <div class="buttonBack">
-                        <button @click.prevent type="submit">
-                            <a href="{{ route('venda.index') }}">
-                                <p class="text">Cancelar</p>
-                            </a>
-                        </button>
+                        <a class="return" href="{{ route('venda.index') }}">
+                            Cancelar
+                        </a>
                     </div>
                 </div>
                 <form class="formVenda" action="{{route('venda.update', $venda->id)}}" method="POST">

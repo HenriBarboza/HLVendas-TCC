@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/home.scss', 'resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/home.scss', 'resources/scss/produto.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/loadingPage.js', 'resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar produto</title>
 </head>
 
@@ -143,7 +143,7 @@
                         @method('DELETE')
                         <div class="">
                             <div class="">
-                                <button type="button" onclick="confirmarExclusao()">Excluir</button>
+                                <button type="submit">Excluir</button>
                             </div>
                         </div>
                     </form>
@@ -151,24 +151,8 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmarExclusao() {
-            Swal.fire({
-                title: 'Tem certeza?',
-                text: 'Você não poderá reverter isso!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, excluir!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('deleteForm').submit();
-                }
-            });
-        }
+       
     </script>
 </body>
 

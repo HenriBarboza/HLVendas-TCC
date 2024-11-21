@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js', 'resources/js/printPdf.js','resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar compra</title>
 </head>
 
@@ -37,8 +37,10 @@
                             </div>
                         @endif
                     </div>
-                    <div class="buscaCompra">
-                        @livewire('modal-compra-component')
+                    <div class="buttonBack">
+                        <a class="return" href="{{ route('venda.index') }}">
+                            Voltar
+                        </a>
                     </div>
                 </div>
                 <div>
@@ -91,17 +93,17 @@
                         </div>
                     </div>
                     <div class="contentFormAcao">
-                        <form class="backCompra" action="{{route('compra.create', $compra->id) }}">
-                            <button type="submit">
-                                Voltar
+                        <div class="pdfVenda">
+                            <button id="download-btn">
+                                <p class="text not-print">Imprimir</p>
                             </button>
-                        </form>
+                        </div>
                         <form class="editCompra" action="{{route('compra.edit', $compra->id) }}">
                             <button type="submit">
                                 Editar
                             </button>
                         </form>
-                        <form class="deleteCompra" action="{{route('compra.destroy', $compra->id)}}" method="POST">
+                        <form class="deleteCompra" id="deleteForm" action="{{route('compra.destroy', $compra->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <div>
@@ -115,6 +117,7 @@
             </div>
             @livewireScripts
         </div>
+    </div>
 </body>
 
 </html>

@@ -1,8 +1,7 @@
 <div>
-    <input type="search" wire:model.live="busca" placeholder="Digite um nome...">
+    <input class="search" type="search" wire:model.live="busca" placeholder="Digite um nome...">
     @if(count($contas) > 0)
-        <div class="tableHead">
-
+        <div class="tableHead04">
             <table>
                 <thead>
                     <tr>
@@ -14,7 +13,7 @@
                 </thead>
             </table>
         </div>
-        <div class="tableBody">
+        <div class="tableBody04">
             <table>
                 <tbody>
                     @foreach ($contas as $conta)
@@ -23,7 +22,7 @@
                             <td>{{$conta->nome}}</td>
                             <td>{{$conta->total ?? 0}}</td>
                             @if($rota == 1)
-                                <td><a href="{{ route('conta.show', $conta->id) }}">Visualizar</a></td>
+                                <td class="acao"><a href="{{ route('conta.show', $conta->id) }}">Visualizar</a></td>
                             @elseif($rota == 2)
                                 //
                             @endif
