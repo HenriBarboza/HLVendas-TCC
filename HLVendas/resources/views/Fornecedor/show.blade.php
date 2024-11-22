@@ -22,7 +22,7 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newFornecedor">
-                        <h1>Fornecedor</h1>
+                        <h1 class="title">Visualizar Fornecedor</h1>
                     </div>
 
                     <div class="buttonBack">

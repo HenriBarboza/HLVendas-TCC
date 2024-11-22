@@ -72,9 +72,10 @@ body {
         transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
-
+        padding-left: 10rem;
+        
         .contentForms {
-            width: 50rem;
+            width: 60rem;
             padding: 2.5rem;
             box-shadow: $sombra;
             background-color: $white;
@@ -176,7 +177,7 @@ body {
             }
 
             .formVenda {
-                width: 40rem;
+                width: 50rem;
                 margin-top: 1rem;
 
                 .contentInput {
@@ -347,7 +348,7 @@ body {
                     }
 
                     .tableBody {
-                        height: 5rem;
+                        height: 9rem;
                         overflow-y: auto;
                         overflow-x: hidden;
 
@@ -449,7 +450,14 @@ body {
                         }
 
                         .tableBody {
-                            height: 7rem;
+                            height: 6rem;
+                            tbody {
+                                tr {
+                                    td {
+                                        padding: 0.5rem;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

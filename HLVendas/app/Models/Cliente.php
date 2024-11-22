@@ -24,4 +24,9 @@ class Cliente extends Model
         'ultimacompra',
         'totalgasto'
     ];
+
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class, 'clienteid');  // 'clienteid' é a chave estrangeira na tabela de vendas
+    }
 }

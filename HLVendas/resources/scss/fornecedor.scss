@@ -9,6 +9,13 @@ body {
     background-color: $body;
 }
 
+.title {
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
 .loader {
     width: 100%;
     height: 100%;
@@ -59,9 +66,10 @@ body {
         transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
+        padding-left: 10rem;
 
         .contentForms {
-            width: 50rem;
+            width: 60rem;
             padding: 2.5rem;
             box-shadow: $sombra;
             background-color: $white;
@@ -113,7 +121,7 @@ body {
             }
 
             .formFornecedor {
-                width: 40rem;
+                width: 50rem;
                 margin-top: 1rem;
 
                 .contentInput {

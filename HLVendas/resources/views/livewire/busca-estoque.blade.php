@@ -1,7 +1,7 @@
 <div>
     <input class="search" type="search" wire:model.live="busca" placeholder="Digite um nome...">
     @if(count($movimentos) > 0)
-        <div class="tableHead">
+        <div class="tableHead06">
             <table>
                 <thead>
                     <tr>
@@ -15,7 +15,7 @@
             </table>
         </div>
 
-        <div class="tableBody">
+        <div class="tableBody06">
             <table>
                 <tbody>
                     @foreach($movimentos as $movimento)

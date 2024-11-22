@@ -88,7 +88,7 @@ $black: #2d2c2c;
         thead {
             tr {
                 th {
-                    width: calc(100% / 6);
+                    width: calc(100% / 6) !important;
                 }
             }
         }
@@ -102,7 +102,7 @@ $black: #2d2c2c;
         tbody {
             tr {
                 td {
-                    width: calc(100% / 6);
+                    width: calc(100% / 6) !important;
                 }
             }
         }

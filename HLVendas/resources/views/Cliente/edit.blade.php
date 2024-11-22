@@ -21,7 +21,7 @@
         <div class="clienteCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Editar Cliente</h1>
+                    <h1 class="title">Editar Cliente</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{ route('cliente.create') }}">Cancelar</a>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/header.scss', 'resources/scss/produto.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/js/messageAlert.js', 'resources/scss/produto.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/calculoCusto.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Novo produto</title>
 </head>
 
@@ -23,19 +23,25 @@
             <div class="loading"></div>
         </div>
 
+        @if ($message = Session::get('success'))
+            <div id="success-message"
+                class="notification bg-green-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Sucesso!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <div class="produtoCrud">
             <div class="contentForms">
-
                 <div class="contentButton">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            {{$message}}
-                        </div>
-                    @endif
+                    <div class="newProduto">
+                        <h1 class="title">Novo Produto</h1>
+                    </div>
                     <div class="buscaEstoque">
                         <p class="text">
                         <div @click.prevent="open = true" class="inputWrapper buttonProd">
-
                             <button>
                                 <a class="text" href="/estoque/create">
                                     Manutenção de Estoque

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/funcionario.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js', 'resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar funcionário</title>
@@ -22,7 +23,7 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="nweFuncionario">
-                        <h1>Funcionário</h1>
+                        <h1 class="title">Visualizar Funcionário</h1>
                     </div>
 
                     <div class="buttonBack">
@@ -143,21 +144,24 @@
                         </label>
                     </div>
                 </form>
-
-                <div class="contentFormAcao">
-                    <form class="editFunc" action="{{route('funcionario.edit', $funcionarios->id) }}">
-                        <button type="submit">
-                            Editar
-                        </button>
-                    </form>
-                    <form class="deleteFunc" id="deleteForm" action="{{route('funcionario.destroy', $funcionarios->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">
-                            Excluir
-                        </button>
-                    </form>
-                </div>
+                @if(Auth::user()->id === 1)
+                    <div class="contentFormAcao">
+                        <form class="editFunc" action="{{route('funcionario.edit', $funcionarios->id) }}">
+                            <button type="submit">
+                                Editar
+                            </button>
+                        </form>
+                        <form class="deleteFunc" id="deleteFuncionarioForm"
+                            action="{{route('funcionario.destroy', $funcionarios->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn-excluir-funcionario" id="btnExcluirFuncionario"
+                                data-id="{{ $funcionarios->id }}">
+                                Excluir
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

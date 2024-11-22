@@ -31,6 +31,7 @@ html {
     flex-direction: column;
     justify-content: flex-start;
     gap: 3rem;
+    padding: 1rem;
 
     .contentLogo {
         display: flex;
@@ -119,9 +120,8 @@ html {
         &-content {
             display: none;
             position: absolute;
-            top: 2rem;
             z-index: 100;
-            min-width: 100px;
+            width: 100%;
             background-color: #fff;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
             border-radius: 0.25rem;

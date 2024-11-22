@@ -32,5 +32,10 @@ class Funcionario extends Model
     {
         return $this->belongsTo(User::class, 'idauth');
     }
+
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class, 'funcionarioid');  // 'clienteid' é a chave estrangeira na tabela de vendas
+    }
 }
 

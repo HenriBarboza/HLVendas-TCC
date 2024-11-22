@@ -21,7 +21,9 @@
         <div class="contaCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Condição de Pagamento</h1>
+                    <div class="newConta">
+                        <h1 class="title">Visualizar Condição de Pagamento</h1>
+                    </div>
 
                     <div class="buttonBack">
                         <a class="return" href="{{route('condicaoPagamento.create')}}">Voltar</a>

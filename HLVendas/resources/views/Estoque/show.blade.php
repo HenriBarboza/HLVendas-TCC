@@ -21,7 +21,7 @@
         <div class="estoqueCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1 class="title">Manutenção de estoque</h1>
+                    <h1 class="title">Visualizar Manutenção de estoque</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{route('estoque.create')}}">Voltar</a>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <label class="labelDate" for="updated_at">Tipo de movimento:</label>
+                        <label for="updated_at">Tipo de movimento:</label>
                         @if($movimentos->tipomovimentacao == 'E')
                             <p class="text"><label for="entrada">Entrada</label><br></p>
                         @elseif($movimentos->tipomovimentacao == 'S')

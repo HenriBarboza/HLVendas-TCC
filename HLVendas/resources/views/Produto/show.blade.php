@@ -22,7 +22,7 @@
         <div class="produtoCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Produto</h1>
+                    <h1 class="title">Visualizar Produto</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{route('produto.create')}}">Voltar</a>

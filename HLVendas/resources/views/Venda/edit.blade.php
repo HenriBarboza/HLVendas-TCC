@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/venda.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
+    @vite(['resources/scss/venda.scss', 'resources/js/messageAlert.js', 'resources/css/app.css', 'resources/scss/tableBusca.scss', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js'])
     <title>HLVendas | Editar venda</title>
 </head>
 
@@ -21,19 +21,31 @@
             @include('components.navbar')
         </div>
 
+        @if ($message = Session::get('success'))
+            <div id="success-message"
+                class="notification bg-green-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Sucesso!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if ($message = Session::get('error'))
+            <div id="error-message"
+                class="notification bg-red-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Erro!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <div class="vendaCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newVenda">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @elseif($message = Session::get('error'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @endif
+                        <h1 class="title">Editar Venda</h1>
                     </div>
                     <div class="buttonBack">
                         <a class="return" href="{{ route('venda.index') }}">

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js','resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar cliente</title>
@@ -21,7 +22,7 @@
         <div class="clienteCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Cliente</h1>
+                    <h1 class="title">Visualizar Cliente</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{route('cliente.create')}}">Voltar</a>
@@ -145,10 +146,17 @@
                             Editar
                         </button>
                     </form>
-                    <form class="deleteCliente" id="deleteForm" action="{{route('cliente.destroy', $clientes->id)}}" method="POST">
+                    <!-- <form class="deleteCliente" id="deleteForm" action="{{route('cliente.destroy', $clientes->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Excluir</button>
+                    </form> -->
+                    <form class="deleteCliente" id="deleteClienteForm" action="{{ route('cliente.destroy', $clientes->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn-excluir-cliente" id="btnExcluirCliente" data-id="{{ $clientes->id }}">
+                            Excluir
+                        </button>
                     </form>
                 </div>
             </div>

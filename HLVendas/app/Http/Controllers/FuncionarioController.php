@@ -91,10 +91,33 @@ class FuncionarioController extends Controller
      */
     public function destroy(string $id)
     {
-        $funcionarios = Funcionario::findOrFail($id);
-        $funcionarios->delete();
+        // $funcionarios = Funcionario::findOrFail($id);
+        // $funcionarios->delete();
 
-        return redirect()->route('funcionario.create')
-                        ->with('success','Funcionario excluído com sucesso!') ;
+        // return redirect()->route('funcionario.create')
+        //                 ->with('success','Funcionario excluído com sucesso!') ;
+
+        try {
+            $funcionario = Funcionario::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Funcionário não encontrado.',
+                'funcionario_nome' => $id,
+            ], 404);
+        }
+
+        if ($funcionario->vendas()->exists()) {
+            return response()->json([
+                'error' => 'Este Funcionário tem vendas associadas e não pode ser excluído.',
+                'funcionario_nome' => $funcionario->nome,
+            ], 400);
+        }
+
+        $funcionario->delete();
+
+        return response()->json([
+            'success' => 'Funcionário excluído com sucesso.',
+            'funcionario_nome' => $funcionario->nome,
+        ], 200);
     }
 }

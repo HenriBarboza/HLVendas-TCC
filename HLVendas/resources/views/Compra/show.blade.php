@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js', 'resources/js/printPdf.js','resources/js/deleteAlert.js'])
+    @vite(['resources/scss/compra.scss', 'resources/js/messageAlert.js', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js', 'resources/js/printPdf.js', 'resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar compra</title>
 </head>
 
@@ -20,23 +20,30 @@
             <div class="loading"></div>
         </div>
 
+        @if ($message = Session::get('success'))
+            <div id="success-message"
+                class="notification bg-green-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Sucesso!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if ($message = Session::get('error'))
+            <div id="error-message"
+                class="notification bg-red-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Erro!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <div class="newCompra">
-                        <!-- <button>
-                            <p class="text">Nova Compra</p>
-                        </button> -->
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @elseif($message = Session::get('error'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @endif
-                    </div>
+                    <div class="newCompra"></div>
                     <div class="buttonBack">
                         <a class="return" href="{{ route('venda.index') }}">
                             Voltar
@@ -48,18 +55,51 @@
                         <div class="contentShowCompra">
                             <h1 class="title">Detalhes da Compra</h1>
                             <h3 class="subtitle">Informações da Compra</h3>
-                            <p class="text"><b>ID</b>: {{ $compra->id }}</p>
-                            <p class="text"><b>Documento</b>: {{ $compra->doc }}</p>
-                            <p class="text"><b>Conta</b>: {{ $compra->conta->nome }}</p>
-                            <p class="text"><b>Fornecedor</b>: {{ $compra->fornecedor->nome }}</p>
-                            <p class="text"><b>Funcionário</b>: {{ $compra->funcionario->nome }}</p>
-                            <p class="text"><b>Desconto %</b>:
-                                {{ $compra->percdesconto == 0 ? 'Sem adicional' : $compra->percdesconto }}
-                            </p>
-                            <p class="text"><b>Valor adicional %</b>:
-                                {{ $compra->percadicional == 0 ? 'Sem adicional' : $compra->percadiciona }}
-                            </p>
-                            <p class="text"><b>Data</b>: {{ $compra->created_at }}</p>
+                            <div class="contentInput">
+                                <div class="inputGroup">
+                                    <p class="text"><b>ID</b>: {{ $compra->id }}</p>
+                                </div>
+
+                                <div class="inputGroup">
+                                    <p class="text"><b>Documento</b>: {{ $compra->doc }}</p>
+                                </div>
+                            </div>
+
+                            <div class="contentInput">
+                                <div class="inputGroup">
+                                    <p class="text"><b>Conta</b>: {{ $compra->conta->nome }}</p>
+                                </div>
+
+                                <div class="inputGroup">
+                                    <p class="text"><b>Fornecedor</b>: {{ $compra->fornecedor->nome }}</p>
+                                </div>
+                            </div>
+
+                            <div class="contentInput">
+                                <div class="inputGroup">
+                                    <p class="text"><b>Funcionário</b>: {{ $compra->funcionario->nome }}</p>
+                                </div>
+
+                                <div class="inputGroup">
+                                    <p class="text"><b>Desconto %</b>:
+                                        {{ $compra->percdesconto == 0 ? 'Sem adicional' : $compra->percdesconto }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="contentInput">
+                                <div class="inputGroup">
+                                    <p class="text"><b>Valor adicional %</b>:
+                                        {{ $compra->percadicional == 0 ? 'Sem adicional' : $compra->percadiciona }}
+                                    </p>
+                                </div>
+
+                                <div class="inputGroup">
+                                    <p class="text"><b>Data</b>: {{ $compra->created_at }}</p>
+                                </div>
+                            </div>
+
+
 
                             <h3 class="subtitle">Produtos Comprados</h3>
                             <div class="tableHead">
@@ -103,7 +143,8 @@
                                 Editar
                             </button>
                         </form>
-                        <form class="deleteCompra" id="deleteForm" action="{{route('compra.destroy', $compra->id)}}" method="POST">
+                        <form class="deleteCompra" id="deleteForm" action="{{route('compra.destroy', $compra->id)}}"
+                            method="POST">
                             @csrf
                             @method('DELETE')
                             <div>

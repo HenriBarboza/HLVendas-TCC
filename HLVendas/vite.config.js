@@ -19,7 +19,8 @@ export default defineConfig({
                 'resources/js/loadingPage.js',
                 'resources/js/alert.js',
                 'resources/js/printPdf.js',
-                'resources/js/deleteAlert.js'
+                'resources/js/deleteAlert.js',
+                'resources/js/messageAlert.js'
             ],
             refresh: true,
         }),

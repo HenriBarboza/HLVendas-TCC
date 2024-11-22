@@ -22,7 +22,7 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newFuncionario">
-                        <h1>Funcionário</h1>
+                        <h1 class="title">Editar Funcionário</h1>
                     </div>
 
                     <div class="buttonBack">

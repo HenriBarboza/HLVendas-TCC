@@ -26,7 +26,7 @@
         <div class="estoqueCrud">
             <div class="contentForms">
                 <div class="contentButton">
-                    <h1>Editar Manutenção de Estoque</h1>
+                    <h1 class="title">Editar Manutenção de Estoque</h1>
 
                     <div class="buttonBack">
                         <a class="return" href="{{ route('estoque.create') }}">Cancelar</a>

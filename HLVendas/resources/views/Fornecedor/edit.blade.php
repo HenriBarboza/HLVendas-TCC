@@ -14,15 +14,15 @@
         <div class="box">
             @include('components.navbar') 
         </div>
-
         <div class="loader">
             <div class="loading"></div>
         </div>
+
         <div class="fornecedorCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newFornecedor">
-                        <h1>Editar Fornecedor</h1>
+                        <h1 class="title">Editar Fornecedor</h1>
                     </div>
 
                     <div class="buttonBack">

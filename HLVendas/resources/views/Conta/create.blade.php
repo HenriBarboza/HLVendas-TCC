@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/tableBusca.scss','resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/tableBusca.scss', 'resources/js/messageAlert.js' ,'resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Nova conta</title>
 </head>
 
@@ -22,6 +22,16 @@
             <div class="loading"></div>
         </div>
 
+        @if ($message = Session::get('success'))
+            <div id="success-message"
+                class="notification bg-green-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Sucesso!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <div class="contaCrud">
             <div class="contentForms">
                 <div class="contentButton">
@@ -29,11 +39,6 @@
                         <h1 class="title">
                             Conta
                         </h1>
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @endif
                     </div>
 
                     <div class="buscaConta">

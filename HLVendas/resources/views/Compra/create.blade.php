@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/header.scss', 'resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/header.scss', 'resources/js/messageAlert.js' ,'resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Nova compra</title>
 </head>
 
@@ -22,23 +22,32 @@
         <div class="loader">
             <div class="loading"></div>
         </div>
-        <!-- <div class="contentCompra"> -->
+
+        @if ($message = Session::get('success'))
+            <div id="success-message"
+                class="notification bg-green-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Sucesso!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if ($message = Session::get('error'))
+            <div id="error-message"
+                class="notification bg-red-500 text-white px-4 py-3 rounded shadow-lg flex justify-between items-center opacity-0 transition-opacity duration-500 fixed top-4 right-4 z-50">
+                <div>
+                    <p class="font-bold text-white">Erro!</p>
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCompra">
-                        <!-- <button>
-                            <p class="text">Nova Compra</p>
-                        </button> -->
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @elseif($message = Session::get('error'))
-                            <div class="alert alert-success">
-                                {{$message}}
-                            </div>
-                        @endif
+                        <h1 class="title">Nova Compra</h1>
                     </div>
                     <div class="buscaCompra">
                         @livewire('modal-compra-component')
