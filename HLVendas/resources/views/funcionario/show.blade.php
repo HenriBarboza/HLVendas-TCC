@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper placeholderActive" type="datetime-local" name="datanasc"
+                        <input class="inputWrapper placeholderActive" type="date" name="datanasc"
                             value="{{$funcionarios->datanasc}}" disabled>
                         <label class="userLabel" for="datanasc">
                             <p>Data de Nascimento:</p>

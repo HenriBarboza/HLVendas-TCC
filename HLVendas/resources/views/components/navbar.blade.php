@@ -46,12 +46,12 @@
                             <i class="fa-solid fa-handshake icon tooltip" data-tooltip="Fornecedores"></i>
                         </a>
                     </li>
-                    <li class="text">
-                        <a href="/funcionario/create">
-                            <i class="fa-solid fa-user-tie icon tooltip" data-tooltip="Funcionarios"></i>
-                        </a>
-                    </li>
                     @if(@Auth::user()->id === 1)
+                        <li class="text">
+                            <a href="/funcionario/create">
+                                <i class="fa-solid fa-user-tie icon tooltip" data-tooltip="Funcionarios"></i>
+                            </a>
+                        </li>
                         <li class="text">
                             <a id="btn-conta">
                                 <i class="fa-solid fa-cash-register icon tooltip" data-tooltip="Conta"></i>

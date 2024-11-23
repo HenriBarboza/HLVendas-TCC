@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/venda.scss', 'resources/js/messageAlert.js' ,'resources/css/app.css', 'resources/scss/tableBusca.scss', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/venda.scss', 'resources/js/messageAlert.js', 'resources/css/app.css', 'resources/scss/tableBusca.scss', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Nova venda</title>
 </head>
 
@@ -85,6 +85,9 @@
                                     <option value="{{$conta->id}}">{{$conta->nome}}</option>
                                 @endforeach
                             </select>
+                            <label for="contaid" class="userLabel">
+                                <p>Conta</p>
+                            </label>
                         </div>
 
                         <div class="inputGroup">
@@ -95,6 +98,9 @@
                                     <option value="AV">À vista</option>
                                     <option value="AP">A prazo</option>
                                 </select>
+                                <label for="tabelapreco" class="userLabel">
+                                    <p>Tabela de venda</p>
+                                </label>
                             </div>
                         </div>
                     </div>

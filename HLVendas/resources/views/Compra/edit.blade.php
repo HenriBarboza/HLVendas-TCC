@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss' ,'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/compra.scss', 'resources/css/app.css', 'resources/scss/tableBusca.scss', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar compra</title>
 </head>
 
@@ -43,7 +43,7 @@
                 </div>
             </div>
         @endif
-        
+
         <div class="compraCrud">
             <div class="contentForms">
                 <div class="contentButton">
@@ -60,8 +60,8 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number showCompra" type="text" name="doc"
-                            value="{{$compra->doc}}" disabled>
+                        <input class="inputWrapper number showCompra" type="text" name="doc" value="{{$compra->doc}}"
+                            disabled>
                         <label for="doc" class="userLabel">
                             <p class="text">
                                 Documento
@@ -70,10 +70,10 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper placeholderActive" type="number" name="fornecedorid" id="inpFornecedorId" hidden
-                            value="{{$compra->fornecedorid}}"  required>
-                            <input class="inputWrapper" type="text"
-                            value="{{$compra->fornecedor->nome}}" id="inpFornecedorNome" disabled>
+                            <input class="inputWrapper placeholderActive" type="number" name="fornecedorid"
+                                id="inpFornecedorId" hidden value="{{$compra->fornecedorid}}" required>
+                            <input class="inputWrapper" type="text" value="{{$compra->fornecedor->nome}}"
+                                id="inpFornecedorNome" disabled>
                             <label for="fornecedorid" class="userLabel">
                                 <p class="text">
                                     Fornecedor
@@ -94,14 +94,24 @@
                                     <option value="{{$conta->id}}">{{$conta->nome}}</option>
                                 @endforeach
                             </select>
+                            <label for="contaid" class="userLabel">
+                                <p class="text">
+                                    Conta
+                                </p>
+                            </label>
                         </div>
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
-                                placeholder="Funcionário da Venda" required>
+                            <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
+                                name="funcionarioid" placeholder="Funcionário da Venda" required>
                             <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
                         </div>
+                        <label for="funcionarioid" class="userLabel">
+                            <p class="text">
+                                Funcionário da venda
+                            </p>
+                        </label>
                     </div>
-                    
+
                     <div class="livewire">
                         @livewire('modal-component', compact('rota'))
                         @livewire('compra-component', ['compra' => $produtos])

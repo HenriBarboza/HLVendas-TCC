@@ -73,11 +73,11 @@
                             <p class="text"><label for="sim">Sim</label></p>
                             <input type="radio" id="nao" value="0" name="alterarvalor">
                             <p class="text"><label for="nao">Não</label><br></p>
+                            <span
+                                title="A opção permitir alterar valores caso esteja marcada como 'Sim', faz com que o usuário consiga definir o valor no momento do pagamento, ativando a função troco."><i
+                                    class="fa-solid fa-question"></i></span>
                         </div>
                     </div>
-                    <!-- <span
-                        title="A opção permitir alterar valores caso esteja marcada como 'Sim', faz com que o usuário consiga definir o valor no momento do pagamento, ativando a função troco."><i
-                            class="fa-solid fa-question"></i></span> -->
                     <div class="button">
                         <button type="submit">
                             <p class="text">

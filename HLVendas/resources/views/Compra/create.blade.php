@@ -84,6 +84,9 @@
                                     <option value="{{$conta->id}}">{{$conta->nome}}</option>
                                 @endforeach
                             </select>
+                            <label for="contaid" class="userLabel">
+                                <p>Conta</p>
+                            </label>
                         </div>
                         <div class="inputGroup">
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden

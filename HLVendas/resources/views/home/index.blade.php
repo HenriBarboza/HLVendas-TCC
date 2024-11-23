@@ -77,7 +77,7 @@
 
                     <div class="contentPerfil">
                         <div class="boxImg">
-                            <img src="" alt="">
+                            <img src="{{ asset('images/henri.jpg')}}" alt="">
                         </div>
 
                         <div class="boxContentText">
@@ -91,7 +91,7 @@
 
                     <div class="contentPerfil">
                         <div class="boxImg">
-                            <img src="" alt="">
+                            <img src="{{ asset('images/luis.jpg')}}" alt="">
                         </div>
 
                         <div class="boxContentText">

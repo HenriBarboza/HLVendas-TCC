@@ -95,6 +95,7 @@ body {
                     b {
                         margin: 0;
                         font-size: 1.125rem;
+                        text-align: justify;
                     }
                 }
             }
@@ -124,9 +125,12 @@ body {
                     .boxImg {
                         width: 5rem;
                         height: 5rem;
-                        background-color: #ccc;
                         border-radius: 50%;
                         border: 0.2rem solid $menu;
+                        img{
+                            border-radius: 50%;
+                            z-index: -1;
+                        }
                     }
                 }
             }

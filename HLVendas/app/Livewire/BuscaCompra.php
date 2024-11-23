@@ -21,7 +21,7 @@ class BuscaCompra extends Component
                 $query->where('nome', 'like', '%' . $this->busca . '%');
             })->orWhereHas('funcionario', function ($query) {
                 $query->where('nome', 'like', '%' . $this->busca . '%');
-            })->paginate(10),
+            })->get(),
         ]);
     }
 }

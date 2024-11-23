@@ -96,6 +96,9 @@
                                     <option value="{{$conta->id}}">{{$conta->nome}}</option>
                                 @endforeach
                             </select>
+                            <label for="contaid" class="userLabel">
+                                <p>Conta</p>
+                            </label>
                         </div>
 
                         <div class="inputGroup">
@@ -105,6 +108,9 @@
                                     <option value="AV">À vista</option>
                                     <option value="AP">À prazo</option>
                                 </select>
+                                <label for="tabelapreco" class="userLabel">
+                                    <p>Tabela de preço</p>
+                                </label>
                             </div>
                         </div>
                     </div>

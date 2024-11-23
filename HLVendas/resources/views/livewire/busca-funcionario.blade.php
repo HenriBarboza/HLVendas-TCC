@@ -26,7 +26,7 @@
                         <td>{{$funcionario->telefone}}</td>
                         <td>{{$funcionario->cpfcnpj}}</td>
                         @if($rota == 1)
-                            <td class="acao"><a href="{{ route('funcionario.show', $funcionario->id) }}">Visaualizar</a></td>
+                            <td class="acao"><a href="{{ route('funcionario.show', $funcionario->id) }}">Visualizar</a></td>
                         @endif
                     </tr>
                 @endforeach

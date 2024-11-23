@@ -7,7 +7,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/home.scss', 'resources/scss/estoque.scss', 'resources/scss/tableBusca.scss' ,'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/home.scss', 'resources/scss/estoque.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Editar Manutenção de Estoque</title>
 </head>
 <?php 
@@ -59,17 +59,12 @@
                             </label>
                         </div>
                         <div class="inputGroup">
-                            <div class="livewire">
-                                @livewire('modal-component', compact(var_name: 'rota'))
-                            </div>
+                            <input class="inputWrapper" type="text" name="quantidade"
+                                value="{{$movimentos->quantidade}}" required>
+                            <label for="quantidade" class="userLabel">
+                                <p>Quantidade:</p>
+                            </label>
                         </div>
-                    </div>
-                    <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="quantidade" value="{{$movimentos->quantidade}}"
-                            required>
-                        <label for="quantidade" class="userLabel">
-                            <p>Quantidade:</p>
-                        </label>
                     </div>
                     <div class="contentInput">
                         <div class="contentInput radio">
