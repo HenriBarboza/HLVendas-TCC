@@ -104,12 +104,13 @@
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
                                 name="funcionarioid" placeholder="Funcionário da Venda" required>
                             <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+
+                            <label for="funcionarioid" class="userLabel">
+                                <p class="text">
+                                    Funcionário da venda
+                                </p>
+                            </label>
                         </div>
-                        <label for="funcionarioid" class="userLabel">
-                            <p class="text">
-                                Funcionário da venda
-                            </p>
-                        </label>
                     </div>
 
                     <div class="livewire">

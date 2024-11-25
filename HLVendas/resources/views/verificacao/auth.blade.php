@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite(['resources/scss/header.scss', 'resources/scss/cliente.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js'])
-    <title>Autorização Necessária</title>
+    <title>HLVendas | Autorização Necessária</title>
 </head>
 
 <body>
@@ -17,8 +17,9 @@
 
         <div class="clienteCrud">
             <div class="contentForms">
-                <h1>Autorização Necessária</h1>
-
+                <div class="contentButton">
+                    <h1 class="title">Verificar usuário</h1>
+                </div>
                 @if($errors->any())
                     <div style="color: red;">
                         @foreach ($errors->all() as $error)
@@ -46,7 +47,11 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit">Confirmar Acesso</button>
+                    <div class="button">
+                        <button type="submit">
+                            <p class="text"></p>Confirmar Acesso</p>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

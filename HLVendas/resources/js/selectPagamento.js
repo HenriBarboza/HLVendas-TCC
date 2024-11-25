@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("troco").style.display = "none";
         document.getElementById("numerotransacao").style.display = "none";
 
-        if(condicaopag == "1"){
+        if(alterarValor == "1"){
             document.getElementById("troco").style.display = "block";
             document.getElementById("valorpago").removeAttribute("readonly");
             inputqntparcelass.value = qntparcelas;
             inputdiasparcelas.value = diasparcelas;
-        }else if(condicaopag == "2" || condicaopag == "3" || condicaopag == "4") {
+        }else if(alterarValor == "0") {
             document.getElementById("numerotransacao").style.display = "block";
             document.getElementById("valorpago").setAttribute("readonly", "readonly");
             inputqntparcelass.value = qntparcelas;
@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
             calcularTroco();
         });
     }
+
+    
 
     function calcularTroco() {
         let inpvalortotal = document.getElementById("valortotal");
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
             btnsalvar.setAttribute("disabled", "disabled");
             aviso.style.display = "block";
         } else{
-            btnsalvar.removeAttribute("readonly");
+            btnsalvar.removeAttribute("disabled");
             aviso.style.display = "none";
         }
     };

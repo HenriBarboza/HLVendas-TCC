@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float("percprazo");
             $table->float("precoaprazo")->nullable();
             $table->string("unidade");
-            $table->integer("codigoBarras")->nullable();
+            $table->bigInteger("codigoBarras")->nullable();
             $table->string("categoria")->nullable();
             $table->dateTime("ultimavenda")->nullable();
             $table->dateTime("ultimacompra")->nullable();

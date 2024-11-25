@@ -83,7 +83,7 @@
                         </label>
                     </div>
                     <div id="numerotransacao" class="contentInput ">
-                        <input class="inputWrapper number" type="text" name="numerotransacao" value="Sem número"
+                        <input class="inputWrapper number showVend" type="text" name="numerotransacao" value="Sem número"
                             required>
                         <label for="doc" class="userLabel">
                             <p>Numero da transação</p>

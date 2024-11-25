@@ -46,36 +46,50 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="formVenda">
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <p class="text"><b>Número da transação</b>: {{ $pagamentos[0]->numerotransacao}}</p>
+                        </div>
+
+                        <div class="inputGroup">
+                            <p class="text"><b>Cliente</b>: {{ $pagamentos[0]->venda->cliente->nome}}</p>
+                        </div>
+                    </div>
+                    <div class="contentInput">
+                        <div class="inputGroup">
+                            <p class="text"><b>Tabela de preço</b>: {{ $pagamentos[0]->tabelapreco}}</p>
+                        </div>
+
+                        <div class="inputGroup">
+                            <p class="text"><b>Condição de
+                                    pagamento</b>:{{ $pagamentos[0]->condicaoPagamento->descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="overflow">
                     <table>
                         <thead>
                             <tr>
                                 <th>Parcela</th>
-                                <th>Nome do cliente</th>
-                                <th>Número da transação</th>
                                 <th>Valor da venda</th>
                                 <th>Valor da pago</th>
                                 <th>Valor da parcela</th>
-                                <th>Tabela de preço</th>
+                                @if($pagamentos[0]->trocovenda != null)<th>Troco da venda</th>@endif
                                 <th>Data de baixa</th>
-                                <th>Condição de pagamento</th>
-                                <th>Troco</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pagamentos as $pagamento)
                                 <tr>
                                     <td>{{$pagamento->parcela}}</td>
-                                    <td>{{$pagamento->venda->cliente->nome}}</td>
-                                    <td>{{$pagamento->numerotransacao}}</td>
                                     <td>R${{$pagamento->valorvenda}}</td>
                                     <td>R${{$pagamento->valorpago}}</td>
                                     <td>R${{$pagamento->valorparcela}}</td>
-                                    <td>{{$pagamento->tabelapreco}}</td>
+                                    @if($pagamento->trocovenda != null)<td>R${{$pagamento->trocovenda}}</td>@endif
                                     <td>{{$pagamento->databaixa}}</td>
-                                    <td>{{$pagamento->condicaoPagamento->descricao}}</td>
-                                    <td>{{$pagamento->trocovenda == null ? 'Sem troco' : 'R$' . $pagamento->trocovenda}}
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

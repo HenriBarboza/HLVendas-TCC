@@ -20,13 +20,13 @@
             <table>
                 <tbody>
                     @foreach($vendas as $venda)
-                        <tr @if($venda->condicaopagid == null) style="color:red" @endif>
-                            <td>{{ $venda->doc }}</td>
-                            <td>{{ $venda->cliente->nome }}</td>
-                            <td>{{ $venda->funcionario->nome}}</td>
-                            <td>{{ $venda->totalvenda}}</td>
-                            <td>{{ $venda->created_at }}</td>
-                            <td class="acao"><a href="{{ route('venda.show', $venda->id) }}">Visualizar</a></td>
+                        <tr>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif>{{ $venda->doc }}</td>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif>{{ $venda->cliente->nome }}</td>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif>{{ $venda->funcionario->nome}}</td>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif>{{ $venda->totalvenda}}</td>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif>{{ $venda->created_at }}</td>
+                            <td @if($venda->condicaopagid == null) style="color:red !important" @endif class="acao"><a href="{{ route('venda.show', $venda->id) }}">Visualizar</a></td>
                         </tr>
                     @endforeach
                 </tbody>
