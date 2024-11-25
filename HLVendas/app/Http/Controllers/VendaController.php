@@ -169,34 +169,34 @@ class VendaController extends Controller
         DB::beginTransaction();
 
         try {
-            $venda = Venda::with('cliente', 'conta')->findOrFail($id);
-            $produtosVenda = ProdVenda::where('vendaid', $venda->doc)->get();
-            $pagamentos = Pagamento::where('vendaid', $id)->get();
+            $venda = Venda::with(['cliente', 'conta', 'prodVendas', 'pagamentos'])->findOrFail($id);
 
-            $cliente = $venda->cliente;
-            $conta = $venda->conta;
-            ContaController::calcularTotal($conta->id);
-            ClienteController::calcularTotal($cliente->id);
+            ContaController::calcularTotal($venda->conta->id);
+            ClienteController::calcularTotal($venda->cliente->id);
 
-            foreach ($produtosVenda as $prodVenda) {
-                $produto = $prodVenda->produto;
-                ProdutoController::calcularEstoque($produto->id);
-                $prodVenda->delete();
+            foreach ($venda->prodVendas as $produtoVenda) {
+                ProdutoController::calcularEstoque($produtoVenda->produto->id);
+                $produtoVenda->delete();
             }
-            foreach ($pagamentos as $pagamento) {
+
+            foreach ($venda->pagamentos as $pagamento) {
                 $pagamento->delete();
             }
-            $venda->delete();
 
+            $venda->delete();
 
             DB::commit();
 
-            return redirect()->route('venda.create')->with('success', "Venda removida com sucesso");
+            return response()->json([
+                'success' => 'Venda removida com sucesso.',
+            ], 200);
         } catch (\Exception $e) {
-
             DB::rollBack();
 
-            return redirect()->back()->withErrors('ocorreu um erro ao remover a venda: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Ocorreu um erro ao remover a venda.',
+                'message' => $e->getMessage(),
+            ], 500);
         }
     }
 }

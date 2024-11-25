@@ -167,33 +167,31 @@ class CompraController extends Controller
         DB::beginTransaction();
 
         try {
-            $compra = Compra::with('fornecedor', 'conta')->findOrFail($id);
-            $produtosCompra = ProdCompra::where('compraid', $compra->doc)->get();
+            $compra = Compra::with(['prodCompras', 'fornecedor', 'conta'])->findOrFail($id);
+    
+            ContaController::calcularTotal($compra->conta->id);
+            FornecedorController::calcularTotal($compra->fornecedor->id);
+    
 
-            // Reverter saldo do fornecedor e caixa
-            $fornecedor = $compra->fornecedor;
-            $conta = $compra->conta;
-            ContaController::calcularTotal($conta->id);
-            FornecedorController::calcularTotal($fornecedor->id);
-
-            // Atualizar o estoque dos produtos
-            foreach ($produtosCompra as $prodCompra) {
-                $produto = $prodCompra->produto;
-                ProdutoController::calcularEstoque($produto->id);
-                $prodCompra->delete();
+            foreach ($compra->prodCompras as $prodCompra) {
+                ProdutoController::calcularEstoque($prodCompra->produto->id); 
+                $prodCompra->delete(); 
             }
-
-            // Excluir a compra
+    
             $compra->delete();
-
+    
             DB::commit();
-
-            return redirect()->route('compra.create')->with('success', "Compra removida com sucesso");
+    
+            return response()->json([
+                'success' => 'Compra removida com sucesso.',
+            ], 200);
         } catch (\Exception $e) {
-            // Reverter a transação em caso de erro
-            DB::rollback();
-
-            return redirect()->back()->withErrors('Ocorreu um erro ao remover a compra: ' . $e->getMessage());
+            DB::rollBack();
+    
+            return response()->json([
+                'error' => 'Ocorreu um erro ao remover a compra.',
+                'message' => $e->getMessage(),
+            ], 500);
         }
     }
 }

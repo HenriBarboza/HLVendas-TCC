@@ -15,7 +15,7 @@ class BuscaConta extends Component
     public function render()
     {
         return view('livewire.busca-conta', [
-            'contas' => Conta::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),                  
+            'contas' => Conta::where('nome', 'like', '%' . $this->busca . '%')->get(),                  
         ]);
     }
 }

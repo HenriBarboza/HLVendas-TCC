@@ -23,4 +23,9 @@ class Fornecedor extends Model
         'ultimavenda',
         'totalvendido'
     ];
+
+    public function compras()
+{
+    return $this->hasMany(Compra::class, 'fornecedorid'); // 'fornecedorid' deve corresponder à chave estrangeira na tabela de compras
+}
 }

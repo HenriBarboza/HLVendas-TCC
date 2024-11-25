@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
@@ -98,13 +99,9 @@
                                     <p class="text"><b>Data</b>: {{ $compra->created_at }}</p>
                                 </div>
                             </div>
-
-
-
                             <h3 class="subtitle">Produtos Comprados</h3>
                             <div class="tableHead">
-
-                                <table>
+                                <table class="tablePrint">
                                     <thead>
                                         <tr>
                                             <th>Descrição do Produto</th>
@@ -116,7 +113,7 @@
                                 </table>
                             </div>
                             <div class="tableBody">
-                                <table>
+                                <table class="tablePrint">
                                     <tbody>
                                         @foreach($produtos as $prodCompra)
                                             <tr>
@@ -143,12 +140,12 @@
                                 Editar
                             </button>
                         </form>
-                        <form class="deleteCompra" id="deleteForm" action="{{route('compra.destroy', $compra->id)}}"
+                        <form class="deleteCompra" id="deleteCompraForm" action="{{route('compra.destroy', $compra->id)}}"
                             method="POST">
                             @csrf
                             @method('DELETE')
                             <div>
-                                <button type="submit">
+                                <button type="button" class="btn-excluir-compra" id="btnExcluirCompra" data-id="{{ $compra->id }}">
                                     Excluir
                                 </button>
                             </div>

@@ -19,7 +19,7 @@ class BuscaProdutos extends Component
     public function render()
     {
         return view('livewire.busca-produtos', [
-            'produtos' => Produto::where('descricao', 'like', '%' . $this->busca .'%')->paginate(5),
+            'produtos' => Produto::where('descricao', 'like', '%' . $this->busca .'%')->get(),
             'busca' => $this->busca,
         ]);
     }

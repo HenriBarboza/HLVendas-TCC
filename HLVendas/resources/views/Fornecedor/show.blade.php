@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/fornecedor.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js', 'resources/js/deleteAlert.js'])
     <title>HLVendas | Visualizar fornecedor</title>
@@ -156,10 +157,12 @@
                             Editar
                         </button>
                     </form>
-                    <form class="deleteForne" id="deleteForm" action="{{route('fornecedor.destroy', $fornecedores->id)}}" method="POST">
+                    <form class="deleteForne" id="deleteFornecedorForm"
+                        action="{{route('fornecedor.destroy', $fornecedores->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Excluir</button>
+                        <button type="button" class="btn-excluir-fornecedor" id="btnExcluirFornecedor"
+                            data-id="{{ $fornecedores->id }}">Excluir</button>
                     </form>
                 </div>
             </div>

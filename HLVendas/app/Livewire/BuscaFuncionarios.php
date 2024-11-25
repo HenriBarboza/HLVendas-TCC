@@ -17,7 +17,7 @@ class BuscaFuncionarios extends Component
     public function render()
     {
         return view('livewire.busca-funcionario',[
-            'funcionarios' => Funcionario::where('nome', 'like', '%' . $this->busca . '%')->paginate(10),
+            'funcionarios' => Funcionario::where('nome', 'like', '%' . $this->busca . '%')->get(),
         ]);
     }
 }

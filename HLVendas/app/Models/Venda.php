@@ -39,4 +39,8 @@ class Venda extends Model
     {
         return $this->belongsTo(CondicaoPagamento::class, 'condicaopagid');
     }
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class, 'vendaid');
+    }
 }

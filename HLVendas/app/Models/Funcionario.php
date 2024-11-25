@@ -37,5 +37,10 @@ class Funcionario extends Model
     {
         return $this->hasMany(Venda::class, 'funcionarioid');  // 'clienteid' é a chave estrangeira na tabela de vendas
     }
+
+    public static function funcionarioTemCompra($id)
+    {
+        return Compra::where('funcionarioid', $id)->exists();
+    }
 }
 

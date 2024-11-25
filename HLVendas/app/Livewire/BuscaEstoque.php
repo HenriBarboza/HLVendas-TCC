@@ -19,7 +19,7 @@ class BuscaEstoque extends Component
                 ->orWhereHas('produto', function ($query) {
                     $query->where('descricao', 'like', '%' . $this->busca . '%');
                 })
-                ->paginate(10),
+                ->get(),
         ]);
     }
 }

@@ -83,8 +83,7 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="observacao" value="{{$movimentos->observacao}}"
-                            required>
+                        <input class="inputWrapper" type="text" name="observacao" value="{{$movimentos->observacao}}">
                         <label for="observacao" class="userLabel">
                             <p>Observação:</p>
                         </label>

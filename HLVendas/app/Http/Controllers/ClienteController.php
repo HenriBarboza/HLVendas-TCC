@@ -103,12 +103,6 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        // $clientes = Cliente::findOrFail($id);
-        // $clientes->delete();
-
-        // return redirect()->route('cliente.create')
-        //                 ->with('success',"Cliente excluído com sucesso!") ;
-
         try {
             $cliente = Cliente::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {

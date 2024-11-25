@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
@@ -115,7 +116,7 @@
 
                             <h3 class="subtitle">Produtos da venda</h3>
                             <div class="tableHead">
-                                <table>
+                                <table class="tablePrint">
                                     <thead>
                                         <tr>
                                             <th>Descrição do Produto</th>
@@ -127,7 +128,7 @@
                                 </table>
                             </div>
                             <div class="tableBody">
-                                <table>
+                                <table class="tablePrint">
                                     <tbody>
                                         @foreach($produtos as $prodVenda)
                                             <tr>
@@ -193,11 +194,11 @@
                                 Editar
                             </button>
                         </form>
-                        <form class="deleteVenda" id="deleteForm" action="{{route('venda.destroy', $venda->id)}}"
+                        <form class="deleteVenda" id="deleteVendaForm" action="{{route('venda.destroy', $venda->id)}}"
                             method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">
+                            <button type="button" class="btn-excluir-venda" id="btnExcluirVenda" data-id="{{ $venda->id }}">
                                 Excluir
                             </button>
                         </form>

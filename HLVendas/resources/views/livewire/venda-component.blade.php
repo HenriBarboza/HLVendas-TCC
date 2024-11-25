@@ -62,7 +62,7 @@
             </div>
             <div>
                 <div class="contentInput">
-                    <input class="inputWrapper showVend" type="number" name="totalvenda"
+                    <input class="inputWrapper placeholderActive" type="number" name="totalvenda"
                         value="{{ $this->calcularTotal() }}" readonly>
                     <label for="totalvenda" class="userLabel">
                         <p>Total R$</p>

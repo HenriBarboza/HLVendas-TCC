@@ -108,28 +108,28 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label class="labelDate" for="datanasc">Data De Nascimento:</label>
-                            <input class="inputWrapper" type="date" name="datanasc" value="{{$clientes->datanasc}}"
-                                disabled>
+                            <input class="inputWrapper placeholderActive" type="date" name="datanasc" value="{{$clientes->datanasc}}"
+                            disabled>
+                            <label class="userLabel" for="datanasc"><p>Data De Nascimento:</p></label>
                         </div>
 
                         <div class="inputGroup">
-                            <label class="labelDate" for="created_at">Data De Cadastro:</label>
-                            <input class="inputWrapper" type="datetime-local" name="created_at"
-                                value="{{$clientes->created_at}}" disabled>
+                            <input class="inputWrapper placeholderActive" type="datetime-local" name="created_at"
+                            value="{{$clientes->created_at}}" disabled>
+                            <label class="userLabel" for="created_at"><p>Data De Cadastro:</p></label>
                         </div>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <label class="labelDate" for="updated_at">Última Alteração:</label>
-                            <input class="inputWrapper" type="datetime-local" name="updated_at"
-                                value="{{$clientes->updated_at}}" disabled>
+                            <input class="inputWrapper placeholderActive" type="datetime-local" name="updated_at"
+                            value="{{$clientes->updated_at}}" disabled>
+                            <label class="userLabel" for="updated_at"><p>Última Alteração:</p></label>
                         </div>
 
                         <div class="inputGroup">
-                            <label class="labelDate" for="ultimacompra">Última Compra:</label>
-                            <input class="inputWrapper" type="datetime-local" name="ultimacompra"
-                                value="{{$clientes->ultimacompra}}" disabled>
+                            <input class="inputWrapper placeholderActive" type="datetime-local" name="ultimacompra"
+                            value="{{$clientes->ultimacompra}}" disabled>
+                            <label class="userLabel" for="ultimacompra"><p>Última Compra:</p></label>
                         </div>
                     </div>
                     <div class="contentInput">
@@ -146,11 +146,6 @@
                             Editar
                         </button>
                     </form>
-                    <!-- <form class="deleteCliente" id="deleteForm" action="{{route('cliente.destroy', $clientes->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Excluir</button>
-                    </form> -->
                     <form class="deleteCliente" id="deleteClienteForm" action="{{ route('cliente.destroy', $clientes->id) }}" method="POST">
                         @csrf
                         @method('DELETE')

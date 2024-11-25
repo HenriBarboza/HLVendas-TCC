@@ -99,10 +99,36 @@ class FornecedorController extends Controller
      */
     public function destroy(string $id)
     {
-        $fornecedores = Fornecedor::findOrFail($id);
-        $fornecedores->delete();
+        // $fornecedores = Fornecedor::findOrFail($id);
+        // $fornecedores->delete();
 
-        return redirect()->route('fornecedor.create')
-                        ->with('success','Fornecedor excluído com sucesso!') ;
+        // return redirect()->route('fornecedor.create')
+        //                 ->with('success','Fornecedor excluído com sucesso!') ;
+
+        try {
+            // Encontre o fornecedor com o ID fornecido
+            $fornecedor = Fornecedor::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Fornecedor não encontrado.',
+                'fornecedor_nome' => $id,
+            ], 404);
+        }
+    
+        // Verifique se o fornecedor tem compras associadas
+        if ($fornecedor->compras()->exists()) {
+            return response()->json([
+                'error' => 'Este fornecedor tem compras associadas e não pode ser excluído.',
+                'fornecedor_nome' => $fornecedor->nome,
+            ], 400);
+        }
+    
+        // Excluir o fornecedor caso não tenha compras associadas
+        $fornecedor->delete();
+    
+        return response()->json([
+            'success' => 'Fornecedor excluído com sucesso.',
+            'fornecedor_nome' => $fornecedor->nome,
+        ], 200);
     }
 }

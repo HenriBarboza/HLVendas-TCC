@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Conta extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'nome',
         'toatal',
@@ -18,6 +18,11 @@ class Conta extends Model
     public function compra()
     {
         return $this->hasMany(Compra::class, 'contaid', 'id');
+    }
+
+    public function venda()
+    {
+        return $this->hasMany(Venda::class, 'contaid');
     }
 
     public function funcionario()

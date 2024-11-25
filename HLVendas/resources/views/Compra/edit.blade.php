@@ -60,7 +60,7 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number showCompra" type="text" name="doc" value="{{$compra->doc}}"
+                        <input class="inputWrapper number placeholderActive" type="text" name="doc" value="{{$compra->doc}}"
                             disabled>
                         <label for="doc" class="userLabel">
                             <p class="text">
@@ -70,9 +70,9 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper placeholderActive" type="number" name="fornecedorid"
+                            <input class="inputWrapper" type="number" name="fornecedorid"
                                 id="inpFornecedorId" hidden value="{{$compra->fornecedorid}}" required>
-                            <input class="inputWrapper" type="text" value="{{$compra->fornecedor->nome}}"
+                            <input class="inputWrapper showCompra" type="text" value="{{$compra->fornecedor->nome}}"
                                 id="inpFornecedorNome" disabled>
                             <label for="fornecedorid" class="userLabel">
                                 <p class="text">
@@ -103,7 +103,7 @@
                         <div class="inputGroup">
                             <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
                                 name="funcionarioid" placeholder="Funcionário da Venda" required>
-                            <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+                            <input class="inputWrapper showCompra" type="text" value="{{Auth::user()->name}}" disabled>
 
                             <label for="funcionarioid" class="userLabel">
                                 <p class="text">

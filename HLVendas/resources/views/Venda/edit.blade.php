@@ -57,7 +57,7 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number showVend" type="text" name="doc" value="{{$venda->doc}}"
+                        <input class="inputWrapper number placeholderActive" type="text" name="doc" value="{{$venda->doc}}"
                             readonly placeholder="Documento">
                         <label for="doc" class="userLabel">
                             <p>Documento</p>
@@ -65,9 +65,9 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper placeholderActive" type="number" name="clienteid"
+                            <input class="inputWrapper" type="number" name="clienteid"
                                 value="{{$venda->clienteid}}" id="inpClienteId" hidden required="">
-                            <input class="inputWrapper" type="text" value="{{$venda->cliente->nome}}"
+                            <input class="inputWrapper showVend" type="text" value="{{$venda->cliente->nome}}"
                                 id="inpClienteNome" disabled>
                             <label for="clienteid" class="userLabel">
                                 <p>cliente</p>
@@ -81,16 +81,16 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper placeholderActive" type="text" value="{{Auth::user()->id}}" hidden
+                        <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
                             name="funcionarioid" required>
-                        <input class="inputWrapper" type="text" value="{{Auth::user()->name}}" disabled>
+                        <input class="inputWrapper showVend" type="text" value="{{Auth::user()->name}}" disabled>
                         <label for="funcionarioid" class="userLabel">
                             <p>Funcionário da venda</p>
                         </label>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <select class="inputWrapper w50" name="contaid">
+                            <select class="inputWrapper" name="contaid">
                                 <option value="{{$venda->contaid}}">{{$venda->conta->nome}}</option>
                                 @foreach($contas as $conta)
                                     <option value="{{$conta->id}}">{{$conta->nome}}</option>

@@ -67,7 +67,7 @@
                                             placeholder="{{$produto->custo}}" /></td>
                                     <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
                                             step="0.01" placeholder="1" min="0.1" /></td>
-                                    <td wire:key="{{$produto->id}}"><button wire:click="addProdutoCompra({{ $produto->id }})"
+                                    <td class="acao" wire:key="{{$produto->id}}"><button wire:click="addProdutoCompra({{ $produto->id }})"
                                             @click="open = false" @click.prevent>Adicionar</button></td>
                                 </tr>
                             @endforeach
@@ -104,7 +104,7 @@
                                     <td>{{$produto->estoque}}</td>
                                     <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
                                             step="0.01" placeholder="1" min="0.1" /></td>
-                                    <td wire:key="{{$produto->id}}"><button wire:click="addProdutoVenda({{ $produto->id }})"
+                                    <td class="acao" wire:key="{{$produto->id}}"><button wire:click="addProdutoVenda({{ $produto->id }})"
                                             @click="open = false" @click.prevent>Adicionar</button></td>
                                 </tr>
                             @endforeach

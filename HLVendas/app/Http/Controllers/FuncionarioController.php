@@ -31,19 +31,19 @@ class FuncionarioController extends Controller
     public function store(Request $request)
     {
         Funcionario::create([
-            'nome'=> $request->input('nome'),
-            'email'=> $request->input('email'),
-            'telefone'=> $request->input('telefone'),
-            'cpfcnpj'=> $request->input('cpfcnpj'),
-            'logradouro'=> $request->input('logradouro'),
-            'bairro'=> $request->input('bairro'),
-            'numero'=> $request->input('numero'),
-            'cidade'=> $request->input('cidade'),
-            'cep'=> $request->input('cep'),
-            'estado'=> $request->input('estado'),
-            'datanasc'=> $request->input('datanasc'),
-            'tipo'=> $request->input('tipo'),
-            'idauth'=> $request->input('idauth'),
+            'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
+            'telefone' => $request->input('telefone'),
+            'cpfcnpj' => $request->input('cpfcnpj'),
+            'logradouro' => $request->input('logradouro'),
+            'bairro' => $request->input('bairro'),
+            'numero' => $request->input('numero'),
+            'cidade' => $request->input('cidade'),
+            'cep' => $request->input('cep'),
+            'estado' => $request->input('estado'),
+            'datanasc' => $request->input('datanasc'),
+            'tipo' => $request->input('tipo'),
+            'idauth' => $request->input('idauth'),
         ]);
 
         $userid = $request->input('idauth');
@@ -53,7 +53,7 @@ class FuncionarioController extends Controller
 
 
         return redirect()->route('funcionario.create')
-                         ->with('success', "Funcionario cadastrado com sucesso.");
+            ->with('success', "Funcionario cadastrado com sucesso.");
     }
 
     /**
@@ -83,7 +83,7 @@ class FuncionarioController extends Controller
         $funcionarios->update($request->all());
 
         return redirect()->route('funcionario.create')
-                         ->with('success', "Funcionario alterado com sucesso!") ;
+            ->with('success', "Funcionario alterado com sucesso!");
     }
 
     /**
@@ -91,12 +91,6 @@ class FuncionarioController extends Controller
      */
     public function destroy(string $id)
     {
-        // $funcionarios = Funcionario::findOrFail($id);
-        // $funcionarios->delete();
-
-        // return redirect()->route('funcionario.create')
-        //                 ->with('success','Funcionario excluído com sucesso!') ;
-
         try {
             $funcionario = Funcionario::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -109,6 +103,13 @@ class FuncionarioController extends Controller
         if ($funcionario->vendas()->exists()) {
             return response()->json([
                 'error' => 'Este Funcionário tem vendas associadas e não pode ser excluído.',
+                'funcionario_nome' => $funcionario->nome,
+            ], 400);
+        }
+
+        if (Funcionario::funcionarioTemCompra($id)) {
+            return response()->json([
+                'error' => 'Este funcionário está associado a compras e não pode ser excluído.',
                 'funcionario_nome' => $funcionario->nome,
             ], 400);
         }

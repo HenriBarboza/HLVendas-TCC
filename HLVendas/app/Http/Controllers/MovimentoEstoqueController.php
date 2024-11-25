@@ -110,13 +110,43 @@ class MovimentoEstoqueController extends Controller
      */
     public function destroy(string $id)
     {
-        $movimentos = MovimentoEstoque::findOrFail($id);
-        $produto = Produto::findOrFail($movimentos->produtoid);
-        $movimentos->delete();
+        // $movimentos = MovimentoEstoque::findOrFail($id);
+        // $produto = Produto::findOrFail($movimentos->produtoid);
+        // $movimentos->delete();
 
-        ProdutoController::calcularEstoque($produto->id);
+        // ProdutoController::calcularEstoque($produto->id);
 
-        return redirect()->route('estoque.create')
-            ->with('success', "Movimento de estoque excluído com sucesso!");
+        // return redirect()->route('estoque.create')
+        //     ->with('success', "Movimento de estoque excluído com sucesso!");
+
+        try {
+            // Localiza o movimento de estoque
+            $movimento = MovimentoEstoque::findOrFail($id);
+    
+            // Localiza o produto associado ao movimento
+            $produto = Produto::findOrFail($movimento->produtoid);
+    
+            // Exclui o movimento de estoque
+            $movimento->delete();
+    
+            // Atualiza o estoque do produto
+            ProdutoController::calcularEstoque($produto->id);
+    
+            // Retorna uma mensagem de sucesso
+            return response()->json([
+                'success' => 'Movimento de estoque excluído com sucesso!',
+                'produto_nome' => $produto->descricao,
+                'estoque_atualizado' => $produto->estoque,
+            ], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Movimento de estoque ou produto não encontrado.',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao excluir o movimento de estoque.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

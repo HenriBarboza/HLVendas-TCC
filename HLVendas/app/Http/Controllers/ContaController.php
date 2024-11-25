@@ -37,26 +37,28 @@ class ContaController extends Controller
         ]);
 
         return redirect()->route('conta.create')
-                         ->with('success', "Conta cadastrada com sucesso.");
+            ->with('success', "Conta cadastrada com sucesso.");
     }
 
     public static function calcularTotal(string $id)
     {
-        $conta = Conta::findOrFail( $id);
+        $conta = Conta::findOrFail($id);
         $vendas = Venda::all();
         $compras = Compra::all();
         $totalVenda = 0;
         $totalCompra = 0;
 
-        foreach($vendas as $venda){
-            if($venda->contaid == $id){
+        foreach ($vendas as $venda) {
+            if ($venda->contaid == $id) {
                 $totalVenda += $venda->totalvenda;
-            };
+            }
+            ;
         }
-        foreach($compras as $compra){
-            if($compra->contaid == $id){
+        foreach ($compras as $compra) {
+            if ($compra->contaid == $id) {
                 $totalCompra -= $compra->totalcompra;
-            };
+            }
+            ;
         }
         $totalConta = $totalVenda + $totalCompra;
 
@@ -93,7 +95,7 @@ class ContaController extends Controller
         $conta = Conta::findOrFail($id);
         $conta->update($request->all());
         return redirect()->route('conta.create')
-                         ->with('success', "Conta alterado com sucesso!") ;
+            ->with('success', "Conta alterado com sucesso!");
     }
 
     /**
@@ -101,6 +103,43 @@ class ContaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Encontrar a conta
+            $conta = Conta::findOrFail($id);
+
+            // Verificar se existem compras associadas a esta conta
+            if ($conta->compra()->exists()) {
+                return response()->json([
+                    'error' => 'Esta conta tem compras associadas e não pode ser excluída.',
+                    'conta_nome' => $conta->nome,
+                ], 400);
+            }
+
+            // Verificar se existem vendas associadas a esta conta
+            if ($conta->venda()->exists()) {
+                return response()->json([
+                    'error' => 'Esta conta tem vendas associadas e não pode ser excluída.',
+                    'conta_nome' => $conta->nome,
+                ], 400);
+            }
+
+            // Caso contrário, exclui a conta
+            $conta->delete();
+
+            return response()->json([
+                'success' => 'Conta excluída com sucesso.',
+                'conta_nome' => $conta->nome,
+            ], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Conta não encontrada.',
+                'conta_nome' => $id,
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Ocorreu um erro ao tentar remover a conta.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

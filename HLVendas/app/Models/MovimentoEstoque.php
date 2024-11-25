@@ -14,9 +14,13 @@ class MovimentoEstoque extends Model
         'quantidade',
         'observacao',
         'tipomovimentacao'
-        ];
-        public function produto()
-        {
-            return $this->belongsTo(Produto::class, foreignKey: 'produtoid');
-        }
+    ];
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class, foreignKey: 'produtoid');
+    }
+    public static function produtoTemMovimentoEstoque($produtoId)
+    {
+        return self::where('produtoid', $produtoId)->exists();
+    }
 }

@@ -23,4 +23,9 @@ class ProdVenda extends Model
     {
         return $this->belongsTo(Venda::class, 'vendaid');
     }
+    public static function produtoEmVenda($produtoId)
+    {
+        // Verifica se o produto está associado a alguma venda
+        return self::where('produtoid', $produtoId)->exists();
+    }
 }

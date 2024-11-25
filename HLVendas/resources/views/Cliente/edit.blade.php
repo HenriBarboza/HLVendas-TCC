@@ -107,9 +107,9 @@
                         </div>
                     </div>
                     <div class="contentInput not-gap">
-                        <label class="labelDate" for="datanasc">Data De Nascimento:</label>
-                        <input class="inputWrapper" type="date" name="datanasc" value="{{$clientes->datanasc}}"
-                            required>
+                        <input class="inputWrapper showCliente" type="date" name="datanasc" value="{{$clientes->datanasc}}"
+                        required>
+                        <label class="userLabel" for="datanasc"><p>Data De Nascimento:</p></label>
                     </div>
 
                     <div class="button">        

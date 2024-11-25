@@ -13,7 +13,7 @@
                 <h2 class="text-lg">Buscar Condição de Pagamento</h2>
                 @livewire('busca-condicao-pagamento', compact('rota'))
                 <button @click.prevent="open = false"
-                    class="mt-4 buttonContaClose">Fechar</button>
+                    class="mt-4 buttonContaClose"><p class="text">Fechar</p></button>
             </div>
         </div>
     </div>

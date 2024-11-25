@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/conta.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js', 'resources/scss/tableBusca.scss'])
+    @vite(['resources/scss/conta.scss', 'resources/js/deleteAlert.js', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/loadingPage.js', 'resources/scss/tableBusca.scss'])
     <title>HLVendas | Editar conta</title>
 </head>
 
@@ -63,18 +64,28 @@
                             <p>Data de última movimentação:</p>
                         </label>
                     </div>
-                    <div class="contentInput">
+                    <!-- <div class="contentInput">
                         <input class="inputWrapper showConta" type="text" name="nome"
                             value="{{$contas->funcionario->nome}}" disabled>
                         <label class="userLabel" for="nome">
                             <p>Última movimentação feita por:</p>
                         </label>
-                    </div>
+                    </div> -->
                 </form>
                 <div class="contentFormAcao content02">
                     <form action="{{route('conta.edit', $contas->id)}}" class="editConta">
                         <button type="submit">
                             Editar
+                        </button>
+                    </form>
+
+                    <form action="{{route('conta.destroy', $contas->id)}}" method="POST" class="deleteConta"
+                        id="deleteContaForm">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn-excluir-conta" id="btnExcluirConta"
+                            data-id="{{ $contas->id }}">
+                            Excluir
                         </button>
                     </form>
                 </div>

@@ -181,13 +181,13 @@ body {
                         }
 
                         &.showCompra {
+                            border-color: #0b57d0;
                             &:not([value=""]) ~ .userLabel {
                                 transform: translateY(-0.3rem) scale(0.8);
                                 background-color: $white;
                                 padding: 0 0.25em;
                                 outline: none;
                                 box-shadow: none;
-                                border-color: #0b57d0;
                             }
                         }
 

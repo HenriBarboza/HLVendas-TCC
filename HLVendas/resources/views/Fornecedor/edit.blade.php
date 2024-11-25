@@ -33,6 +33,12 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
+                        <input class="inputWrapper placeholderActive" type="text" name="id" value="{{$fornecedores->id}}" disabled>
+                        <label class="userLabel" for="id">
+                            <p>Id:</p>
+                        </label>
+                    </div>
+                    <div class="contentInput">
                         <input class="inputWrapper" type="text" name="nome" value="{{$fornecedores->nome}}" required>
                         <label for="nome" class="userLabel">
                             <p>Nome:</p>

@@ -47,7 +47,7 @@
                         </label>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper number showVend" type="number" id="valortotal" name="valortotal"
+                        <input class="inputWrapper number placeholderActive" type="number" id="valortotal" name="valortotal"
                             readonly value="{{$venda->totalvenda}}" required>
                         <label for="doc" class="userLabel">
                             <p>Valor Total</p>
@@ -76,7 +76,7 @@
                         </label>
                     </div>
                     <div id="troco" class="contentInput ">
-                        <input class="inputWrapper number showVend" type="text" id="valortroco" value="0.0" name="troco"
+                        <input class="inputWrapper number placeholderActive" type="text" id="valortroco" value="0.0" name="troco"
                             readonly required>
                         <label for="doc" class="userLabel">
                             <p>Troco</p>

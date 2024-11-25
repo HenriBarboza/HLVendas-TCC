@@ -16,7 +16,7 @@ class BuscaCondicaoPagamento extends Component
     public function render()
     {
         return view('livewire.busca-condicao-pagamento',[
-            'condicoes' => CondicaoPagamento::where('descricao', 'like', '%'. $this->busca. '%')->paginate(10),
+            'condicoes' => CondicaoPagamento::where('descricao', 'like', '%'. $this->busca. '%')->get(),
         ]);
     }
 }

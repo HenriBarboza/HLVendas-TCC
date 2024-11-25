@@ -148,10 +148,41 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        $produtos = Produto::findOrFail($id);
-        $produtos->delete();
+        try {
+            $produtos = Produto::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Produto não encontrado.',
+                'produto_id' => $id,
+            ], 404);
+        }
+    
+        if (ProdVenda::produtoEmVenda($id)) {
+            return response()->json([
+                'error' => 'Este produto está associado a uma venda e não pode ser excluído.',
+                'produto_nome' => $produtos->descricao,
+            ], 400);
+        }
 
-        return redirect()->route('produto.create')
-                         ->with('success', "Produto excluído com sucesso!");
+        if (MovimentoEstoque::produtoTemMovimentoEstoque($id)) {
+            return response()->json([
+                'error' => 'Este produto está em movimento de estoque e não pode ser excluído.',
+                'produto_nome' => $produtos->descricao,
+            ], 400);
+        }
+    
+        if (ProdCompra::produtoTemCompra($id)) {
+            return response()->json([
+                'error' => 'Este produto está associado a uma compra e não pode ser excluído.',
+                'produto_nome' => $produtos->descricao,
+            ], 400);
+        }
+
+        $produtos->delete();
+    
+        return response()->json([
+            'success' => 'Produto excluído com sucesso.',
+            'produto_nome' => $produtos->descricao,
+        ], 200);
     }
 }

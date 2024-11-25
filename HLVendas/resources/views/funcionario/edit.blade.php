@@ -34,7 +34,7 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" name="id" value="{{$funcionarios->id}}">
+                        <input class="inputWrapper placeholderActive" type="text" name="id" value="{{$funcionarios->id}}" disabled>
                         <label class="userLabel" for="id">
                             <p>Id:</p>
                         </label>
@@ -113,6 +113,13 @@
                         <label class="userLabel" for="datanasc">
                             <p>Data de Nascimento:</p>
                         </label>
+                    </div>
+                    <div class="contentInput radio">
+                        <p class="text"><label for="tipo">Situação:</label></p>
+                        <input type="radio" id="normal" value="f" name="tipo" checked>
+                        <p class="text"><label for="normal">Ativo</label></p>
+                        <input type="radio" id="gerente" value="g" name="tipo">
+                        <p class="text"><label for="gerente">Inativo</label><br></p>
                     </div>
                     <div class="button">
                         <button type="submit">
