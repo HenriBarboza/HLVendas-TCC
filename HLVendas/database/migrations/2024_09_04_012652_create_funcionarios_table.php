@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string("estado")->nullable();
             $table->date("datanasc")->nullable();
             $table->string("tipo");
+            $table->string("status");
             $table->foreignId("idauth");
             $table->timestamps();
 
@@ -37,6 +38,7 @@ return new class extends Migration
                 'telefone' => '000000000',
                 'cpfcnpj' => '000000000',
                 'tipo' => 'g',
+                'status' => 'a',
                 'idauth' => '1',
             ]
         );

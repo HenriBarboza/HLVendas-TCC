@@ -133,6 +133,14 @@
                         <p class="text"><label for="gerente">Gerente</label><br></p>
                     </div>
 
+                    <div class="contentInput radio">
+                        <p class="text"><label for="status">Situação:</label></p>
+                        <input type="radio" id="ativo" value="a" name="status" checked>
+                        <p class="text"><label for="ativo">Ativo</label></p>
+                        <input type="radio" id="inativo" value="i" name="status">
+                        <p class="text"><label for="inativo">Inativo</label><br></p>
+                    </div>
+
                     <div class="button">
                         <button type="submit">
                             <p class="text">

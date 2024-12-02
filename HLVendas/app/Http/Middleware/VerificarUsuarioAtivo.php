@@ -19,7 +19,7 @@ class VerificarUsuarioAtivo
 
         $user = Auth::user();
         
-        if($user && $user->is_active) {
+        if (($user && $user->is_active) || ($user?->funcionario?->status != 'a')) {
             return redirect('/inativo')->with('error', 'Sua conta está inativa.');
         }
         return $next($request);

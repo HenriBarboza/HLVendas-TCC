@@ -115,11 +115,19 @@
                         </label>
                     </div>
                     <div class="contentInput radio">
-                        <p class="text"><label for="tipo">Situação:</label></p>
-                        <input type="radio" id="normal" value="f" name="tipo" checked>
-                        <p class="text"><label for="normal">Ativo</label></p>
-                        <input type="radio" id="gerente" value="g" name="tipo">
-                        <p class="text"><label for="gerente">Inativo</label><br></p>
+                        <p class="text"><label for="tipo">Nivel:</label></p>
+                        <input type="radio" id="normal" value="f" name="tipo" {{$funcionarios->tipo == 'f' ? 'checked' : ''}}>
+                        <p class="text"><label for="normal">Normal</label></p>
+                        <input type="radio" id="gerente" value="g" name="tipo" {{$funcionarios->tipo == 'g' ? 'checked' : ''}}>
+                        <p class="text"><label for="gerente">Gerente</label><br></p>
+                    </div>
+
+                    <div class="contentInput radio">
+                        <p class="text"><label for="status">Situação:</label></p>
+                        <input type="radio" id="ativo" value="a" name="status" {{$funcionarios->status == 'a' ? 'checked' : ''}}>
+                        <p class="text"><label for="ativo">Ativo</label></p>
+                        <input type="radio" id="inativo" value="i" name="status" {{$funcionarios->status == 'i' ? 'checked' : ''}}>
+                        <p class="text"><label for="inativo">Inativo</label><br></p>
                     </div>
                     <div class="button">
                         <button type="submit">

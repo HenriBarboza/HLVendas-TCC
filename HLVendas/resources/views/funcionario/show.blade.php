@@ -137,11 +137,27 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper placeholderActive" type="date" name="datanasc"
-                            value="{{$funcionarios->datanasc}}" disabled>
-                        <label class="userLabel" for="datanasc">
-                            <p>Data de Nascimento:</p>
-                        </label>
+                        <div class="inputGroup">
+                            <input class="inputWrapper placeholderActive" type="date" name="datanasc"
+                                value="{{$funcionarios->datanasc}}" disabled>
+                            <label class="userLabel" for="datanasc">
+                                <p>Data de Nascimento:</p>
+                            </label>
+                        </div>
+                        <div class="inputGroupMedium">
+                            <input class="inputWrapper placeholderActive" type="text" name="tipo"
+                                value="{{$funcionarios->tipo == 'f' ? 'Normal' : 'Gerente'}}" disabled>
+                            <label class="userLabel" for="tipo">
+                                <p>Tipo:</p>
+                            </label>
+                        </div>
+                        <div class="inputGroupMedium">
+                            <input class="inputWrapper placeholderActive" type="text" name="status"
+                                value="{{$funcionarios->status == 'a' ? 'Ativo' : 'Inativo'}}" disabled>
+                            <label class="userLabel" for="status">
+                                <p>Situação:</p>
+                            </label>
+                        </div>
                     </div>
                 </form>
                 @if(Auth::user()->id === 1)

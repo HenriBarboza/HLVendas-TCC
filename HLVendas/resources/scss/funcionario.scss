@@ -163,6 +163,13 @@ body {
                         display: inline-block;
                     }
 
+                    .inputGroupMedium{
+                        position: relative;
+                        width: calc(24.5% - 0.5rem);
+                        display: inline-block;
+                    }
+
+
                     .inputWrapper {
                         width: 100%;
                         border: 0.15rem solid $black;

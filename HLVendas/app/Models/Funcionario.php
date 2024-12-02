@@ -23,6 +23,7 @@ class Funcionario extends Model
         'estado',
         'datanasc',
         'tipo',
+        'status',
         'idauth'
     ];
 

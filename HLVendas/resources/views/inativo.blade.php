@@ -39,7 +39,7 @@
                 <div class="contentButton">
                     <div class="newCliente">
                     <h1>Cadastro inativo</h1>
-                    <h1>Para que voce consiga acessar com esse login, peça para um gerente te registrar como funcionário.</h1>
+                    <h1>Para que voce consiga acessar com esse login, peça para um gerente te registrar como funcionário ou ative o seu cadastro.</h1>
                     </div>
                 </div>
             </div>
