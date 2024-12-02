@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AutorizacaoController;
 use App\Http\Controllers\MovimentoEstoqueController;
 use App\Http\Controllers\CondicaoPagamentoController;
+use App\Http\Controllers\PermissaoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -37,7 +38,7 @@ Route::middleware(['verificarGerente'])->group(function () {
     // Outras rotas protegidas pela Middleware
 });
 
-Route::middleware(['auth','verificarUsuario','verificarGerente'])->group(function () {
+Route::middleware(['auth','verificarUsuario','verificarGerente','verificarPermissao'])->group(function () {
     Route::resources(['produto' => ProdutoController::class]);
     Route::resources(['cliente' => ClienteController::class]);
     Route::resources(['fornecedor' => FornecedorController::class]);
@@ -49,6 +50,7 @@ Route::middleware(['auth','verificarUsuario','verificarGerente'])->group(functio
     Route::resources(['pagamento' => PagamentoController::class]);
     Route::resources(['estoque' => MovimentoEstoqueController::class]);
     Route::resources(['condicaoPagamento' => CondicaoPagamentoController::class]);
+    Route::resources(['permissao' => PermissaoController::class]);
     Route::get('/verificacao/auth', [AutorizacaoController::class, 'auth'])->name('verificacao.auth');
     Route::post('/verificacao/confirmar', [AutorizacaoController::class, 'confirmarAuth'])->name('verificacao.confirmar');
 });

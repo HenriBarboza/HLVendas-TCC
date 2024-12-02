@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerificarPermissao;
 use App\Http\Middleware\VerificarUsuarioAtivo;
 use App\Http\Middleware\VerificarGerente;
 use Illuminate\Foundation\Application;
@@ -15,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->appendToGroup('verificarUsuario',VerificarUsuarioAtivo::class);
         $middleware->appendToGroup('verificarGerente',VerificarGerente::class);
+        $middleware->appendToGroup('verificarPermissao',VerificarPermissao::class);
     })
     ->withMiddleware(function (Middleware $middleware) {
         //

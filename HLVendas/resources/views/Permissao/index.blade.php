@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
     @vite(['resources/scss/cliente.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/inputValidation.js', 'resources/js/placeholder.js'])
-    <title>HLVendas | Funcionário inativo</title>
+    <title>HLVendas | Acesso restrito</title>
     <style>
         /* Inicialmente, a div é ocultada */
         .buscaCliente {
@@ -38,8 +38,8 @@
             <div class="contentForms">
                 <div class="contentButton">
                     <div class="newCliente">
-                    <h1>Cadastro inativo</h1>
-                    <h1>Para que voce consiga acessar com esse login, peça para um gerente te registrar como funcionário.</h1>
+                    <h1>Acesso restrito</h1>
+                    <h1>Apenas funcionários com o nível de gerente podem acessar essa página.</h1>
                     </div>
                 </div>
             </div>
