@@ -132,6 +132,17 @@ class VendaController extends Controller
     {
         $venda = Venda::findOrFail($id);
         $pagamentos = Pagamento::where('vendaid', $id)->get();
+
+        foreach ($venda->prodvendas as $produto) {
+            $quantidadeAnterior = $produto['quantidade'];
+            $prodAtt = Produto::findOrFail($produto['produtoid']);
+            $estoqueAtual = $prodAtt->estoque;
+            $estoqueAnterior = $estoqueAtual + $quantidadeAnterior;
+            $prodAtt->update([
+                'estoque' => $estoqueAnterior
+            ]);
+        }
+
         $venda->prodVendas()->delete();
 
         foreach ($request->input('produtos') as $produto) {

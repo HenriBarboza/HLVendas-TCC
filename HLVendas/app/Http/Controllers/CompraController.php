@@ -69,14 +69,21 @@ class CompraController extends Controller
                     'quantidade' => $produto['quantidade'],
                     'custo' => $produto['custo'],
                 ]);
+                // acrescenta o estoque do produto e data da ultima compra no cadastro do produto
+                $prodAtt = Produto::findOrFail($produto['produto_id']);
+                $quantAtual = $prodAtt->estoque;
+                $novoEstoque = $quantAtual + $produto['quantidade'];
+                $prodAtt->update([
+                    'custo' => $produto['custo'],
+                    'estoque' => $novoEstoque,
+                    'ultimacompra' => date("Y-m-d H:i:s")
+                ]);
 
+                ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
             }
 
             DB::commit();
 
-            foreach ($request->input('produtos') as $produto) {
-                ProdutoController::calcularEstoque($produto['produto_id']);
-            }
             FornecedorController::calcularTotal($request->input('fornecedorid'));
             ContaController::calcularTotal($request->input('contaid'));
             ProdutoController::calcularPreco($produto['custo'], $produto['produto_id']);
@@ -126,7 +133,18 @@ class CompraController extends Controller
         // Encontra a compra a ser atualizada
         $compra = Compra::findOrFail($id);
 
+
         // Limpa os produtos existentes
+        foreach ($compra->prodCompras as $produto) {
+            $quantidadeAnterior = $produto['quantidade'];
+            $prodAtt = Produto::findOrFail($produto['produtoid']);
+            $estoqueAtual = $prodAtt->estoque;
+            $estoqueAnterior = $estoqueAtual - $quantidadeAnterior;
+            $prodAtt->update([
+                'estoque' => $estoqueAnterior
+            ]);
+        }
+        
         $compra->prodCompras()->delete();
 
         // Adiciona os novos produtos
@@ -168,26 +186,26 @@ class CompraController extends Controller
 
         try {
             $compra = Compra::with(['prodCompras', 'fornecedor', 'conta'])->findOrFail($id);
-    
+
             ContaController::calcularTotal($compra->conta->id);
             FornecedorController::calcularTotal($compra->fornecedor->id);
-    
+
 
             foreach ($compra->prodCompras as $prodCompra) {
-                ProdutoController::calcularEstoque($prodCompra->produto->id); 
-                $prodCompra->delete(); 
+                ProdutoController::calcularEstoque($prodCompra->produto->id);
+                $prodCompra->delete();
             }
-    
+
             $compra->delete();
-    
+
             DB::commit();
-    
+
             return response()->json([
                 'success' => 'Compra removida com sucesso.',
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-    
+
             return response()->json([
                 'error' => 'Ocorreu um erro ao remover a compra.',
                 'message' => $e->getMessage(),
