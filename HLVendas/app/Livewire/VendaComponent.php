@@ -43,29 +43,30 @@ class VendaComponent extends Component
                 if ($this->tabelaPreco == 'AV') {
                     $this->vetProd[$i]['preco'] = $produto->precoavista;
                 } elseif ($this->tabelaPreco == 'AP') {
-                    $this->vetProd[$i]['preco'] = $produto->precoaprazo;;
+                    $this->vetProd[$i]['preco'] = $produto->precoaprazo;
+                    ;
                 }
-                
+
             }
         }
 
     }
 
-    public function adicionarProdutoVenda($produtoId, $quantidade)
+    public function adicionarProdutoVenda($produtoId)
     {
         $produto = Produto::find($produtoId);
 
         $preco = 0.0;
 
         // Verifica se o produto já foi adicionado
-        foreach($this->vetProd as $i => $item) {
+        foreach ($this->vetProd as $i => $item) {
             if ($item['produto_id'] === $produtoId) {
-                $this->vetProd[$i]['quantidade'] += $quantidade;
+                $this->mostrarMensagem();
                 return;
             }
         }
 
-        if($this->tabelaPreco == 'AV') {
+        if ($this->tabelaPreco == 'AV') {
             $preco = $produto->precoavista;
         } elseif ($this->tabelaPreco == 'AP') {
             $preco = $produto->precoaprazo;
@@ -76,7 +77,7 @@ class VendaComponent extends Component
             'produto_id' => $produto->id,
             'descricao' => $produto->descricao,
             'preco' => $preco,
-            'quantidade' => $quantidade
+            'quantidade' => 1
         ];
 
         $this->dispatch('close')->to('modal-component');
@@ -86,6 +87,30 @@ class VendaComponent extends Component
     {
         unset($this->vetProd[$index]);
         $this->vetProd = array_values($this->vetProd); // Reindexa o array
+    }
+
+
+    public function mostrarMensagem()
+    {
+        $this->js("mostrarMensagem()");
+    }
+
+    public function updatedVetProd($value, $key)
+    {
+        [$index, $field] = explode('.', $key);
+
+        if ($field === 'quantidade') {
+            // Atualiza o total diretamente usando o novo valor e o campo correspondente
+            $produto = &$this->vetProd[$index]; // Referência direta ao item do array
+
+            if ($field === 'quantidade') {
+                if($value <= 0){
+                    $produto['quantidade'] = 1;
+                } else{
+                $produto['quantidade'] = $value;
+                }
+            }
+        }
     }
 
     public function calcularOutros()

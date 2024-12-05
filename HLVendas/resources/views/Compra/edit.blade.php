@@ -60,8 +60,8 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number placeholderActive" type="text" name="doc" value="{{$compra->doc}}"
-                            disabled>
+                        <input class="inputWrapper number placeholderActive" type="text" name="doc"
+                            value="{{$compra->doc}}" disabled>
                         <label for="doc" class="userLabel">
                             <p class="text">
                                 Documento
@@ -70,8 +70,8 @@
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="fornecedorid"
-                                id="inpFornecedorId" hidden value="{{$compra->fornecedorid}}" required>
+                            <input class="inputWrapper" type="number" name="fornecedorid" id="inpFornecedorId" hidden
+                                value="{{$compra->fornecedorid}}" required>
                             <input class="inputWrapper showCompra" type="text" value="{{$compra->fornecedor->nome}}"
                                 id="inpFornecedorNome" disabled>
                             <label for="fornecedorid" class="userLabel">
@@ -130,6 +130,45 @@
         </div>
         @livewireScripts
     </div>
+    <script>
+        function mostrarMensagem() {
+            // Cria a div de sucesso
+            const successMessage = document.createElement('div');
+            successMessage.id = 'success-message';
+            successMessage.classList.add('notification', 'bg-yellow-500', 'text-white', 'px-4', 'py-3', 'rounded', 'shadow-lg', 'flex', 'justify-between', 'items-center', 'fixed', 'top-4', 'right-4', 'z-50');
+
+            // Cria o conteúdo da mensagem
+            const messageContent = `
+            <div>
+                <p class="font-bold text-white">Aviso!</p>
+                <p class="text-white">O produto já foi adicionado na compra!</p>
+            </div>
+        `;
+
+            // Adiciona o conteúdo à div
+            successMessage.innerHTML = messageContent;
+
+            // Adiciona a mensagem ao body da página
+            document.body.appendChild(successMessage);
+
+            const notifications = document.querySelectorAll(".notification");
+
+            notifications.forEach((notification) => {
+                // Mostra a notificação com transição
+                setTimeout(() => {
+                    notification.classList.add("opacity-100"); // Aparece
+                }, 700);
+
+                // Esconde a notificação após 5 segundos
+                setTimeout(() => {
+                    notification.classList.remove("opacity-100"); // Desaparece
+                    setTimeout(() => {
+                        notification.style.display = "none"; // Remove do DOM após a transição
+                    }, 500); // Tempo da transição (500ms)
+                }, 5000); // Tempo de exibição (5 segundos)
+            });
+        }
+    </script>
 </body>
 
 </html>

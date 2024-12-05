@@ -36,7 +36,7 @@
                         </tbody>
                     </table>
                 </div>
-            @elseif($rota == 2)
+            @elseif($rota == 2) 
                 <div class="tableHead">
                     <table>
                         <thead>
@@ -46,8 +46,6 @@
                                 <th>Custo Atual</th>
                                 <th>Categoria</th>
                                 <th>Estoque</th>
-                                <th>Custo</th>
-                                <th>Quantidade</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -63,18 +61,16 @@
                                     <td>R${{$produto->custo}}</td>
                                     <td>{{$produto->categoria}}</td>
                                     <td>{{$produto->estoque}}</td>
-                                    <td wire:key="{{$produto->id}}"><input type="number" wire:model="custos.{{ $produto->id }}"
-                                            placeholder="{{$produto->custo}}" /></td>
-                                    <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
-                                            step="0.01" placeholder="1" min="0.1" /></td>
-                                    <td class="acao" wire:key="{{$produto->id}}"><button wire:click="addProdutoCompra({{ $produto->id }})"
-                                            @click="open = false" @click.prevent>Adicionar</button></td>
+                                    <td class="acao" wire:key="{{$produto->id}}"><button
+                                            wire:click="addProdutoCompra({{ $produto->id }})" @click="open = false"
+                                            @click.prevent>Adicionar</button></td>
                                 </tr>
+
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-            @elseif($rota == 3)
+            @elseif($rota == 3) 
                 <div class="tableHead">
                     <table>
 
@@ -85,7 +81,6 @@
                                 <th>Preço AV</th>
                                 <th>Preço AP</th>
                                 <th>Estoque</th>
-                                <th>Quantidade</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -102,11 +97,11 @@
                                     <td>R${{$produto->precoavista}}</td>
                                     <td>R${{$produto->precoaprazo}}</td>
                                     <td>{{$produto->estoque}}</td>
-                                    <td wire:key="{{$produto->id}}"><input type="number" wire:model="quantidades.{{ $produto->id }}"
-                                            step="0.01" placeholder="1" min="0.1" /></td>
-                                    <td class="acao" wire:key="{{$produto->id}}"><button wire:click="addProdutoVenda({{ $produto->id }})"
-                                            @click="open = false" @click.prevent>Adicionar</button></td>
+                                    <td class="acao" wire:key="{{$produto->id}}"><button
+                                            wire:click="addProdutoVenda({{ $produto->id }})" @click="open = false"
+                                            @click.prevent>Adicionar</button></td>
                                 </tr>
+
                             @endforeach
                         </tbody>
                     </table>

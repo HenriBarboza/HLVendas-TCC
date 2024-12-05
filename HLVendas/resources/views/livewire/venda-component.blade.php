@@ -46,10 +46,12 @@
                             <tr>
                                 <td>{{ $produto['produto_id'] }}</td>
                                 <td>{{ $produto['descricao'] }}</td>
-                                <td>{{ $produto['quantidade'] }}</td>
+                                <td> <input type="number" step="0.01" wire:model.live="vetProd.{{ $index }}.quantidade"
+                                        placeholder="Quantidade"></td>
                                 <td>R$ {{ $produto['preco'] }}</td>
                                 <td>R$ {{ $produto['preco'] * $produto['quantidade'] }}</td>
-                                <td class="acao"><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
+                                <td class="acao"><button wire:click="removerProduto({{ $index }})"
+                                        @click.prevent>Remover</button></td>
                                 <input type="hidden" name="produtos[{{$index}}][produto_id]"
                                     value="{{ $produto['produto_id'] }}">
                                 <input type="hidden" name="produtos[{{$index}}][quantidade]"

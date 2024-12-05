@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @livewireStyles
     <link rel="icon" href="{{ asset('images/cart-shopping-solid.ico') }}" type="image/x-icon">
-    @vite(['resources/scss/header.scss', 'resources/js/messageAlert.js' ,'resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
+    @vite(['resources/scss/header.scss', 'resources/js/messageAlert.js', 'resources/scss/compra.scss', 'resources/scss/tableBusca.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/buttonSelect.js', 'resources/js/inputValidation.js', 'resources/js/loadingPage.js'])
     <title>HLVendas | Nova compra</title>
 </head>
 
@@ -15,6 +15,7 @@
  ?>
 
 <body>
+
     <div class="contentCompra">
         <div class="box">
             @include('components.navbar')
@@ -120,6 +121,46 @@
         <!-- </div> -->
         @include('components.footer')
     </div>
+    <script>
+        function mostrarMensagem() {
+            // Cria a div de sucesso
+            const successMessage = document.createElement('div');
+            successMessage.id = 'success-message';
+            successMessage.classList.add('notification', 'bg-yellow-500', 'text-white', 'px-4', 'py-3', 'rounded', 'shadow-lg', 'flex', 'justify-between', 'items-center', 'fixed', 'top-4', 'right-4', 'z-50');
+
+            // Cria o conteúdo da mensagem
+            const messageContent = `
+            <div>
+                <p class="font-bold text-white">Aviso!</p>
+                <p class="text-white">O produto já foi adicionado na compra!</p>
+            </div>
+        `;
+
+            // Adiciona o conteúdo à div
+            successMessage.innerHTML = messageContent;
+
+            // Adiciona a mensagem ao body da página
+            document.body.appendChild(successMessage);
+
+            const notifications = document.querySelectorAll(".notification");
+
+            notifications.forEach((notification) => {
+                // Mostra a notificação com transição
+                setTimeout(() => {
+                    notification.classList.add("opacity-100"); // Aparece
+                }, 700);
+
+                // Esconde a notificação após 5 segundos
+                setTimeout(() => {
+                    notification.classList.remove("opacity-100"); // Desaparece
+                    setTimeout(() => {
+                        notification.style.display = "none"; // Remove do DOM após a transição
+                    }, 500); // Tempo da transição (500ms)
+                }, 5000); // Tempo de exibição (5 segundos)
+            });
+        }
+
+    </script>
     @livewireScripts
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>

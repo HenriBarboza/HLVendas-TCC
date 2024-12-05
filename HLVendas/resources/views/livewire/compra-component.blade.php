@@ -1,4 +1,5 @@
 <div>
+
     @if(count($vetProd) > 0)
         <div class="accordion">
             <div x-data="{ open: false }">
@@ -44,10 +45,16 @@
                         @foreach($vetProd as $index => $produto)
                             <tr>
                                 <td>{{ $produto['descricao'] }}</td>
-                                <td>{{ $produto['quantidade'] }}</td>
-                                <td>R$ {{ $produto['custo'] }}</td>
+                                <td>
+                                    <input type="number" step="0.01" wire:model.live="vetProd.{{ $index }}.quantidade"
+                                        placeholder="Quantidade">
+                                </td>
+                                <td>
+                                    <input type="number"  step="0.01" wire:model.live="vetProd.{{ $index }}.custo" placeholder="Custo">
+                                </td>
                                 <td>R$ {{ $produto['custo'] * $produto['quantidade'] }}</td>
-                                <td class="acao"><button wire:click="removerProduto({{ $index }})" @click.prevent>Remover</button></td>
+                                <td class="acao"><button wire:click="removerProduto({{ $index }})"
+                                        @click.prevent>Remover</button></td>
                                 <input type="hidden" name="produtos[{{$index}}][produto_id]"
                                     value="{{ $produto['produto_id'] }}">
                                 <input type="hidden" name="produtos[{{$index}}][quantidade]"

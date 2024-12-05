@@ -57,16 +57,16 @@
                     @CSRF
                     @method('PUT')
                     <div class="contentInput">
-                        <input class="inputWrapper number placeholderActive" type="text" name="doc" value="{{$venda->doc}}"
-                            readonly placeholder="Documento">
+                        <input class="inputWrapper number placeholderActive" type="text" name="doc"
+                            value="{{$venda->doc}}" readonly placeholder="Documento">
                         <label for="doc" class="userLabel">
                             <p>Documento</p>
                         </label>
                     </div>
                     <div class="contentInput">
                         <div class="inputGroup">
-                            <input class="inputWrapper" type="number" name="clienteid"
-                                value="{{$venda->clienteid}}" id="inpClienteId" hidden required="">
+                            <input class="inputWrapper" type="number" name="clienteid" value="{{$venda->clienteid}}"
+                                id="inpClienteId" hidden required="">
                             <input class="inputWrapper showVend" type="text" value="{{$venda->cliente->nome}}"
                                 id="inpClienteNome" disabled>
                             <label for="clienteid" class="userLabel">
@@ -81,8 +81,8 @@
                         </div>
                     </div>
                     <div class="contentInput">
-                        <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden
-                            name="funcionarioid" required>
+                        <input class="inputWrapper" type="text" value="{{Auth::user()->id}}" hidden name="funcionarioid"
+                            required>
                         <input class="inputWrapper showVend" type="text" value="{{Auth::user()->name}}" disabled>
                         <label for="funcionarioid" class="userLabel">
                             <p>Funcionário da venda</p>
@@ -133,6 +133,45 @@
         @livewireScripts
         @include('components.footer')
     </div>
+    <script>
+        function mostrarMensagem() {
+            // Cria a div de sucesso
+            const successMessage = document.createElement('div');
+            successMessage.id = 'success-message';
+            successMessage.classList.add('notification', 'bg-yellow-500', 'text-white', 'px-4', 'py-3', 'rounded', 'shadow-lg', 'flex', 'justify-between', 'items-center', 'fixed', 'top-4', 'right-4', 'z-50');
+
+            // Cria o conteúdo da mensagem
+            const messageContent = `
+            <div>
+                <p class="font-bold text-white">Aviso!</p>
+                <p class="text-white">O produto já foi adicionado na compra!</p>
+            </div>
+        `;
+
+            // Adiciona o conteúdo à div
+            successMessage.innerHTML = messageContent;
+
+            // Adiciona a mensagem ao body da página
+            document.body.appendChild(successMessage);
+
+            const notifications = document.querySelectorAll(".notification");
+
+            notifications.forEach((notification) => {
+                // Mostra a notificação com transição
+                setTimeout(() => {
+                    notification.classList.add("opacity-100"); // Aparece
+                }, 700);
+
+                // Esconde a notificação após 5 segundos
+                setTimeout(() => {
+                    notification.classList.remove("opacity-100"); // Desaparece
+                    setTimeout(() => {
+                        notification.style.display = "none"; // Remove do DOM após a transição
+                    }, 500); // Tempo da transição (500ms)
+                }, 5000); // Tempo de exibição (5 segundos)
+            });
+        }
+    </script>
 </body>
 
 </html>
