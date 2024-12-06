@@ -41,6 +41,7 @@ class FuncionarioController extends Controller
             'cidade' => $request->input('cidade'),
             'cep' => $request->input('cep'),
             'estado' => $request->input('estado'),
+            'status' => $request->input('status'),
             'datanasc' => $request->input('datanasc'),
             'tipo' => $request->input('tipo'),
             'idauth' => $request->input('idauth'),
