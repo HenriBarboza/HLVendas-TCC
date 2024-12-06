@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (deleteFuncionarioButton && funcionarioForm) {
         deleteFuncionarioButton.addEventListener('click', function(event) {
-            handleDeleteButtonClick(event, funcionarioForm, '/funcionario', 'Funcionário');
+            handleDeleteButtonClick(event, funcionarioForm, '/funcionario/create', 'Funcionário');
         });
     }
 

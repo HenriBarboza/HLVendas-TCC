@@ -45,6 +45,7 @@ $black: #2d2c2c;
     }
 
     table {
+        table-layout: fixed;
         width: 100%;
         border-collapse: collapse;
 
@@ -103,6 +104,9 @@ $black: #2d2c2c;
             tr {
                 td {
                     width: calc(100% / 6) !important;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    white-space: normal;
                 }
             }
         }

@@ -18,7 +18,7 @@ class VerificarPermissao
     {
         $user = Auth::user();
 
-        $bloqueioRotas = ['conta.index', 'conta.create', 'conta.edit', 'conta.delete', 'conta.show',
+        $bloqueioRotas = ['compra.index','compra.create', 'compra.show', 'compra.edit','conta.index', 'conta.create', 'conta.edit', 'conta.delete', 'conta.show',
                           'funcionario.index', 'funcionario.create', 'funcionario.edit', 'funcionario.delete', 'funcionario.show',
                           'condicaoPagamento.index', 'condicaoPagamento.create', 'condicaoPagamento.edit', 'condicaoPagamento.delete', 'condicaoPagamento.show'];
         if ($user->funcionario && $user->funcionario->tipo != 'g') {

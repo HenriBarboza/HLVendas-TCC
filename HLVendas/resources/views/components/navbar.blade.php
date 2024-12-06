@@ -36,11 +36,13 @@
                             <i class="fa-solid fa-money-bill-wave icon tooltip" data-tooltip="Venda"></i>
                         </a>
                     </li>
-                    <li class="text">
-                        <a href="/compra/create">
-                            <i class="fa-solid fa-basket-shopping icon tooltip" data-tooltip="Compra"></i>
-                        </a>
-                    </li>
+                    @if(@Auth::user()->id === 1)
+                        <li class="text">
+                            <a href="/compra/create">
+                                <i class="fa-solid fa-basket-shopping icon tooltip" data-tooltip="Compra"></i>
+                            </a>
+                        </li>
+                    @endif
                     <li class="text">
                         <a href="/fornecedor/create">
                             <i class="fa-solid fa-handshake icon tooltip" data-tooltip="Fornecedores"></i>
